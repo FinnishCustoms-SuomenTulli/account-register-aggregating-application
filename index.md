@@ -108,20 +108,17 @@ Taulukossa 2.1. on esitetty vuokaavion muuttujien merkitys.
 Taulukossa 2.1. esitettyjen muuttujien kulloinkin voimassa olevat arvot kerrotaan liitedokumentaatiossa.
 
 Kyselyn vuo kulkee seuraavasti:
-1. Client lähettää kyselysanoman
-2. Server voi kyvykkyydestä ja kontekstista riippuen palauttaa hakutulokset joko synkronisesti tai asynkronisesti. Server joko  
-  a. Palauttaa vastaussanoman, joka sisältää hakutuloksen ja koodin *COMP*, esimerkiksi viiden (5) sekunnin sisällä, tai  
-  b. palauttaa vastaussanoman, joka sisältää koodin *NRES* 
-3. Client tarkistaa onko vastaussanomassa koodi *COMP* vai *NRES*
-4. Jos koodi on *COMP*, siirrytään kohtaan 10.
-5. Koodi on *NRES*. Client odottaa *POLLING_INTERVAL* muuttujan määrittämän ajan ja tekee sen jälkeen kyselyn request #2
-6. Server, joko  
-  a. Palauttaa hakutuloksen ja koodin *COMP*, tai  
-  b. palauttaa vastaussanoman, joka sisältää koodin *NRES* 
-7. Client tarkistaa onko vastaussanomassa koodi *COMP* vai *NRES*
-8. Jos koodi on *COMP*, siirrytään kohtaan 10.
-9. Koodi on *NRES*. Jos *RETRY_LIMIT* ei ole saavutettu, siirrytään kohtaan 5.  
-10. Loppu.
+1. Client lähettää kyselysanoman Query APIin.
+2. Query API palauttaa vastauksena avaimen (resultKey).
+3. Client lähettää avaimen sisältävän statuskyselyn Status APIin
+4. Status API joko
+  a. Palauttaa koodin NRES, jos tulokset eivät ole vielä valmiina, tai
+  b. Palauttaa koodin COMP ja listan avain-tiedonlähde pareja.
+5. Jos koodi on *NRES*, Client odottaa ja palaa kohtaan 3.
+6. Jos koodi on *COMP*, Client lähettää hakutuloskyselyn yhdellä kohdassa 4.b. vastaanottamistaan avaimista Result APIin.
+7. Result API palauttaa lähetettyä avainta vastaavan hakutulossanoman.
+8. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6.
+9. Jos kaikki hakutulokset on saatu, loppu.
  
 Taulukossa 2.2. on kuvattu StatusResponse1Code arvojen käyttö
 
