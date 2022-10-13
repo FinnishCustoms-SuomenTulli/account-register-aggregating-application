@@ -105,7 +105,7 @@ Taulukossa 2.2. on kuvattu StatusResponse1Code arvojen käyttö
 |NRES|NoResponseYet|Response not provided yet.|Vastaussanoma ei sisällä hakutuloksia, tee uusi kysely myöhemmin.|
 |PART|PartialResponse|Response is partially provided.|Ei käytössä|
 
-####Tulosten säilytysaika Koostavassa sovelluksessa
+#### Tulosten säilytysaika Koostavassa sovelluksessa
 Valmiita tuloksia pidetään tallessa korkeintaan 6h niiden valmistumisesta, jona aikana tulokset on noudettava. Tuloksia ei poisteta haettaessa, vaan vasta em. aikarajan umpeuduttua. 
 (##TODO: määriteltävä aikaraja##)
 
@@ -125,7 +125,10 @@ Sanomissa käytetään ISO 20022 koodistoviittauksia. Koodistoviittaukset löyty
 Rajapinnassa käytettävä sanomarakenne on päätasolla identtinen Tullin julkaiseman [Tiedonhakujärjestelmien kyselyrajapinnan](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) määrityksen kanssa.
 Tämän lisäksi rajapintaan on määritelty alisanomat [fin.020](#kyselyrajapinta-fin020) ja [fin.021](#kyselyrajapinta-fin021), joilla välitetään tarvittavat tunnisteet haun tilan tarkistamiseksi ja tulosten hakemiseksi.
 
-Koostavan sovelluksen rajapinnassa on kolme endpointia: kyselyn vastaanottamiseen, kyselyn statuksen kyselyyn ja hakutulosten noutoon.
+Koostavan sovelluksen rajapinnassa on kolme endpointia: 
+- [kyselyn vastaanottamiseen]("#kyselyrajapinta-kysely")
+- [kyselyn statuksen kyselyyn]("#kyselyrajapinta-status")
+- [hakutulosten noutoon]("#kyselyrajapinta-tulos")
 
 ### <a name="kyselyrajapinta-kysely"></a> 4.2 Kyselyrajapinta
 Kyselyrajapintaan lähetettävä sanoma on täysin samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma.
