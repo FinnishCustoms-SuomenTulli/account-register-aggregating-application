@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2020 sp1 (x64) (http://www.altova.com) by Tulli (Tulli) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:fin.020.001.01" targetNamespace="urn:fin.020.001.01" elementFormDefault="qualified">
+	<xs:element name="Document" type="Document"/>
+	<xs:complexType name="Document">
+		<xs:sequence>
+			<xs:element name="QueryResultRequest" type="QueryResultRequestV01"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="QueryResultRequestV01">
+		<xs:sequence>
+			<xs:element name="ResultKeyList" type="ResultKeyList"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ResultKeyList">
+		<xs:sequence>
+			<xs:element name="ResultKey" type="Max256Text" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="LegalMandate1">
+		<xs:sequence>
+			<xs:element name="Prgrph" type="Max35Text"/>
+			<xs:element name="Dsclmr" type="Max350Text" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="Max256Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="256"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max35Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="35"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="Max350Text">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="1"/>
+			<xs:maxLength value="350"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ISODateTime">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="YesNoIndicator">
+		<xs:restriction base="xs:boolean"/>
+	</xs:simpleType>
+</xs:schema>
