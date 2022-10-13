@@ -65,10 +65,10 @@ Tässä dokumentissa kuvataan Koostavan sovelluksen rajapinnat.
 
 Tässä luvussa on kuvattu pankki- ja maksutilitietojen kysely koostavasta sovelluksesta.
 
-Kuvassa 2.1 on esitetty vuokaaviona pankki- ja maksutilitietojen kysely koostavasta sovelluksesta.
+Kuvassa 2.1 kyselyprosessi on on esitetty vuokaaviona.
 
-![Pankki- ja maksutilitietojen kysely](diagrams/flowchart_query.png "Pankki- ja maksutilitietojen kysely")  
-*__Kuva2.1.__ Pankki- ja maksutilitietojen kysely*  
+![Pankki- ja maksutilitietojen kysely](diagrams/flowchart_query.png "Pankki- ja maksutilitietojen kysely Koostavasta sovelluksesta")  
+*__Kuva2.1.__ Pankki- ja maksutilitietojen kysely Koostavasta sovelluksesta*  
 
 Taulukossa 2.1. on esitetty vuokaavion muuttujien merkitys. 
 
@@ -76,9 +76,8 @@ Taulukossa 2.1. on esitetty vuokaavion muuttujien merkitys.
 
 |Muuttuja|Kuvaus|
 |:--|:--|
-|POLLING_INTERVAL|Pollausväli, viive joka clientin on odotettava ennen seuraavaa kyselyä. Jos client pollaa serveriä liian tiheästi, voi server hylätä transaktion käsittelyn (virhekoodi 3, ks [4.12](#4-12)).|
-|RETRY_LIMIT|Kuinka monta pollausta on sallittua tehdä, ennen kuin lopetetaan. Jos vastausta ei edelleenkään saada, on joko tehtävä kokonaan uusi kysely tai siirrettävä asia manuaaliseen käsittelyyn.|
-(E: tähän voisi vaihtaa vaikka muuttujan POLLING_TIME_LIMIT, jolle arvoksi esim. 1h)
+|POLLING_INTERVAL|Pollausväli, viive joka clientin on odotettava ennen seuraavaa kyselyä. Jos client pollaa serveriä liian tiheästi, voi server hylätä transaktion käsittelyn (virhekoodi 3, ks. [taulukko 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).|
+|POLLING_TIME_LIMIT|Kuinka kauan pollausta on sallittua tehdä, ennen kuin lopetetaan. Jos vastausta ei edelleenkään saada, on joko tehtävä kokonaan uusi kysely tai siirrettävä asia manuaaliseen käsittelyyn.|
 
 Taulukossa 2.1. esitettyjen muuttujien kulloinkin voimassa olevat arvot kerrotaan liitedokumentaatiossa.
 
