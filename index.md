@@ -78,13 +78,13 @@ Kyselyn vuo kulkee seuraavasti:
 1. Client lähettää kyselysanoman Query APIin.
 2. Query API palauttaa vastauksena avaimen (resultKey).
 3. Client lähettää avaimen sisältävän statuskyselyn Status APIin
-4. Status API joko
-  a. Palauttaa koodin NRES, jos tulokset eivät ole vielä valmiina, tai
-  b. Palauttaa koodin COMP ja listan avain-tiedonlähde pareja.
+4. Status API joko  
+  a. Palauttaa koodin NRES, jos tulokset eivät ole vielä valmiina, tai  
+  b. Palauttaa koodin COMP ja listan avain-tiedonlähde pareja. 
 5. Jos koodi on *NRES*, Client odottaa ja palaa kohtaan 3.
 6. Jos koodi on *COMP*, Client lähettää hakutuloskyselyn yhdellä kohdassa 4.b. vastaanottamistaan avaimista Result APIin.
 7. Result API palauttaa lähetettyä avainta vastaavan hakutulossanoman.
-8. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6.
+8. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6 ja toistetaan haku seuraavalla avaimella.
 9. Jos kaikki hakutulokset on saatu, loppu.
  
 Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka arvojen käyttön on kuvattu Taulukossa 2.2.
