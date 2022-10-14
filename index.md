@@ -63,9 +63,9 @@ Kuvassa 2.1 kyselyprosessi on on esitetty vuokaaviona.
 ![Tietojen kysely koostavasta sovelluksesta](diagrams/flowchart_koostava.png "Tietojen kysely Koostavasta sovelluksesta")  
 *__Kuva2.1.__ Tietojen kysely Koostavasta sovelluksesta*  
 
-Taulukossa 2.1. on esitetty vuokaavioon liittvien muuttujien merkitys. 
+Taulukossa 2.1. on esitetty vuokaavioon liittyvien muuttujien merkitys. 
 
-*__Taulukko 2.1.__ Vuokaavioon liittvät muuttujat*
+*__Taulukko 2.1.__ Vuokaavioon liittyvät muuttujat*
 
 Muuttuja|Kuvaus
 ---|---
@@ -78,13 +78,13 @@ Kyselyn vuo kulkee seuraavasti:
 1. Client lähettää kyselysanoman Query APIin.
 2. Query API palauttaa vastauksena avaimen (resultKey).
 3. Client lähettää avaimen sisältävän statuskyselyn Status APIin
-4. Status API joko
-  a. Palauttaa koodin NRES, jos tulokset eivät ole vielä valmiina, tai
-  b. Palauttaa koodin COMP ja listan avain-tiedonlähde pareja.
+4. Status API joko  
+  a. Palauttaa koodin NRES, jos tulokset eivät ole vielä valmiina, tai  
+  b. Palauttaa koodin COMP ja listan avain-tiedonlähde pareja. 
 5. Jos koodi on *NRES*, Client odottaa ja palaa kohtaan 3.
 6. Jos koodi on *COMP*, Client lähettää hakutuloskyselyn yhdellä kohdassa 4.b. vastaanottamistaan avaimista Result APIin.
 7. Result API palauttaa lähetettyä avainta vastaavan hakutulossanoman.
-8. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6.
+8. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6 ja toistetaan haku seuraavalla avaimella.
 9. Jos kaikki hakutulokset on saatu, loppu.
  
 Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka arvojen käyttön on kuvattu Taulukossa 2.2.
@@ -118,9 +118,9 @@ Rajapinnassa käytettävä sanomarakenne on päätasolla identtinen Tullin julka
 Tämän lisäksi rajapintaan on määritelty alisanomat [fin.020](#kyselyrajapinta-fin020) ja [fin.021](#kyselyrajapinta-fin021), joilla välitetään tarvittavat tunnisteet haun tilan tarkistamiseksi ja tulosten hakemiseksi.
 
 Koostavan sovelluksen rajapinnassa on kolme endpointia: 
-- [kyselyn vastaanottamiseen]("#kyselyrajapinta-kysely")
-- [kyselyn statuksen kyselyyn]("#kyselyrajapinta-status")
-- [hakutulosten noutoon]("#kyselyrajapinta-tulos")
+- [kyselyn vastaanottamiseen](#kyselyrajapinta-kysely)
+- [kyselyn statuksen kyselyyn](#kyselyrajapinta-status)
+- [hakutulosten noutoon](#kyselyrajapinta-tulos)
 
 ### <a name="kyselyrajapinta-kysely"></a> 4.2 Kyselyrajapinta
 Kyselyrajapintaan lähetettävä sanoma on täysin samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma.
