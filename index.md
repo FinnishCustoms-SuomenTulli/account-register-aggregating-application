@@ -1,9 +1,7 @@
 HUOM Tiedostot ja linkit niihin päivitettävä:  
-[Käyttöönoton ja ylläpidon ohjeistus koostava sovellus](instructions/Käyttöönoton_ja_ylläpidon_ohjeistus_tiedonhakujärjestelmä.pdf)  
-[Deployment and maintenance instructions for the Data Retrieval System](instructions/Deployment_and_maintenance_instructions_for_the_Data_Retrieval_System_EN.pdf)  
-[Query interface description of the data retrieval system](index_en.md)  
-[Instruktioner för produktionssättning och underhåll av datasöksystemet](instructions/Instruktioner_för_produktionssättning_och_underhåll_av_datasöksystemet_SV.pdf)  
-[Beskrivning av datasöksystemets frågegränssnitt](index_sv.md)
+[Käyttöönoton ja ylläpidon ohjeistus koostava sovellus](https://finnishcustoms-suomentulli.github.io/account-register-information-query/)  
+[Query interface description of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html)  
+[Beskrivning av datasöksystemets frågegränssnitt](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html)
 
 # Koostavan sovelluksen kyselyrajapintakuvaus
 
@@ -181,3 +179,9 @@ fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat
 ### <a name="kyselyrajapinta-virhetilanteet"></a> 4.8 Virhetilanteiden hallinta
 Virheiden hallinta ja palautettavat koodit noudattavat soveltuvin osin Tiedonhakujärjestelmän kyselyrajapinnan [Kyselyrajapinnan WS-sanomaliikenteen skenaariot](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12) -kappaleen määrityksiä.
 
+### <a name="kyselyrajapinta-esimerkit"></a> 4.9 Esimerkkisanomat
+Esimerkkisanomat kustakin kyselysanomasta ja sen vastauksesta löytyvät examples-kansiosta:
+- [Kyselysanoma](examples/query1.xml) ja [vastaus](examples/query1_response.xml)
+- [Status-kysely](examples/status1.xml) ja [vastaus](examples/status1_response.xml)
+- [Tulos-kysely](examples/result1.xml) ja [vastaus](examples/result1_response.xml)
+  
