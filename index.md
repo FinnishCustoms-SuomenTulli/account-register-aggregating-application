@@ -1,4 +1,3 @@
-HUOM Tiedostot ja linkit niihin päivitettävä:  
 [Käyttöönoton ja ylläpidon ohjeistus koostava sovellus](https://finnishcustoms-suomentulli.github.io/account-register-information-query/)  
 [Query interface description of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html)  
 [Beskrivning av datasöksystemets frågegränssnitt](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html)
