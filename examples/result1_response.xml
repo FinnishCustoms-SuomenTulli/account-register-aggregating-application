@@ -32,9 +32,9 @@
                   </head001:Id>
                </head001:OrgId>
             </head001:To>
-            <head001:BizMsgIdr>gF3kOUwxTfCbqCfOa1J7KA==</head001:BizMsgIdr>
+            <head001:BizMsgIdr>8zps+rY3Q+2EHS+FSqEIAg==</head001:BizMsgIdr>
             <head001:MsgDefIdr>auth.002.001.01</head001:MsgDefIdr>
-            <head001:CreDt>2022-10-14T08:00:19.160Z</head001:CreDt>
+            <head001:CreDt>2022-10-14T12:36:25.385Z</head001:CreDt>
             <head001:Sgntr>
                <Signature xmlns="http://www.w3.org/2000/09/xmldsig#">
                   <SignedInfo>
@@ -46,26 +46,26 @@
                            <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
                         </Transforms>
                         <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-                        <DigestValue>RPE5bGb1rzNi3ZI/bVmIfSea6vTJOCAlt1w1hgJJzsQ=</DigestValue>
+                        <DigestValue>/wgyVlswHWU8NBF8ZmWJGgm35lpGPMm2nTloLDoDZiU=</DigestValue>
                      </Reference>
                   </SignedInfo>
-                  <SignatureValue>arfCVv+y/L4R4/zYyiBAsgqRd4v2au6zuJvXPoUPM+Xcpzz222a1Z+1j9iqjlLcfNyK++6KtqHeI
+                  <SignatureValue>MXM2CYsSBhiu/aFraUMCYTIcv99cIwoyWZf6gp0/lzJCo8gnRMbbLpWotLvHtzT6wNChWrbXBmT4
 
-HeCQE7aCuLooGYO4u81k3wrnd43L4213wowRSKa3OFwLQO/3USo8DPOJPvsLkNr6T0hD5HtxvLau
+QF7t7LAKXwXClMTqGVWbbq/7YgfWGBdOwiMMLbY/1kebdXA25E9gLpMoXcqxNzfRqlh1NAzOusSW
 
-bdWammORAmvwQmciMH24fiOVghorf4u49FXycHzkZk/ZnqCNUnwFNRqMP6PVfwhpRwbLCirh4p5Q
+dutzK92z8kRVb0tOb9sIc/Dfizym0/m3f/LH5aBRXMV57CV8bCHansb5A6VAlc31CXLtPb0DGHjJ
 
-NYFXr1Hy8Zax+ubn2pz2RhRTDdWwZmBUwEboiUMhx5P+X0W7hdY7w96eQmbDQHkHj2u1Bsi0CyNe
+0dSfnZAy+UyHr4MC5CmzWOkcT9kdOb7kQ8a7fKHkVZ4EdxYrpEdbfEu0RyLgNRwcRJYfEb3fPa3z
 
-e6PeKGZ3qovnrJsUt2HCwDO4YoVhH3eYqHCEOJ41TVl041b8WlGj0y4JCEhZeJ/fZpR1fkABlukD
+e8Hz/q1wxpNSpWe7G3cYgXSsNN0Q6rgCHtoVz6bE1ivAnhTqIKoTbyRFgZIUHzBrERWOTcSeYMpC
 
-ZdrdUOVLp0EI+rOqG73UMydROPI5WD+lpzxP4W4HJaQ4k1zDsjhMntLt7F2uKaftvdWfzfvtDAvu
+cdbLALVluN6ka7TONm+ma4Uq8XPq0XxvSExeA3uWUmFm/wBUDnEVVNQWYrDaVNC/TPw+IU7Tsu1w
 
-I/KqfRF1NSymfaeJv6OquwRlUjeiHYukDDDjg1EcPLxBVNqGfprPPmVLzR8cys1+CFEKqVpXQA1f
+GQ682wRS1RcwPfn6fHgaoG1F6L7A7NvUzvOuE+pYzH+BXPIMRjUaWt02r0ENtf8Uk51w8ATIJeYK
 
-ywZst/HFPqqMmOE3OI0wwxhs88sItfWhgHIbnIsDf6TSxW/p2sPCkF1GF1QOMx+cSGeCNZ/7D0Pr
+xMQLnZaONFj/WFcG7iAUeijZQAlhTsro0ICKSV2VukErLDDgzTx3WtSC+VkXgOz601dHgjRvVL6A
 
-uG09oXIvxbFvTLbt4OPzDbD9lqANxyzMI2hpnBOTZJPHGostLYCGJAaA9mjlOggXE6LCwZzPcn8=</SignatureValue>
+T8rynbAmU/q2LqaDrRlR85IDtMH+b9iGPBC+vi6tfgguvHY7OavnrQHA4SvhtEdnH0LotGpFHJk=</SignatureValue>
                   <KeyInfo>
                      <X509Data>
                         <X509Certificate>MIIH3zCCBcegAwIBAgIPAYAYeBKtkUisx5JrWEEaMA0GCSqGSIb3DQEBDQUAMIGHMQswCQYDVQQG
@@ -187,108 +187,22 @@ N0PdAzYy/eeDww0mKGNebXKxUu0JEDr0</X509Certificate>
                               <Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/>
                            </Transforms>
                            <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"/>
-                           <DigestValue>pzyrhgtOEK+An9ebJ/+92wJSvofcIvdgIbAs3snp6Ew=</DigestValue>
+                           <DigestValue>IGTvk8nXXALuuhtEBKROdXa27DVex4W2J6SNwCs+7gY=</DigestValue>
                         </Reference>
                      </SignedInfo>
-                     <SignatureValue>kfr/2e/DsUYy+FNtRYKoRqjT4GN5tIwW4rYON7j0KY8ZoniJ9wTP0pwdgBY1R4hR
-vqJOvUmaxYRqKH+Nk0RoE5YbnX96/ZG3xWRZZJp6UnR0pky4SpQDnipe2d+8o/p0
-ItK/dlmIabEUT10VuS7YpBqaaJa7VfU2ujZ+LwWcBvfFueZZLXJZ0Q/oo9Pf2eJC
-lXqNIQSOh1iPiEGxaTuaajiRBBltd7kkT/weP1r2/FSg8ENOu94deTLLtd51IhbG
-XS4pyjizSdPtr/pnANM2LcIUNPp4GAyp5b/BNgx/waQ9l2j0G17TeVAf/zOHR1Lb
-i6RXViPWKx7rVnpVmuQG8YP+snNhUjWdvmhF2QstWFhHD4B2YwCCb0OLWgnFDUN7
-NBaYwQNje/G6VVmF8MemOerxk9y6gSe6foWxgs9QEWaJtSjJtOB6EGZE42GtuOHG
-7/2T+Mr8wBnZj8eWvXsqdtJamhjPJQxd1//fuR9k+Ss3OFhSAqO/BJWtQXZZP3cV
-vNM7cSZ5u2T2uwP3BHUxuWCe6Zw0PHNLIoWf9R1ySa90WDC81a5w3MERt0cUST2Z
-emKII6c38Md/q5fQoajao09FqBchDMoVKhYChZaC9hYISkWR1u1KKomauPr09TiY
-/sTxot+tWlnUepZL3EdO7zUpb1PtDsdy373zk+gcQJw=</SignatureValue>
+                     <SignatureValue>E1/9HFa2e2lVn3InIZ6aS3U/5HXbednGt6GMmcU1gUC0tZfHG0ppaSDITuwaUQYY
+rHxCURTb3NSvlJKoMwrZFM8pnnLpS/zjMeveLn9q0+yv3g+G9RwNAfGgseksCxYj
+aJ6JUPDCqlq4ijtyRJGzOWft7dhhbgHK40PqjfC3OkSmujGvGUYlUEJAc7Wioq4S
+TepnJjQeM/SXapG2UYosEGeV2bnXzIl16bcYT5IT89cp4LGYBAL8Cl4r4jl8tXnw
+EeQ6mKitHNaaAdbM/9O0EfMOMTIijA1kyepi0rpSqb49rsbmCTjjduVRKbjQtWI+
+PfnJN48PTYvrnpp3IYLiwrgE12MQh1sGyFKOfY/dto+BkwFg3j+S0xuwf+KphyO7
+3NDnv0j1LY62HUr7CsXSXrqj1HE8Huhzb+kNMWMU8IsiCuZi7+VGDYK53QS6RaAG
+BTtpzoZoz9IvvqfvBwq9PYDbITmaZ4HemiUwXG6AXArZlF9QQYdvc6/Aop3W8t+o
+nqV5NVIiwBFEKNXSq0nlIDYT3bUTx1gP7XhqASnON/ot3FCVLHt4pzx8LiKj7JAe
+7VQ0OCYvp7cJYQInXU2CJkF3kY/JjpZtud53+psbdD5UeVQz/e3BLGwP7kaS9B5/
+O0hVLrWTGCDhi9PgQgUZDGGATVEUz1qA8th7QnWA+pU=</SignatureValue>
                      <KeyInfo>
                         <X509Data>
-                           <X509Certificate>MIIH3zCCBcegAwIBAgIPAYAYeBKtkUisx5JrWEEaMA0GCSqGSIb3DQEBDQUAMIGH
-                                    MQswCQYDVQQGEwJGSTEpMCcGA1UECgwgRGlnaS0gamEgdmFlc3RvdGlldG92aXJh
-                                    c3RvIFRFU1QxHzAdBgNVBAsMFlRlc3RpcGFsdmVsdXZhcm1lbnRlZXQxLDAqBgNV
-                                    BAMMI0RWViBURVNUIFNlcnZpY2UgQ2VydGlmaWNhdGVzIC0gRzJSMB4XDTIyMDQx
-                                    MjIxMDAwMFoXDTIzMDQxMjIwNTk1OVowcTELMAkGA1UEBhMCRkkxEDAOBgNVBAgM
-                                    B0ZpbmxhbmQxETAPBgNVBAcMCEhlbHNpbmtpMQ4wDAYDVQQKDAVUdWxsaTESMBAG
-                                    A1UEBRMJMDI0NTQ0Mi04MRkwFwYDVQQDDBBhYy10ZXN0LnR1bGxpLmZpMIICIjAN
-                                    BgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAydbzpnpUkHWFIwc0RUYBGtJS7OPA
-                                    B3iSF8ZipBiRnBXpWk/0CR/I/jvr3vAgfNbDkK/+8tCFzkhtIFhZA82sKpYsfcly
-                                    Z3CvTbTFyEpQIOT2tvdM69VBuBfMxjLb871W5sxVjkd/PMyG7HlxxRWJbXmnoIle
-                                    Uugl3hu9qe7dVJ8lfEYJZlstxgxFTi9AHkkzFQhxqmMx083Fn1QIJsxa9ZMcXJUp
-                                    2ITq+KqxeiKd7sTA+yJdFj6qNk7+HUwgP4hfv7eY41Bof5aboVpZ+zGJ+HIcMOvO
-                                    1ghalnXvUHyxst56eU/BR9XunuabUXVrf48Uvmi0AveOL6kwKwL9P3Ol2ptc+UBe
-                                    eTv9ubL56R+0XT5FV0Lcs1ZOZhxpTFb+XVUDOf2aCwRVkx4BMuh7PjnNJhZKzNUF
-                                    JFNCbYcKVbHMr84NSNGs86C+kACiufON1XMVbqyJVOQTNLp6Jwx6q7yvJksaz4F/
-                                    QdTXpjk/yYiqMQGnvREpzV4YHcrVR1vmkEVt1Znmvvfydy6wNRk2RNYtGE9fb8/h
-                                    kFJY0nGJSvuXQaLyfktHEtaOFhS7/R/GtjVr2A/mOza7e44j4Sahjvrhhq775L5y
-                                    B5ropvwHyH+ja/1AxQhf1FrbzlXh/j7FEumEctfzUy+XAARENPrkGzydza6T91/C
-                                    W/IVLsjNE90gCPsCAwEAAaOCAlswggJXMB8GA1UdIwQYMBaAFDQF8tsG3TMgbOEI
-                                    B8dsT/BspB50MB0GA1UdDgQWBBTePq9whT0VkXayvYLyJV9Z7JjEazAOBgNVHQ8B
-                                    Af8EBAMCBLAwgdcGA1UdIASBzzCBzDAIBgYEAI96AQcwgb8GCiqBdoQFYwqCMQEw
-                                    gbAwJwYIKwYBBQUHAgEWG2h0dHA6Ly93d3cuZmluZWlkLmZpL2Nwczk5LzCBhAYI
-                                    KwYBBQUHAgIweBp2VmFybWVubmVwb2xpdGlpa2thIG9uIHNhYXRhdmlsbGEgLSBD
-                                    ZXJ0aWZpa2F0cG9saWN5IGZpbm5zIC0gQ2VydGlmaWNhdGUgcG9saWN5IGlzIGF2
-                                    YWlsYWJsZSBodHRwOi8vd3d3LmZpbmVpZC5maS9jcHM5OTAbBgNVHREEFDASghBh
-                                    Yy10ZXN0LnR1bGxpLmZpMA8GA1UdEwEB/wQFMAMBAQAwOQYDVR0fBDIwMDAuoCyg
-                                    KoYoaHR0cDovL3Byb3h5LmZpbmVpZC5maS9jcmwvZHZ2dHNwMnJjLmNybDAdBgNV
-                                    HSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwdAYIKwYBBQUHAQEEaDBmMDMGCCsG
-                                    AQUFBzAChidodHRwOi8vcHJveHkuZmluZWlkLmZpL2NhL2R2dnRzcDJyYy5jcnQw
-                                    LwYIKwYBBQUHMAGGI2h0dHA6Ly9vY3NwdGVzdC5maW5laWQuZmkvZHZ2dHNwMnJj
-                                    MC0GCCsGAQUFBwEDBCEwHzAIBgYEAI5GAQEwEwYGBACORgEGMAkGBwQAjkYBBgMw
-                                    DQYJKoZIhvcNAQENBQADggIBAJiiB6e3sY0i82k/VlK5ynRixyk3reXh/LLBbEbL
-                                    Z+mRMDhvSQWO6bz7YPLHBhvFyqS5mEME2Q1C+oLBS2fxJxqwCRZKbwdfWn+RdTVF
-                                    F37Xpqmfhm4giIzg3TxeNQG/hjqKmeFZ0Xf/g+PPSc4sPMbM8lTV+myaqwvRNHRC
-                                    pC2miCf9W6eGzf8Fe2ePOEq1fe5mEikeaV1s+re+hBPh8xpNPzEBTBI8KelUq4m1
-                                    VQaQ4Y4KmDOwg2eh8Mp71x2kqdHZCWVMSNiIU1PXDhvd6YekbT7pCQbqwGiLdd2Z
-                                    A9s/72c6SUaOC/armcr+VouyvrtVndix7k4S+Y6aiBfYtLx9UVM0hfmLNYDGqCgj
-                                    PIKfaHSmmGRBtHZVZurI/fiIdQFj5/KrGqsXvJ/ZU4kcX593tuAO4OfLTlBosILW
-                                    RuunBXXemP42TRs7n5NOuhWvoEprRFV0F7JKduCtJErDY3K0MBEtxWubEASnAGoP
-                                    cdtbCBluTe5WqOPCLBpBvpSLLeiXn1WFCvGV6wVuTwgtlwfDz1A2rT40RbBf94go
-                                    1yG7sR1Rq1cWYgEL4odz3EB8bWT5VbDnrlC3qD5NShHdzLZsXVnCOzX9u6iFThim
-                                    FMyNBdb9oHI7sG6EIlAPq3zPj/jGmUG5ILeeN0PdAzYy/eeDww0mKGNebXKxUu0J
-                                    EDr0</X509Certificate>
-                           <X509Certificate>MIIH3zCCBcegAwIBAgIPAYAYeBKtkUisx5JrWEEaMA0GCSqGSIb3DQEBDQUAMIGH
-                                    MQswCQYDVQQGEwJGSTEpMCcGA1UECgwgRGlnaS0gamEgdmFlc3RvdGlldG92aXJh
-                                    c3RvIFRFU1QxHzAdBgNVBAsMFlRlc3RpcGFsdmVsdXZhcm1lbnRlZXQxLDAqBgNV
-                                    BAMMI0RWViBURVNUIFNlcnZpY2UgQ2VydGlmaWNhdGVzIC0gRzJSMB4XDTIyMDQx
-                                    MjIxMDAwMFoXDTIzMDQxMjIwNTk1OVowcTELMAkGA1UEBhMCRkkxEDAOBgNVBAgM
-                                    B0ZpbmxhbmQxETAPBgNVBAcMCEhlbHNpbmtpMQ4wDAYDVQQKDAVUdWxsaTESMBAG
-                                    A1UEBRMJMDI0NTQ0Mi04MRkwFwYDVQQDDBBhYy10ZXN0LnR1bGxpLmZpMIICIjAN
-                                    BgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAydbzpnpUkHWFIwc0RUYBGtJS7OPA
-                                    B3iSF8ZipBiRnBXpWk/0CR/I/jvr3vAgfNbDkK/+8tCFzkhtIFhZA82sKpYsfcly
-                                    Z3CvTbTFyEpQIOT2tvdM69VBuBfMxjLb871W5sxVjkd/PMyG7HlxxRWJbXmnoIle
-                                    Uugl3hu9qe7dVJ8lfEYJZlstxgxFTi9AHkkzFQhxqmMx083Fn1QIJsxa9ZMcXJUp
-                                    2ITq+KqxeiKd7sTA+yJdFj6qNk7+HUwgP4hfv7eY41Bof5aboVpZ+zGJ+HIcMOvO
-                                    1ghalnXvUHyxst56eU/BR9XunuabUXVrf48Uvmi0AveOL6kwKwL9P3Ol2ptc+UBe
-                                    eTv9ubL56R+0XT5FV0Lcs1ZOZhxpTFb+XVUDOf2aCwRVkx4BMuh7PjnNJhZKzNUF
-                                    JFNCbYcKVbHMr84NSNGs86C+kACiufON1XMVbqyJVOQTNLp6Jwx6q7yvJksaz4F/
-                                    QdTXpjk/yYiqMQGnvREpzV4YHcrVR1vmkEVt1Znmvvfydy6wNRk2RNYtGE9fb8/h
-                                    kFJY0nGJSvuXQaLyfktHEtaOFhS7/R/GtjVr2A/mOza7e44j4Sahjvrhhq775L5y
-                                    B5ropvwHyH+ja/1AxQhf1FrbzlXh/j7FEumEctfzUy+XAARENPrkGzydza6T91/C
-                                    W/IVLsjNE90gCPsCAwEAAaOCAlswggJXMB8GA1UdIwQYMBaAFDQF8tsG3TMgbOEI
-                                    B8dsT/BspB50MB0GA1UdDgQWBBTePq9whT0VkXayvYLyJV9Z7JjEazAOBgNVHQ8B
-                                    Af8EBAMCBLAwgdcGA1UdIASBzzCBzDAIBgYEAI96AQcwgb8GCiqBdoQFYwqCMQEw
-                                    gbAwJwYIKwYBBQUHAgEWG2h0dHA6Ly93d3cuZmluZWlkLmZpL2Nwczk5LzCBhAYI
-                                    KwYBBQUHAgIweBp2VmFybWVubmVwb2xpdGlpa2thIG9uIHNhYXRhdmlsbGEgLSBD
-                                    ZXJ0aWZpa2F0cG9saWN5IGZpbm5zIC0gQ2VydGlmaWNhdGUgcG9saWN5IGlzIGF2
-                                    YWlsYWJsZSBodHRwOi8vd3d3LmZpbmVpZC5maS9jcHM5OTAbBgNVHREEFDASghBh
-                                    Yy10ZXN0LnR1bGxpLmZpMA8GA1UdEwEB/wQFMAMBAQAwOQYDVR0fBDIwMDAuoCyg
-                                    KoYoaHR0cDovL3Byb3h5LmZpbmVpZC5maS9jcmwvZHZ2dHNwMnJjLmNybDAdBgNV
-                                    HSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwdAYIKwYBBQUHAQEEaDBmMDMGCCsG
-                                    AQUFBzAChidodHRwOi8vcHJveHkuZmluZWlkLmZpL2NhL2R2dnRzcDJyYy5jcnQw
-                                    LwYIKwYBBQUHMAGGI2h0dHA6Ly9vY3NwdGVzdC5maW5laWQuZmkvZHZ2dHNwMnJj
-                                    MC0GCCsGAQUFBwEDBCEwHzAIBgYEAI5GAQEwEwYGBACORgEGMAkGBwQAjkYBBgMw
-                                    DQYJKoZIhvcNAQENBQADggIBAJiiB6e3sY0i82k/VlK5ynRixyk3reXh/LLBbEbL
-                                    Z+mRMDhvSQWO6bz7YPLHBhvFyqS5mEME2Q1C+oLBS2fxJxqwCRZKbwdfWn+RdTVF
-                                    F37Xpqmfhm4giIzg3TxeNQG/hjqKmeFZ0Xf/g+PPSc4sPMbM8lTV+myaqwvRNHRC
-                                    pC2miCf9W6eGzf8Fe2ePOEq1fe5mEikeaV1s+re+hBPh8xpNPzEBTBI8KelUq4m1
-                                    VQaQ4Y4KmDOwg2eh8Mp71x2kqdHZCWVMSNiIU1PXDhvd6YekbT7pCQbqwGiLdd2Z
-                                    A9s/72c6SUaOC/armcr+VouyvrtVndix7k4S+Y6aiBfYtLx9UVM0hfmLNYDGqCgj
-                                    PIKfaHSmmGRBtHZVZurI/fiIdQFj5/KrGqsXvJ/ZU4kcX593tuAO4OfLTlBosILW
-                                    RuunBXXemP42TRs7n5NOuhWvoEprRFV0F7JKduCtJErDY3K0MBEtxWubEASnAGoP
-                                    cdtbCBluTe5WqOPCLBpBvpSLLeiXn1WFCvGV6wVuTwgtlwfDz1A2rT40RbBf94go
-                                    1yG7sR1Rq1cWYgEL4odz3EB8bWT5VbDnrlC3qD5NShHdzLZsXVnCOzX9u6iFThim
-                                    FMyNBdb9oHI7sG6EIlAPq3zPj/jGmUG5ILeeN0PdAzYy/eeDww0mKGNebXKxUu0J
-                                    EDr0</X509Certificate>
                            <X509Certificate>MIIH3zCCBcegAwIBAgIPAYAYeBKtkUisx5JrWEEaMA0GCSqGSIb3DQEBDQUAMIGH
 MQswCQYDVQQGEwJGSTEpMCcGA1UECgwgRGlnaS0gamEgdmFlc3RvdGlldG92aXJh
 c3RvIFRFU1QxHzAdBgNVBAsMFlRlc3RpcGFsdmVsdXZhcm1lbnRlZXQxLDAqBgNV
@@ -342,7 +256,7 @@ EDr0</X509Certificate>
             <auth002:InfReqRspn>
                <auth002:RspnId>ABC1234</auth002:RspnId>
                <auth002:InvstgtnId>ABC1234</auth002:InvstgtnId>
-               <auth002:RspnSts>NRES</auth002:RspnSts>
+               <auth002:RspnSts>COMP</auth002:RspnSts>
                <auth002:SchCrit>
                   <auth002:Acct>
                      <auth002:Id>
@@ -376,7 +290,7 @@ EDr0</X509Certificate>
                         <fin021:Document xmlns:fin021="urn:fin.021.001.01">
                            <fin021:QueryResultResponse>
                               <fin021:ResultKeyList>
-                                 <fin021:ResultKey datasourceOrganisationId="4444444-1">d1c73db0-150a-4704-9607-30c828cd9425</fin021:ResultKey>
+                                 <fin021:ResultKey datasourceOrganisationId="0245442-8">5ff4b3ca-1e67-4786-a92a-8e66ae5c2d84</fin021:ResultKey>
                               </fin021:ResultKeyList>
                            </fin021:QueryResultResponse>
                         </fin021:Document>
@@ -385,10 +299,145 @@ EDr0</X509Certificate>
                </auth002:RtrInd>
                <auth002:RtrInd>
                   <auth002:AuthrtyReqTp>
-                     <auth002:MsgNmId>fin.021.001.01</auth002:MsgNmId>
+                     <auth002:MsgNmId>auth.002.001.01</auth002:MsgNmId>
                   </auth002:AuthrtyReqTp>
                   <auth002:InvstgtnRslt>
-                     <auth002:InvstgtnSts>NFOU</auth002:InvstgtnSts>
+                     <auth002:Rslt>
+                        <auth002:Rslt>
+                           <auth002:Document>
+                              <auth002:InfReqRspn>
+                                 <auth002:RspnId>Customs_aggr</auth002:RspnId>
+                                 <auth002:InvstgtnId>Customs_aggr</auth002:InvstgtnId>
+                                 <auth002:RspnSts>COMP</auth002:RspnSts>
+                                 <auth002:SchCrit>
+                                    <auth002:Acct>
+                                       <auth002:Id>
+                                          <auth002:Id>
+                                             <auth002:IBAN>FI3640578195000382</auth002:IBAN>
+                                          </auth002:Id>
+                                       </auth002:Id>
+                                       <auth002:InvstgtdPties>
+                                          <auth002:Cd>ALLP</auth002:Cd>
+                                       </auth002:InvstgtdPties>
+                                       <auth002:AuthrtyReqTp>
+                                          <auth002:MsgNmId>supl.027.001.01</auth002:MsgNmId>
+                                       </auth002:AuthrtyReqTp>
+                                       <auth002:AuthrtyReqTp>
+                                          <auth002:MsgNmId>fin.002.001.03</auth002:MsgNmId>
+                                       </auth002:AuthrtyReqTp>
+                                       <auth002:AuthrtyReqTp>
+                                          <auth002:MsgNmId>fin.013.001.04</auth002:MsgNmId>
+                                       </auth002:AuthrtyReqTp>
+                                    </auth002:Acct>
+                                 </auth002:SchCrit>
+                                 <auth002:RtrInd>
+                                    <auth002:AuthrtyReqTp>
+                                       <auth002:MsgNmId>supl.027.001.01</auth002:MsgNmId>
+                                    </auth002:AuthrtyReqTp>
+                                    <auth002:InvstgtnRslt>
+                                       <auth002:Rslt>
+                                          <supl027:Document xmlns:supl027="urn:iso:std:iso:20022:tech:xsd:supl.027.001.01">
+                                             <supl027:InfRspnSD1>
+                                                <supl027:InvstgtnId>Customs_aggr</supl027:InvstgtnId>
+                                                <supl027:CreDtTm>2022-10-14T15:30:32.978+03:00</supl027:CreDtTm>
+                                                <supl027:AcctSvcrId>
+                                                   <supl027:FinInstnId>
+                                                      <supl027:Othr>
+                                                         <supl027:Id>8488829-6</supl027:Id>
+                                                         <supl027:SchmeNm>
+                                                            <supl027:Cd>Y</supl027:Cd>
+                                                         </supl027:SchmeNm>
+                                                      </supl027:Othr>
+                                                   </supl027:FinInstnId>
+                                                </supl027:AcctSvcrId>
+                                                <supl027:AcctAndPties>
+                                                   <supl027:Acct>
+                                                      <supl027:Id>
+                                                         <supl027:IBAN>FI3640578195000382</supl027:IBAN>
+                                                      </supl027:Id>
+                                                      <supl027:Ccy>EUR</supl027:Ccy>
+                                                   </supl027:Acct>
+                                                   <supl027:Role>
+                                                      <supl027:Pty>
+                                                         <supl027:Nm>Suominen, Mimmi</supl027:Nm>
+                                                         <supl027:Id>
+                                                            <supl027:PrvtId>
+                                                               <supl027:DtAndPlcOfBirth>
+                                                                  <supl027:BirthDt>1993-09-12</supl027:BirthDt>
+                                                                  <supl027:CityOfBirth>not in use</supl027:CityOfBirth>
+                                                                  <supl027:CtryOfBirth>XX</supl027:CtryOfBirth>
+                                                               </supl027:DtAndPlcOfBirth>
+                                                               <supl027:Othr>
+                                                                  <supl027:Id>120993-7484</supl027:Id>
+                                                                  <supl027:SchmeNm>
+                                                                     <supl027:Cd>PIC</supl027:Cd>
+                                                                  </supl027:SchmeNm>
+                                                               </supl027:Othr>
+                                                            </supl027:PrvtId>
+                                                         </supl027:Id>
+                                                      </supl027:Pty>
+                                                      <supl027:OwnrTp>
+                                                         <supl027:Tp>TRUS</supl027:Tp>
+                                                         <supl027:Prtry>
+                                                            <supl027:Id>ACCE</supl027:Id>
+                                                            <supl027:SchmeNm>RLTP</supl027:SchmeNm>
+                                                         </supl027:Prtry>
+                                                      </supl027:OwnrTp>
+                                                   </supl027:Role>
+                                                   <supl027:Role>
+                                                      <supl027:Pty>
+                                                         <supl027:Nm>Laine, Santeri Kauno Asser</supl027:Nm>
+                                                         <supl027:Id>
+                                                            <supl027:PrvtId>
+                                                               <supl027:DtAndPlcOfBirth>
+                                                                  <supl027:BirthDt>1994-07-17</supl027:BirthDt>
+                                                                  <supl027:CityOfBirth>not in use</supl027:CityOfBirth>
+                                                                  <supl027:CtryOfBirth>XX</supl027:CtryOfBirth>
+                                                               </supl027:DtAndPlcOfBirth>
+                                                               <supl027:Othr>
+                                                                  <supl027:Id>SE</supl027:Id>
+                                                                  <supl027:SchmeNm>
+                                                                     <supl027:Cd>NATI</supl027:Cd>
+                                                                  </supl027:SchmeNm>
+                                                               </supl027:Othr>
+                                                            </supl027:PrvtId>
+                                                         </supl027:Id>
+                                                      </supl027:Pty>
+                                                      <supl027:OwnrTp>
+                                                         <supl027:Tp>TRUS</supl027:Tp>
+                                                         <supl027:Prtry>
+                                                            <supl027:Id>ACCE</supl027:Id>
+                                                            <supl027:SchmeNm>RLTP</supl027:SchmeNm>
+                                                         </supl027:Prtry>
+                                                      </supl027:OwnrTp>
+                                                   </supl027:Role>
+                                                   <supl027:AddtlInf>1950-08-08</supl027:AddtlInf>
+                                                </supl027:AcctAndPties>
+                                             </supl027:InfRspnSD1>
+                                          </supl027:Document>
+                                       </auth002:Rslt>
+                                    </auth002:InvstgtnRslt>
+                                 </auth002:RtrInd>
+                                 <auth002:RtrInd>
+                                    <auth002:AuthrtyReqTp>
+                                       <auth002:MsgNmId>fin.002.001.03</auth002:MsgNmId>
+                                    </auth002:AuthrtyReqTp>
+                                    <auth002:InvstgtnRslt>
+                                       <auth002:InvstgtnSts>NFOU</auth002:InvstgtnSts>
+                                    </auth002:InvstgtnRslt>
+                                 </auth002:RtrInd>
+                                 <auth002:RtrInd>
+                                    <auth002:AuthrtyReqTp>
+                                       <auth002:MsgNmId>fin.013.001.04</auth002:MsgNmId>
+                                    </auth002:AuthrtyReqTp>
+                                    <auth002:InvstgtnRslt>
+                                       <auth002:InvstgtnSts>NFOU</auth002:InvstgtnSts>
+                                    </auth002:InvstgtnRslt>
+                                 </auth002:RtrInd>
+                              </auth002:InfReqRspn>
+                           </auth002:Document>
+                        </auth002:Rslt>
+                     </auth002:Rslt>
                   </auth002:InvstgtnRslt>
                </auth002:RtrInd>
                <auth002:RtrInd>
