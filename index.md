@@ -118,9 +118,9 @@ Rajapinnassa käytettävä sanomarakenne on päätasolla identtinen Tullin julka
 Tämän lisäksi rajapintaan on määritelty alisanomat [fin.020](#kyselyrajapinta-fin020) ja [fin.021](#kyselyrajapinta-fin021), joilla välitetään tarvittavat tunnisteet haun tilan tarkistamiseksi ja tulosten hakemiseksi.
 
 Koostavan sovelluksen rajapinnassa on kolme endpointia: 
-- [kyselyn vastaanottamiseen]("#kyselyrajapinta-kysely")
-- [kyselyn statuksen kyselyyn]("#kyselyrajapinta-status")
-- [hakutulosten noutoon]("#kyselyrajapinta-tulos")
+- [kyselyn vastaanottamiseen](#kyselyrajapinta-kysely)
+- [kyselyn statuksen kyselyyn](#kyselyrajapinta-status)
+- [hakutulosten noutoon](#kyselyrajapinta-tulos)
 
 ### <a name="kyselyrajapinta-kysely"></a> 4.2 Kyselyrajapinta
 Kyselyrajapintaan lähetettävä sanoma on täysin samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma.
