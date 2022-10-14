@@ -13,7 +13,7 @@ HUOM Tiedostot ja linkit niihin päivitettävä:
 
 Versio|Päivämäärä|Kuvaus
 ---|---|---
-1.0|7.10.2022|Versio 1.0|
+1.0|14.10.2022|Versio 1.0
 
 
 ## Sisällysluettelo
@@ -40,12 +40,8 @@ WSDL| (Web Service Description Language) Rakenteellinen kuvauskieli, jolla kuvat
 
 Tämä dokumentti täydentää Tullin julkaisemaa määräystä pankki- ja maksutilien valvontajärjestelmästä. Dokumentin tarkoitus on antaa ohjeet koostavan sovelluksen kyselyrajapinnasta.
 
-HUOM Onko osa määräystä kuten yllä sanotaan (kopioitu tiedonhakujärjestelmien dokumentista)
-(E: ei liene osa määräystä, tullut käytännön tarpeesta)
 
 ### 1.3 Viittaukset
-
-HUOM Kehitystiimin tarkastettava luvun sisältö
 
 [Tiedonhakujärjestelmän WSDL](https://finnishcustoms-suomentulli.github.io/account-register-information-query/wsdl/data-retrieval-system-wsdl.xml)
 
@@ -70,14 +66,14 @@ Kuvassa 2.1 kyselyprosessi on on esitetty vuokaaviona.
 ![Tietojen kysely koostavasta sovelluksesta](diagrams/flowchart_koostava.png "Tietojen kysely Koostavasta sovelluksesta")  
 *__Kuva2.1.__ Tietojen kysely Koostavasta sovelluksesta*  
 
-Taulukossa 2.1. on esitetty vuokaavion muuttujien merkitys. 
+Taulukossa 2.1. on esitetty vuokaavioon liittvien muuttujien merkitys. 
 
-*__Taulukko 2.1.__ Vuokaavion muuttujat*
+*__Taulukko 2.1.__ Vuokaavioon liittvät muuttujat*
 
-|Muuttuja|Kuvaus|
-|:--|:--|
-|POLLING_INTERVAL|Pollausväli, viive joka clientin on odotettava ennen seuraavaa kyselyä. Jos client pollaa serveriä liian tiheästi, voi server hylätä transaktion käsittelyn (virhekoodi 3, ks. [taulukko 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).|
-|POLLING_TIME_LIMIT|Kuinka kauan pollausta on sallittua tehdä, ennen kuin lopetetaan. Jos vastausta ei edelleenkään saada, on joko tehtävä kokonaan uusi kysely tai siirrettävä asia manuaaliseen käsittelyyn.|
+Muuttuja|Kuvaus
+---|---
+POLLING_INTERVAL|Pollausväli, viive joka clientin on odotettava ennen seuraavaa kyselyä. Jos client pollaa serveriä liian tiheästi, voi server hylätä transaktion käsittelyn (virhekoodi 3, ks. [taulukko 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
+POLLING_TIME_LIMIT|Kuinka kauan pollausta on sallittua tehdä, ennen kuin lopetetaan. Jos vastausta ei edelleenkään saada, on joko tehtävä kokonaan uusi kysely tai siirrettävä asia manuaaliseen käsittelyyn.
 
 Taulukossa 2.1. esitettyjen muuttujien kulloinkin voimassa olevat arvot kerrotaan liitedokumentaatiossa.
 
@@ -94,7 +90,7 @@ Kyselyn vuo kulkee seuraavasti:
 8. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6.
 9. Jos kaikki hakutulokset on saatu, loppu.
  
-Taulukossa 2.2. on kuvattu StatusResponse1Code arvojen käyttö
+Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka arvojen käyttön on kuvattu Taulukossa 2.2.
 
 *__Taulukko 2.2.__ StatusResponse1Code arvojen käyttö*
 
@@ -105,8 +101,8 @@ Taulukossa 2.2. on kuvattu StatusResponse1Code arvojen käyttö
 |PART|PartialResponse|Response is partially provided.|Ei käytössä|
 
 #### Tulosten säilytysaika Koostavassa sovelluksessa
-Valmiita tuloksia pidetään tallessa korkeintaan 6h niiden valmistumisesta, jona aikana tulokset on noudettava. Tuloksia ei poisteta haettaessa, vaan vasta em. aikarajan umpeuduttua. 
-(##TODO: määriteltävä aikaraja##)
+Valmiita tuloksia pidetään tallessa korkeintaan määritellyn ajan niiden valmistumisesta, jona aikana tulokset on noudettava. Tuloksia ei poisteta haettaessa, vaan vasta em. aikarajan umpeuduttua. 
+Aikarajan arvo kerrotaan liitedokumentaatiossa.
 
 ## <a name="tietoturva"></a> 3. Tietoturva
 
@@ -133,7 +129,9 @@ Koostavan sovelluksen rajapinnassa on kolme endpointia:
 Kyselyrajapintaan lähetettävä sanoma on täysin samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma.
 
 Vastaussanoma noudattaa myös samaa rakennetta, mutta auth.002-sanoman yhtenä alisanomana on fin.021-sanoma, joka kertoo vastaanotetun kyselyn tunnuksen. 
-Tätä tunnusta käytetään kyselyn tilan tarkistamiseen [Status-rajapinnasta](#kyselyrajapinta-status). Muut alisanomat palauttavat statuksen NFOU, mikä ei tässä tapauksessa merkitse mitään.
+Tätä tunnusta käytetään kyselyn tilan tarkistamiseen [Status-rajapinnasta](#kyselyrajapinta-status). 
+
+Muut alisanomat palauttavat statuksen NFOU, mikä ei tässä tapauksessa merkitse mitään.
 
 ### <a name="kyselyrajapinta-status"></a> 4.3 Status-rajapinta
 Status-rajapintaan lähetettävä sanoma koostuu samasta sanomasisällöstä kuin kyselyä tehtäessä, lisäksi kyselyrajapinnan vastauksena saatu tunnus välitetään [fin.020-alisanomassa](#kyselyrajapinta-fin020).
@@ -150,6 +148,7 @@ Lisäksi [fin.021-alisanomassa](#kyselyrajapinta-fin021) palautuu tuloksen tunnu
 
 
 ### <a name="kyselyrajapinta-fin020"></a> 4.5 Sanomalaajennus Fin020 (QueryResultRequest)
+Alisanoman skeema on määritelty tiedostossa [fin.020](schemas/fin.020.001.01.xsd).
 Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijaintiin.
 
 |Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan|XPath|
@@ -158,9 +157,9 @@ Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijain
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|[ResultKeyList](#ResultKeyList)|Lista haettavien tietojen tunnisteista||
 
 ### <a name="kyselyrajapinta-fin021"></a> 4.6 Sanomalaajennus Fin021 (QueryResultResponse)
-Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijaintiin.
-
-https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01
+Alisanoman skeema on määritelty tiedostossa [fin.021](schemas/fin.021.001.01.xsd). 
+Alisanoma palautetaan [Tiedonhakujärjestelmän vastaussanomassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01)
+muiden alisanomien tapaan [ReturnIndicator1](#kyselyrajapinta-rtrInd)-elementin sisällä.
 
 |Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan
 |:---|:---|:---|:---|:---|
@@ -169,7 +168,7 @@ https://finnishcustoms-suomentulli.github.io/account-register-information-query/
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|[ResultKeyList](#ResultKeyList)|Lista tulostietojen tunnisteista||
 
 
-### <a name="kyselyrajapinta-rtrInd"></a> 4.7 Elementin ReturnIndicator1 käyttö fin.020- ja fin.021-sanomien kanssa
+### <a name="kyselyrajapinta-rtrInd"></a> 4.7 Elementin ReturnIndicator1 käyttö fin.021-sanoman kanssa
 
 ReturnIndicator1 sisältää yksittäisen hakutulostyypin esiintymän, kuten Tiedonhakujärjestelmän kyselyrajapinnan [vastaussanomassakin](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01).
 fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat alisanomat.
