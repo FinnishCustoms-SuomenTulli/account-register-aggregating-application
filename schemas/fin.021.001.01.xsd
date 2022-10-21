@@ -10,7 +10,7 @@
     <xs:complexType name="QueryResultResponseV01">
         <xs:sequence>
             <xs:element name="QueryKeyList" type="QueryKeyList" minOccurs="0"/>
-            <xs:element name="ResultKeyList" type="ResultKeyList"/>
+            <xs:element name="ResultKeyList" type="ResultKeyList" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="QueryKeyList">
