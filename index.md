@@ -1,4 +1,4 @@
-[Käyttöönoton ja ylläpidon ohjeistus koostava sovellus](https://finnishcustoms-suomentulli.github.io/account-register-information-query/)  
+[Tiedonhakujärjestelmän kyselyrajapintakuvaus](https://finnishcustoms-suomentulli.github.io/account-register-information-query/)  
 [Query interface description of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html)  
 [Beskrivning av datasöksystemets frågegränssnitt](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html)
 
@@ -10,7 +10,7 @@
 
 Versio|Päivämäärä|Kuvaus
 ---|---|---
-1.0|14.10.2022|Versio 1.0
+1.0|24.10.2022|Versio 1.0
 
 
 ## Sisällysluettelo
@@ -19,8 +19,16 @@ Versio|Päivämäärä|Kuvaus
 2. [Pankki- ja maksutilitietojen kysely koostavasta sovelluksesta](#luku2)  
 3. [Tietoturva](#tietoturva)  
 4. [Koostavan sovelluksen kyselyrajapinta](#kyselyrajapinta)   
-  4.1 [Kyselyrajapinnan SOAP-operaatioiden sanomarakenne](#4-1)    
-
+  4.1 [Kyselyrajapinnan SOAP-operaatioiden sanomarakenne](#kyselyrajapinta-rakenne)    
+  4.2 [Kyselyrajapintae](#kyselyrajapinta-kysely)    
+  4.3 [Status-rajapinta](#kyselyrajapinta-status)    
+  4.4 [Tulosrajapinta](#kyselyrajapinta-tulos)    
+  4.5 [Sanomalaajennus Fin020 (QueryResultRequest)](#kyselyrajapinta-fin020)    
+  4.6 [Sanomalaajennus Fin021 (QueryResultResponse)](#kyselyrajapinta-fin021)    
+  4.7 [Elementin ReturnIndicator1 käyttö fin.021-sanoman kanssa](#kyselyrajapinta-rtrInd)    
+  4.8 [Virhetilanteiden hallinta](#kyselyrajapinta-virhetilanteet)    
+  4.9 [Esimerkkisanomat](#kyselyrajapinta-esimerkit)    
+  
 
 ## 1. Johdanto <a name="luku1"></a>
 
@@ -75,13 +83,13 @@ POLLING_TIME_LIMIT|Kuinka kauan pollausta on sallittua tehdä, ennen kuin lopete
 Taulukossa 2.1. esitettyjen muuttujien kulloinkin voimassa olevat arvot kerrotaan liitedokumentaatiossa.
 
 Kyselyn vuo kulkee seuraavasti:
-1. Client lähettää kyselysanoman Query APIin.
+1. Client lähettää kyselysanoman Query API:in.
 2. Query API palauttaa vastauksena avaimen (resultKey).
-3. Client lähettää avaimen sisältävän statuskyselyn Status APIin
+3. Client odottaa hetken (kts. POLLING_INTERVAL) ja lähettää avaimen sisältävän statuskyselyn Status APIin
 4. Status API joko  
   a. Palauttaa koodin NRES, jos tulokset eivät ole vielä valmiina, tai  
   b. Palauttaa koodin COMP ja listan avain-tiedonlähde pareja. 
-5. Jos koodi on *NRES*, Client odottaa ja palaa kohtaan 3.
+5. Jos koodi on *NRES*, Client palaa kohtaan 3.
 6. Jos koodi on *COMP*, Client lähettää hakutuloskyselyn yhdellä kohdassa 4.b. vastaanottamistaan avaimista Result APIin.
 7. Result API palauttaa lähetettyä avainta vastaavan hakutulossanoman.
 8. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6 ja toistetaan haku seuraavalla avaimella.
@@ -114,13 +122,14 @@ SOAP-protokollasta käytetään versiota 1.1.
 
 Sanomissa käytetään ISO 20022 koodistoviittauksia. Koodistoviittaukset löytyvät ISO 20022 sivulta [External Code Sets](https://finnishcustoms-suomentulli.github.io/account-register-information-query/assets/iso20022org/ExternalCodeSets_2Q2020_August2020_v1.xlsx).
 
-Rajapinnassa käytettävä sanomarakenne on päätasolla identtinen Tullin julkaiseman [Tiedonhakujärjestelmien kyselyrajapinnan](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) määrityksen kanssa.
-Tämän lisäksi rajapintaan on määritelty alisanomat [fin.020](#kyselyrajapinta-fin020) ja [fin.021](#kyselyrajapinta-fin021), joilla välitetään tarvittavat tunnisteet haun tilan tarkistamiseksi ja tulosten hakemiseksi.
-
 Koostavan sovelluksen rajapinnassa on kolme endpointia: 
 - [kyselyn vastaanottamiseen](#kyselyrajapinta-kysely)
 - [kyselyn statuksen kyselyyn](#kyselyrajapinta-status)
 - [hakutulosten noutoon](#kyselyrajapinta-tulos)
+
+### <a name="kyselyrajapinta-rakenne"></a> 4.1 Kyselyrajapinnan SOAP-operaatioiden sanomarakenne
+Rajapinnassa käytettävä sanomarakenne on päätasolla identtinen Tullin julkaiseman [Tiedonhakujärjestelmien kyselyrajapinnan](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) määrityksen kanssa.
+Tämän lisäksi rajapintaan on määritelty alisanomat [fin.020](#kyselyrajapinta-fin020) ja [fin.021](#kyselyrajapinta-fin021), joilla välitetään tarvittavat tunnisteet haun tilan tarkistamiseksi ja tulosten hakemiseksi.
 
 ### <a name="kyselyrajapinta-kysely"></a> 4.2 Kyselyrajapinta
 Kyselyrajapintaan lähetettävä sanoma on täysin samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma.
