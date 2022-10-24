@@ -2,7 +2,7 @@
 [Query interface description of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html)  
 [Beskrivning av datasöksystemets frågegränssnitt](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html)
 
-# Koostavan sovelluksen kyselyrajapintakuvaus
+# Koostavan sovelluksen rajapintakuvaus
 
 *Dokumentin versio 1.0*
 
