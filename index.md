@@ -43,7 +43,7 @@ WSDL| (Web Service Description Language) Rakenteellinen kuvauskieli, jolla kuvat
 
 ### 1.2 Dokumentin tarkoitus ja kattavuus
 
-Tämä dokumentti täydentää Tullin julkaisemaa määräystä pankki- ja maksutilien valvontajärjestelmästä. Dokumentin tarkoitus on antaa ohjeet koostavan sovelluksen kyselyrajapinnasta.
+Tämä dokumentti täydentää Tullin julkaisemaa määräystä pankki- ja maksutilien valvontajärjestelmästä. Dokumentin tarkoitus on antaa ohjeet koostavan sovelluksen rajapinnasta ja sen käytöstä.
 
 
 ### 1.3 Viittaukset
