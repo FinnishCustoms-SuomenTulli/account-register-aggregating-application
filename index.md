@@ -20,7 +20,7 @@ Versio|Päivämäärä|Kuvaus
 3. [Tietoturva](#tietoturva)  
 4. [Koostavan sovelluksen kyselyrajapinta](#kyselyrajapinta)   
   4.1 [Kyselyrajapinnan SOAP-operaatioiden sanomarakenne](#kyselyrajapinta-rakenne)    
-  4.2 [Kyselyrajapintae](#kyselyrajapinta-kysely)    
+  4.2 [Kyselyrajapinta](#kyselyrajapinta-kysely)    
   4.3 [Status-rajapinta](#kyselyrajapinta-status)    
   4.4 [Tulosrajapinta](#kyselyrajapinta-tulos)    
   4.5 [Sanomalaajennus Fin020 (QueryResultRequest)](#kyselyrajapinta-fin020)    
