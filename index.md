@@ -68,7 +68,7 @@ Tässä luvussa on kuvattu pankki- ja maksutilitietojen kysely koostavasta sovel
 Kuvassa 2.1 kyselyprosessi on on esitetty vuokaaviona.
 
 ![Tietojen kysely koostavasta sovelluksesta](diagrams/flowchart_koostava.png "Tietojen kysely Koostavasta sovelluksesta")  
-*__Kuva2.1.__ Tietojen kysely Koostavasta sovelluksesta*  
+*__Kuva 2.1.__ Tietojen kysely Koostavasta sovelluksesta*  
 
 Taulukossa 2.1. on esitetty vuokaavioon liittyvien muuttujien merkitys. 
 
