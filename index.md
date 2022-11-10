@@ -158,8 +158,8 @@ Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijain
 
 |Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan|XPath|
 |:---|:---|:---|:---|:---|:---|
-|QueryResultRequest| | | |[auth.001](#InformationRequestOpeningV01)|`/Document/InfReqOpng/SplmtryData/Envlp`|
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|[ResultKeyList](#ResultKeyList)|Lista haettavien tietojen tunnisteista||
+|QueryResultRequest| | | |[auth.001](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestOpeningV01)|`/Document/InfReqOpng/SplmtryData/Envlp`|
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Lista haettavien tietojen tunnisteista||
 
 ### <a name="kyselyrajapinta-fin021"></a> 4.6 Sanomalaajennus Fin021 (QueryResultResponse)
 Alisanoman skeema on määritelty tiedostossa [fin.021](schemas/fin.021.001.01.xsd). 
@@ -169,8 +169,8 @@ muiden alisanomien tapaan [ReturnIndicator1](#kyselyrajapinta-rtrInd)-elementin 
 |Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan
 |:---|:---|:---|:---|:---|
 |QueryResultResponse| | | |[auth.002](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01)|
-|&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[1..1]|[QueryKeyList](#QueryKeyList)|Lista kyselyssä käytetyistä tunnisteista||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|[ResultKeyList](#ResultKeyList)|Lista tulostietojen tunnisteista||
+|&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[1..1]|QueryKeyList|Lista kyselyssä käytetyistä tunnisteista||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Lista tulostietojen tunnisteista||
 
 
 ### <a name="kyselyrajapinta-rtrInd"></a> 4.7 Elementin ReturnIndicator1 käyttö fin.021-sanoman kanssa
