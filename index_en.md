@@ -68,7 +68,7 @@ This chapter describes the query of bank and payment account information from th
 Figure 2.1 presents the query process as a flow diagram.
 
 ![Query for information from the aggregating application](diagrams/flowchart_koostava.png "Query for information from the aggregating application")  
-*__Figure2.1.__ Query for information from the aggregating application*  
+*__Figure 2.1.__ Query for information from the aggregating application*  
 
 Table 2.2 presents the meaning of different variables in the flow diagram. 
 
