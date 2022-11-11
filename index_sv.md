@@ -139,16 +139,16 @@ De övriga undermeddelandena returnerar status NFOU, som i detta fall saknar bet
 Meddelandet som skickas till statusgränssnittet har samma innehåll som förfrågan, och den kod som fanns i svaret från frågegränssnittet skickas dessutom i undermeddelandet [fin.020 submessage](#4-5).
 
 Svarsmeddelandet är detsamma som i svar från [frågegränssnittet](#4-2) plus följande: 
-- If a query is not yet complete, NRES will be returned as the status code in the Auth.002 schema’s RspnSts field.
-- If a query is complete, COMP will be returned as the status code in the Auth.002 schema’s RspnSts field along with the identifier used in the status query in the [fin.021 submessage](#4-6) and a list of identifiers using which results can be retrieved from the [result API](#4-4). 
+- Om förfrågan inte är slutförd, returneras statuskoden NRES i fältet RspnSts i schemat Auth.002.
+- •	Om förfrågan är klar, returneras statuskoden COMP i fältet RspnSts i schemat Auth.002 och dessutom i undermeddelandet [fin.021](#4-6) den kod som använts i statusförfrågan och en lista på koder med vilka resultaten kan hämtas ur [resultatgränssnittet](#4-4). 
 
-### <a name="4-4"></a> 4.4 Result API
-Messages sent to the result API consist of the same message content as queries. In addition, the identifiers received as the status API’s response are transmitted one-by-one through the [fin.020 submessage](#4-5).
+### <a name="4-4"></a> 4.4 Resultatgränssnitt
+Meddelandet som skickas till resultatgränssnittet har samma innehåll som förfrågan, och de koder som mottagits som svar från statusgränssnittet anges dessutom en i taget i undermeddelandet [fin.020](#4-5).
 
-Response messages are identical to the [response messages](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#InformationRequestResponseV01) of the data retrieval system’s query API, containing actual search results in accordance with the schema. In addition, the result identifier is returned in the [fin.021 submessage](#4-6) and the business ID of the data retrieval system that returned the result is returned in the _datasourceIdentifier_ attribute.
+Svarsmeddelandet är identiskt med [svarsmeddelandet](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01) i datasöksystemets frågegränssnitt och innehåller de egentliga sökresultaten enligt schemat. I undermeddelandet [fin.021](#4-6) returneras därtill resultatets kod samt i attributet _datasourceIdentifier_ FO-numret på det datasöksystem som returnerat resultatet.
 
-### <a name="4-5"></a> 4.5 Message extension Fin020 (QueryResultRequest)
-The submessage schema is defined in the [fin.020](schemas/fin.020.001.01.xsd) file. The message extension is appended to the Xpath location of the ISO 20022 message listed in the table.
+### <a name="4-5"></a> 4.5 Utvidgat meddelande Fin020 (QueryResultRequest)
+Schemat för undermeddelandet definieras i filen [fin.020](schemas/fin.020.001.01.xsd). Det utvidgade meddelandet kopplas till ISO 20022-meddelandets XPath-läge som anges i tabellen.
 
 |Name|[min..max]|Type|Description|Appended to message|XPath|
 |:---|:---|:---|:---|:---|:---|
