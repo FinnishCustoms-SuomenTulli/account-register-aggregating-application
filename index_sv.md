@@ -169,17 +169,17 @@ I likhet med de övriga undermeddelandena returneras undermeddelandet i [svarsme
 
 ReturnIndicator1 innehåller en enskild typ av sökresultat, precis som i [svarsmeddelandet](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01) i datasöksystemets frågegränssnitt. I likhet med de övriga undermeddelanden som returneras i förfrågan ingår fin.021 i detta element.
 
-|XPath|Type|Description|
+|XPath|Typ|Beskrivning|
 |:---|:---|:---|
-|RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|Includes the message ID of the message extension (fin.021.001.01))|
-|RtrInd/InvstgtnRslt|InvestigationResult1Choice|Returning `Rslt` element type SupplementaryDataEnvelope1, which includes the [QueryResultResponse](#QueryResultResponse) submessage or the `InvstgtnSts` element, useing code `NFOU`, if no information can be found using the identifier used in the query.
+|RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|Innehåller det utvidgade meddelandets meddelande-id (fin.021.001.01))|
+|RtrInd/InvstgtnRslt|InvestigationResult1Choice|Returneras elementet `Rslt` av typen SupplementaryDataEnvelope1, som innehåller undermeddelandet [QueryResultResponse](#4-6) eller elementet `InvstgtnSts` med koden `NFOU`, om inga uppgifter hittas med den kod som använts i förfrågan.
 
-### <a name="4-8"></a> 4.8 Error management
-Error management and returned codes follow the specifications of the [WS message traffic scenarios in the query API](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#4-12) chapter for the data retrieval system’s query API, where applicable.
+### <a name="4-8"></a> 4.8 Hantering av felsituationer
+På felhantering och returnering av koder tillämpas relevanta delar av definitionerna i avsnitt [Scenarier för frågegränssnittets WS-meddelandetrafik](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#4-12) i datasöksystemets frågegränssnitt.
 
-### <a name="4-9"></a> 4.9 Example messages
-Examples of each query message and their responses are available in the examples folder:
-- [Query message](examples/query1.xml) and [response](examples/query1_response.xml)
-- [Status query](examples/status1.xml) and [response](examples/status1_response.xml)
-- [Result query](examples/result1.xml) and [response](examples/result1_response.xml)
+### <a name="4-9"></a> 4.9 Exempelmeddelanden
+Exempelmeddelanden för varje frågemeddelande med svar finns i mappen examples:
+- [Frågemeddelande](examples/query1.xml) och [svar](examples/query1_response.xml)
+- [Statusförfrågan](examples/status1.xml) och [svar](examples/status1_response.xml)
+- [Resultatförfrågan](examples/result1.xml) och [svar](examples/result1_response.xml)
   
