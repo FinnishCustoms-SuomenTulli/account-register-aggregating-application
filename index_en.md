@@ -173,7 +173,7 @@ ReturnIndicator1 includes the presence of a single type of search result as in t
 |XPath|Type|Description|
 |:---|:---|:---|
 |RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|Includes the message ID of the message extension (fin.021.001.01))|
-|RtrInd/InvstgtnRslt|InvestigationResult1Choice|Returning `Rslt` element type SupplementaryDataEnvelope1, which includes the [QueryResultResponse](#QueryResultResponse) submessage or the `InvstgtnSts` element, useing code `NFOU`, if no information can be found using the identifier used in the query.
+|RtrInd/InvstgtnRslt|InvestigationResult1Choice|Returning `Rslt` element type SupplementaryDataEnvelope1, which includes the [QueryResultResponse](#4-6) submessage or the `InvstgtnSts` element, useing code `NFOU`, if no information can be found using the identifier used in the query.
 
 ### <a name="4-8"></a> 4.8 Error management
 Error management and returned codes follow the specifications of the [WS message traffic scenarios in the query API](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#4-12) chapter for the data retrieval system’s query API, where applicable.
