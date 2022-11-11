@@ -150,25 +150,24 @@ Svarsmeddelandet är identiskt med [svarsmeddelandet](https://finnishcustoms-suo
 ### <a name="4-5"></a> 4.5 Utvidgat meddelande Fin020 (QueryResultRequest)
 Schemat för undermeddelandet definieras i filen [fin.020](schemas/fin.020.001.01.xsd). Det utvidgade meddelandet kopplas till ISO 20022-meddelandets XPath-läge som anges i tabellen.
 
-|Name|[min..max]|Type|Description|Appended to message|XPath|
+|Namn|[min..max]|Typ|Beskrivning|Kopplas till meddelandet|XPath|
 |:---|:---|:---|:---|:---|:---|
-|QueryResultRequest| | | |[auth.001](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#InformationRequestOpeningV01)|`/Document/InfReqOpng/SplmtryData/Envlp`|
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|A list of the identifiers of returned information||
+|QueryResultRequest| | | |[auth.001](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestOpeningV01)|`/Document/InfReqOpng/SplmtryData/Envlp`|
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Kodlista för uppgifter som söks||
 
-### <a name="4-6"></a> 4.6 Message extension Fin021 (QueryResultResponse)
-The submessage schema is defined in the [fin.021](schemas/fin.021.001.01.xsd) file. 
-The submessage is returned in the [data retrieval system’s response message](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#InformationRequestResponseV01) in the [ReturnIndicator1](#4-7) element similarly to other submessages.
+### <a name="4-6"></a> 4.6 Utvidgat meddelande Fin021 (QueryResultResponse)
+Schemat för undermeddelandet definieras i filen [fin.021](schemas/fin.021.001.01.xsd). 
+I likhet med de övriga undermeddelandena returneras undermeddelandet i [svarsmeddelandet från datasöksystemet](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01) i elementet [ReturnIndicator1](#4-7).
 
-|Name|[min..max]|Type|Description|Appended to message
+|Namn|[min..max]|Typ|Beskrivning|Kopplas till meddelandet
 |:---|:---|:---|:---|:---|
-|QueryResultResponse| | | |[auth.002](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#InformationRequestResponseV01)|
-|&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[1..1]|QueryKeyList|A list of identifiers used in the query||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList]|A list of result identifiers||
+|QueryResultResponse| | | |[auth.002](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01)|
+|&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[1..1]|QueryKeyList|Kodlista för förfrågningar||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList]|Kodlista för resultatdata||
 
+### <a name="4-7"></a> 4.7 Användning av elementet ReturnIndicator1 med fin.021-meddelande
 
-### <a name="4-7"></a> 4.7 Use of the ReturnIndicator1 element with the fin.021 message
-
-ReturnIndicator1 includes the presence of a single type of search result as in the [response messages](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#InformationRequestResponseV01) of the data retrieval system’s query API. The fin.021 submessage is returned in this element similarly to other submessages returned in the query.
+ReturnIndicator1 innehåller en enskild typ av sökresultat, precis som i [svarsmeddelandet](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01) i datasöksystemets frågegränssnitt. I likhet med de övriga undermeddelanden som returneras i förfrågan ingår fin.021 i detta element.
 
 |XPath|Type|Description|
 |:---|:---|:---|
