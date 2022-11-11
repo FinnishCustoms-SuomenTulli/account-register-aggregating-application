@@ -138,7 +138,7 @@ Other submessages return status NFOU, which is insignificant in this case.
 ### <a name="4-3"></a> 4.3 Status API
 Messages sent to the status API consist of the same message content as queries. In addition, the identifier received as the query API’s response is transmitted through the [fin.020 submessage](#4-5).
 
-Response messages are identical to the [query API's](#kyselyrajapinta-kysely) responses, plus: 
+Response messages are identical to the [query API's](#4-2) responses, plus: 
 - If a query is not yet complete, NRES will be returned as the status code in the Auth.002 schema’s RspnSts field.
 - If a query is complete, COMP will be returned as the status code in the Auth.002 schema’s RspnSts field along with the identifier used in the status query in the [fin.021 submessage](#4-6) and a list of identifiers using which results can be retrieved from the [result API](#4-4). 
 
