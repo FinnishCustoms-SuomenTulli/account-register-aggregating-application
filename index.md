@@ -181,7 +181,7 @@ fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat
 |XPath|Tyyppi|Kuvaus|
 |:---|:---|:---|
 |RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|sisältää sanomalaajennuksen sanoma-id:n (fin.021.001.01)|
-|RtrInd/InvstgtnRslt|InvestigationResult1Choice|palautetaan `Rslt` elementti tyyppiä SupplementaryDataEnvelope1, joka sisältää alisanoman [QueryResultResponse](#QueryResultResponse) tai elementin `InvstgtnSts` koodilla `NFOU`, jos kyselyssä käytetyllä tunnuksella ei löydy tietoa.
+|RtrInd/InvstgtnRslt|InvestigationResult1Choice|palautetaan `Rslt` elementti tyyppiä SupplementaryDataEnvelope1, joka sisältää alisanoman [QueryResultResponse](#kyselyrajapinta-fin021) tai elementin `InvstgtnSts` koodilla `NFOU`, jos kyselyssä käytetyllä tunnuksella ei löydy tietoa.
 
 ### <a name="kyselyrajapinta-virhetilanteet"></a> 4.8 Virhetilanteiden hallinta
 Virheiden hallinta ja palautettavat koodit noudattavat soveltuvin osin Tiedonhakujärjestelmän kyselyrajapinnan [Kyselyrajapinnan WS-sanomaliikenteen skenaariot](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12) -kappaleen määrityksiä.
