@@ -87,7 +87,7 @@ Kyselyn vuo kulkee seuraavasti:
 3. Client odottaa hetken (kts. POLLING_INTERVAL) ja lähettää avaimen sisältävän statuskyselyn Status APIin
 4. Status API joko  
   a. Palauttaa koodin NRES, jos tulokset eivät ole vielä valmiina, tai  
-  b. Palauttaa koodin COMP ja listan avain-tiedonlähde pareja. 
+  b. Palauttaa koodin COMP ja listan avaimia. 
 5. Jos koodi on *NRES*, Client palaa kohtaan 3.
 6. Jos koodi on *COMP*, Client lähettää hakutuloskyselyn yhdellä kohdassa 4.b. vastaanottamistaan avaimista Result APIin.
 7. Result API palauttaa lähetettyä avainta vastaavan hakutulossanoman.
