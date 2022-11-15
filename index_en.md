@@ -87,7 +87,7 @@ The flow of the query is as follows:
 3. The client waits for a while (see POLLING_INTERVAL) and sends a status query containing the key to the status API.
 4. The status API either  
   a. returns code NRES if the results are not yet ready, or  
-  b. returns code COMP and a list of key-source pairs. 
+  b. returns code COMP and a list of keys. 
 5. If the code is NRES, the client returns to step 3.
 6. If the code is COMP, the client sends a search result query to the result API using one of the keys received in step 4 b.
 7. The result API returns a search result message corresponding to the key that was sent.
