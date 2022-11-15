@@ -87,7 +87,7 @@ Förfrågningen har följande flöde:
 3. Klienten väntar en stund (se POLLING_INTERVAL) och skickar sedan en statusförfrågan med nyckeln till Status API.
 4. Status API returnerar  
   a. antingen koden NRES, om svaret inte ännu är färdigt  
-  b. eller koden COMP och en lista på nyckel/datakälla-par. 
+  b. eller koden COMP och en lista på nycklar. 
 5. Om koden är NRES, går klienten tillbaka till punkt 3.
 6. Om koden är COMP, skickar klienten en förfrågan på sökresultat till Result API med en av de nycklar som den mottagit i punkt 4.b.
 7. Result API returnerar ett meddelande med det sökresultat som motsvarar nyckeln.
