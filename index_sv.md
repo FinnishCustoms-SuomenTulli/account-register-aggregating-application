@@ -163,7 +163,7 @@ I likhet med de övriga undermeddelandena returneras undermeddelandet i [svarsme
 |:---|:---|:---|:---|:---|
 |QueryResultResponse| | | |[auth.002](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01)|
 |&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[1..1]|QueryKeyList|Kodlista för förfrågningar||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList]|Kodlista för resultatdata||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Kodlista för resultatdata||
 
 ### <a name="4-7"></a> 4.7 Användning av elementet ReturnIndicator1 med fin.021-meddelande
 

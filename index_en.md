@@ -163,7 +163,7 @@ The submessage is returned in the [data retrieval system’s response message](h
 |:---|:---|:---|:---|:---|
 |QueryResultResponse| | | |[auth.002](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#InformationRequestResponseV01)|
 |&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[1..1]|QueryKeyList|A list of identifiers used in the query||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList]|A list of result identifiers||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|A list of result identifiers||
 
 
 ### <a name="4-7"></a> 4.7 Use of the ReturnIndicator1 element with the fin.021 message
