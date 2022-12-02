@@ -4,13 +4,14 @@
 
 # Beskrivning av sammanställningsprogrammets frågegränssnitt
 
-*Dokumentversion 1.0*
+*Dokumentversion 1.1*
 
 ## Versionhistorik
 
 Version|Datum|Beskrivning
 ---|---|---
 1.0|24.10.2022|Version 1.0
+1.1|1.12.2022|Uppdaterat stycken 4.6, 4.7, exemplen och version av fin021-schema
 
 
 ## Innehåll
@@ -51,7 +52,7 @@ Detta dokument kompletterar Tullens föreskrift om ett övervakningssystem för 
 
 [fin.020.001.01](schemas/fin.020.001.01.xsd)
 
-[fin.021.001.01](schemas/fin.021.001.01.xsd)
+[fin.021.001.02](schemas/fin.021.001.02.xsd)
 
 [Anvisning om informationssäkerheten inom elektronisk ärendehantering](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
@@ -156,14 +157,25 @@ Schemat för undermeddelandet definieras i filen [fin.020](schemas/fin.020.001.0
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Kodlista för uppgifter som söks||
 
 ### <a name="4-6"></a> 4.6 Utvidgat meddelande Fin021 (QueryResultResponse)
-Schemat för undermeddelandet definieras i filen [fin.021](schemas/fin.021.001.01.xsd). 
+Schemat för undermeddelandet definieras i filen [fin.021](schemas/fin.021.001.02.xsd). 
 I likhet med de övriga undermeddelandena returneras undermeddelandet i [svarsmeddelandet från datasöksystemet](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01) i elementet [ReturnIndicator1](#4-7).
 
-|Namn|[min..max]|Typ|Beskrivning|Kopplas till meddelandet
-|:---|:---|:---|:---|:---|
-|QueryResultResponse| | | |[auth.002](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01)|
+Följande data returneras som attribut för ResultKeyList-elementet:
+- datasourceOrganisationId: FO-numret för datakällan
+- errorCode: i händelse av fel, antingen felkoden som returneras från datakällan eller en som genereras av sammanställningsprogrammet, se [4.8 Felhantering](#4-8)
+
+|Namn|[min..max]|Typ|Beskrivning|Kopplas till meddelandet|XPath|
+|:---|:---|:---|:---|:---|:---|
+|QueryResultResponse| | | |[auth.002](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01)|`/Document/InfReqRspn/RtrInd/InvstgtnRslt/Rslt`|
 |&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[1..1]|QueryKeyList|Kodlista för förfrågningar||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList]|Kodlista för resultatdata||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Kodlista för resultatdata||
+
+|Namn|[min..max]|Typ|Beskrivning|Anteckningar
+|:---|:---|:---|:---|:---|
+|QueryKeyList| | | ||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|UUID för resultatet||
+|ResultKeyList| | | ||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|UUID för resultatet|Valfria attribut: `datasourceOrganisationId` och `errorCode`|
 
 ### <a name="4-7"></a> 4.7 Användning av elementet ReturnIndicator1 med fin.021-meddelande
 
@@ -171,11 +183,14 @@ ReturnIndicator1 innehåller en enskild typ av sökresultat, precis som i [svars
 
 |XPath|Typ|Beskrivning|
 |:---|:---|:---|
-|RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|Innehåller det utvidgade meddelandets meddelande-id (fin.021.001.01))|
+|RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|Innehåller det utvidgade meddelandets meddelande-id (fin.021.001.02))|
 |RtrInd/InvstgtnRslt|InvestigationResult1Choice|Returneras elementet `Rslt` av typen SupplementaryDataEnvelope1, som innehåller undermeddelandet [QueryResultResponse](#4-6) eller elementet `InvstgtnSts` med koden `NFOU`, om inga uppgifter hittas med den kod som använts i förfrågan.
 
 ### <a name="4-8"></a> 4.8 Hantering av felsituationer
 På felhantering och returnering av koder tillämpas relevanta delar av definitionerna i avsnitt [Scenarier för frågegränssnittets WS-meddelandetrafik](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#4-12) i datasöksystemets frågegränssnitt.
+
+I svarsmeddelandena som returneras från status- och resultatgränssnitten innehåller fin021-delmeddelandet även information om ett eventuellt fel som har uppstått i en del av det enskilda datasöksystem.
+Denna information skickas i 'errorCode'-attributet för ResultKey-elementet.
 
 ### <a name="4-9"></a> 4.9 Exempelmeddelanden
 Exempelmeddelanden för varje frågemeddelande med svar finns i mappen examples:

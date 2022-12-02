@@ -4,13 +4,14 @@
 
 # Koostavan sovelluksen rajapintakuvaus
 
-*Dokumentin versio 1.0*
+*Dokumentin versio 1.1*
 
 ## Versiohistoria
 
 Versio|Päivämäärä|Kuvaus
 ---|---|---
 1.0|24.10.2022|Versio 1.0
+1.1|29.11.2022|Päivitetty kappaleet 4.6, 4.7, esimerkit sekä fin021-skeeman versio
 
 
 ## Sisällysluettelo
@@ -51,7 +52,7 @@ Tämä dokumentti täydentää Tullin julkaisemaa määräystä pankki- ja maksu
 
 [fin.020.001.01](schemas/fin.020.001.01.xsd)
 
-[fin.021.001.01](schemas/fin.021.001.01.xsd)
+[fin.021.001.02](schemas/fin.021.001.02.xsd)
 
 [Sähköisen asioinnin tietoturvallisuus -ohje](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
@@ -161,16 +162,33 @@ Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijain
 |QueryResultRequest| | | |[auth.001](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestOpeningV01)|`/Document/InfReqOpng/SplmtryData/Envlp`|
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Lista haettavien tietojen tunnisteista||
 
+|Nimi|[min..max]|Tyyppi|Kuvaus|Huomioita|
+|:---|:---|:---|:---|:---|
+|ResultKeyList| | | ||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|Haun tai tuloksen UUID|Toistaiseksi tuetaan vain yhtä arvoa kerrallaan|
+
 ### <a name="kyselyrajapinta-fin021"></a> 4.6 Sanomalaajennus Fin021 (QueryResultResponse)
-Alisanoman skeema on määritelty tiedostossa [fin.021](schemas/fin.021.001.01.xsd). 
+Alisanoman skeema on määritelty tiedostossa [fin.021](schemas/fin.021.001.02.xsd). 
 Alisanoma palautetaan [Tiedonhakujärjestelmän vastaussanomassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01)
 muiden alisanomien tapaan [ReturnIndicator1](#kyselyrajapinta-rtrInd)-elementin sisällä.
 
-|Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan
+ResultKeyList-elementin attribuutteina palautetaan seuraavat tiedot:
+- datasourceOrganisationId: tiedonlähteen Y-tunnus tai ALV-tunnus
+- errorCode: virheen sattuessa tiedonlähteen palauttama tai Koostavan sovelluksen luoma virhekoodi, kts. kohta [4.8 Virhetilanteiden hallinta](#kyselyrajapinta-virhetilanteet)
+
+|Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan|XPath|
+|:---|:---|:---|:---|:---|:---|
+|QueryResultResponse| | | |[auth.002](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01)|`/Document/InfReqRspn/RtrInd/InvstgtnRslt/Rslt`|
+|&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[0..1]|QueryKeyList|Lista kyselyssä käytetyistä tunnisteista||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[0..1]|ResultKeyList|Lista tulostietojen tunnisteista||
+
+
+|Nimi|[min..max]|Tyyppi|Kuvaus|Huomioita|
 |:---|:---|:---|:---|:---|
-|QueryResultResponse| | | |[auth.002](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01)|
-|&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[1..1]|QueryKeyList|Lista kyselyssä käytetyistä tunnisteista||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Lista tulostietojen tunnisteista||
+|QueryKeyList| | | ||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|Tuloksen UUID||
+|ResultKeyList| | | ||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|Tuloksen UUID|Optionaaliset attribuutit: `datasourceOrganisationId` ja `errorCode`|
 
 
 ### <a name="kyselyrajapinta-rtrInd"></a> 4.7 Elementin ReturnIndicator1 käyttö fin.021-sanoman kanssa
@@ -180,11 +198,14 @@ fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat
 
 |XPath|Tyyppi|Kuvaus|
 |:---|:---|:---|
-|RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|sisältää sanomalaajennuksen sanoma-id:n (fin.021.001.01)|
+|RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|sisältää sanomalaajennuksen sanoma-id:n (fin.021.001.02)|
 |RtrInd/InvstgtnRslt|InvestigationResult1Choice|palautetaan `Rslt` elementti tyyppiä SupplementaryDataEnvelope1, joka sisältää alisanoman [QueryResultResponse](#kyselyrajapinta-fin021) tai elementin `InvstgtnSts` koodilla `NFOU`, jos kyselyssä käytetyllä tunnuksella ei löydy tietoa.
 
 ### <a name="kyselyrajapinta-virhetilanteet"></a> 4.8 Virhetilanteiden hallinta
 Virheiden hallinta ja palautettavat koodit noudattavat soveltuvin osin Tiedonhakujärjestelmän kyselyrajapinnan [Kyselyrajapinnan WS-sanomaliikenteen skenaariot](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12) -kappaleen määrityksiä.
+
+Status- ja tulosrajapinnoista palautuvissa vastaussanomissa fin021-alisanomassa on myös tieto mahdollisesta virheestä, joka on tapahtunut yksittäisen tiedonlähteen osalla. 
+Tämä tieto välitetään ResultKey-elementin `errorCode`-attribuutissa.
 
 ### <a name="kyselyrajapinta-esimerkit"></a> 4.9 Esimerkkisanomat
 Esimerkkisanomat kustakin kyselysanomasta ja sen vastauksesta löytyvät examples-kansiosta:
