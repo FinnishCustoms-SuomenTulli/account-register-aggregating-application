@@ -4,7 +4,7 @@
 
 # Koostavan sovelluksen rajapintakuvaus
 
-*Dokumentin versio 1.0*
+*Dokumentin versio 1.1*
 
 ## Versiohistoria
 
@@ -162,7 +162,7 @@ Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijain
 |QueryResultRequest| | | |[auth.001](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestOpeningV01)|`/Document/InfReqOpng/SplmtryData/Envlp`|
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Lista haettavien tietojen tunnisteista||
 
-|Nimi|[min..max]|Tyyppi|Kuvaus|Huomioita
+|Nimi|[min..max]|Tyyppi|Kuvaus|Huomioita|
 |:---|:---|:---|:---|:---|
 |ResultKeyList| | | ||
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|Haun tai tuloksen UUID|Toistaiseksi tuetaan vain yhtä arvoa kerrallaan|
@@ -176,19 +176,19 @@ ResultKeyList-elementin attribuutteina palautetaan seuraavat tiedot:
 - datasourceOrganisationId: tiedonlähteen Y-tunnus tai ALV-tunnus
 - errorCode: virheen sattuessa tiedonlähteen palauttama tai Koostavan sovelluksen luoma virhekoodi, kts. kohta [4.8 Virhetilanteiden hallinta](#kyselyrajapinta-virhetilanteet)
 
-|Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan|XPath
-|:---|:---|:---|:---|:---|:---
+|Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan|XPath|
+|:---|:---|:---|:---|:---|:---|
 |QueryResultResponse| | | |[auth.002](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01)|`/Document/InfReqRspn/RtrInd/InvstgtnRslt/Rslt`|
 |&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[0..1]|QueryKeyList|Lista kyselyssä käytetyistä tunnisteista||
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[0..1]|ResultKeyList|Lista tulostietojen tunnisteista||
 
 
-|Nimi|[min..max]|Tyyppi|Kuvaus|Huomioita
+|Nimi|[min..max]|Tyyppi|Kuvaus|Huomioita|
 |:---|:---|:---|:---|:---|
 |QueryKeyList| | | ||
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|Tuloksen UUID||
 |ResultKeyList| | | ||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|Tuloksen UUID|Optionaaliset attribuutit: datasourceOrganisationId ja errorCode|
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|Tuloksen UUID|Optionaaliset attribuutit: `datasourceOrganisationId` ja `errorCode`|
 
 
 ### <a name="kyselyrajapinta-rtrInd"></a> 4.7 Elementin ReturnIndicator1 käyttö fin.021-sanoman kanssa
@@ -205,7 +205,7 @@ fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat
 Virheiden hallinta ja palautettavat koodit noudattavat soveltuvin osin Tiedonhakujärjestelmän kyselyrajapinnan [Kyselyrajapinnan WS-sanomaliikenteen skenaariot](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12) -kappaleen määrityksiä.
 
 Status- ja tulosrajapinnoista palautuvissa vastaussanomissa fin021-alisanomassa on myös tieto mahdollisesta virheestä, joka on tapahtunut yksittäisen tiedonlähteen osalla. 
-Tämä tieto välitetään ResultKey-elementin _errorCode_-attribuutissa.
+Tämä tieto välitetään ResultKey-elementin `errorCode`-attribuutissa.
 
 ### <a name="kyselyrajapinta-esimerkit"></a> 4.9 Esimerkkisanomat
 Esimerkkisanomat kustakin kyselysanomasta ja sen vastauksesta löytyvät examples-kansiosta:
