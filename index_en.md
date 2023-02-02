@@ -1,6 +1,8 @@
-[Tiedonhakujärjestelmän kyselyrajapintakuvaus](https://finnishcustoms-suomentulli.github.io/account-register-information-query/)  
-[Query interface description of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html)  
-[Beskrivning av datasöksystemets frågegränssnitt](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html)
+[Tiedon hyödyntäjien käyttöönoton ja ylläpidon ohje, koostava sovellus](instructions/Tiedon_hyödyntäjien_käyttöönoton_ja_ylläpidon_ohje_koostava_sovellus.pdf)  
+[Koostavan sovelluksen rajapintakuvaus](index.md)  
+[Deployment and maintenance instructions for data users, Aggregating Application](instructions/Deployment_and_maintenance_instructions_for_data_users_Aggregating_Application.pdf)  
+[Instruktioner för uppgiftsanvändare om ibruktagande och underhåll, sammanställningsprogrammet](instructions/Instruktioner_för_uppgiftsanvändare_om_ibruktagande_och_underhåll_sammanställningsprogrammet.pdf)  
+[Beskrivning av sammanställningsprogrammets frågegränssnitt](index_sv.md)  
 
 # Description of the aggregating application’s query API
 
