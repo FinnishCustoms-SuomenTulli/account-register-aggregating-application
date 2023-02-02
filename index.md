@@ -79,7 +79,7 @@ Taulukossa 2.1. on esitetty vuokaavioon liittyvien muuttujien merkitys.
 
 Muuttuja|Kuvaus
 ---|---
-POLLING_INTERVAL|Pollausväli, viive joka clientin on odotettava ennen seuraavaa kyselyä. Jos client pollaa serveriä liian tiheästi, voi server hylätä transaktion käsittelyn (virhekoodi 3, ks. [taulukko 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
+POLLING_INTERVAL|Pollausväli eli viive joka clientin on odotettava ennen seuraavaa kyselyä on 1 minuutti. Jos client pollaa serveriä liian tiheästi, voi server hylätä transaktion käsittelyn (virhekoodi 3, ks. [taulukko 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
 POLLING_TIME_LIMIT|Kuinka kauan pollausta on sallittua tehdä, ennen kuin lopetetaan. Jos vastausta ei edelleenkään saada, on joko tehtävä kokonaan uusi kysely tai siirrettävä asia manuaaliseen käsittelyyn.
 
 Taulukossa 2.1. esitettyjen muuttujien kulloinkin voimassa olevat arvot kerrotaan liitedokumentaatiossa.
@@ -108,8 +108,7 @@ Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka 
 |PART|PartialResponse|Response is partially provided.|Ei käytössä|
 
 #### Tulosten säilytysaika Koostavassa sovelluksessa
-Valmiita tuloksia pidetään tallessa korkeintaan määritellyn ajan niiden valmistumisesta, jona aikana tulokset on noudettava. Tuloksia ei poisteta haettaessa, vaan vasta em. aikarajan umpeuduttua. 
-Aikarajan arvo kerrotaan liitedokumentaatiossa.
+Valmiita tuloksia pidetään tallessa korkeintaan 24 tunnin ajan niiden valmistumisesta, jona aikana tulokset on noudettava. Tuloksia ei poisteta haettaessa, vaan vasta em. aikarajan umpeuduttua. 
 
 ## <a name="tietoturva"></a> 3. Tietoturva
 
