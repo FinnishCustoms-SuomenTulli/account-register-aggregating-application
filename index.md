@@ -82,8 +82,6 @@ Muuttuja|Kuvaus
 POLLING_INTERVAL|Pollausväli eli viive joka clientin on odotettava ennen seuraavaa kyselyä on 1 minuutti. Jos client pollaa serveriä liian tiheästi, voi server hylätä transaktion käsittelyn (virhekoodi 3, ks. [taulukko 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
 POLLING_TIME_LIMIT|Kuinka kauan pollausta on sallittua tehdä, ennen kuin lopetetaan. Jos vastausta ei edelleenkään saada, on joko tehtävä kokonaan uusi kysely tai siirrettävä asia manuaaliseen käsittelyyn.
 
-Taulukossa 2.1. esitettyjen muuttujien kulloinkin voimassa olevat arvot kerrotaan liitedokumentaatiossa.
-
 Kyselyn vuo kulkee seuraavasti:
 1. Client lähettää kyselysanoman Query API:in.
 2. Query API palauttaa vastauksena avaimen (resultKey).
