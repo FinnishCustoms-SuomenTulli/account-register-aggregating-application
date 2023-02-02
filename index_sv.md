@@ -77,7 +77,7 @@ I tabell 2.1 redogörs för parametrarna i flödesschemat.
 
 Parameter|Beskrivning
 ---|---
-POLLING_INTERVAL|Pollingintervall, ett tidsintervall som klienten måste vänta ut före följande förfrågning. Om klienten pollar servern för frekvent, kan servern avvisa behandlingen av transaktionen (felkod 3, se [Tabell 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
+POLLING_INTERVAL|Pollingintervall, ett tidsintervall som klienten måste vänta ut före följande förfrågning är 1 minut. Om klienten pollar servern för frekvent, kan servern avvisa behandlingen av transaktionen (felkod 3, se [Tabell 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
 POLLING_TIME_LIMIT|Maximal tid för pollingar, innan man slutar. Om inget svar fås, ska man göra en helt ny förfrågan eller överföra ärendet till manuell handläggning.
 
 Värdena för gällande parameter som anges i tabell 2.1 anges i den bifogade dokumentationen.
@@ -106,7 +106,7 @@ Responskoderna definieras i ISO-koduppsättningen StatusResponse1Code; användni
 |PART|PartialResponse|Response is partially provided.|Används inte.|
 
 #### Förvaringstid för resultaten i sammanställningsprogrammet
-De färdiga resultaten förvaras högst en specificerad tid efter att de sammanställts och de ska hämtas under denna tid. Resultaten raderas inte när de hämtas, utan först när nämnda tidsfrist har löpt ut. Värdet för tidsfristen anges i den bifogade dokumentationen.
+De färdiga resultaten förvaras högst 24 timmar efter att de sammanställts och de ska hämtas under denna tid. Resultaten raderas inte när de hämtas, utan först när nämnda tidsfrist har löpt ut. 
 
 ## <a name="chapter3"></a> 3. Datasäkerhet
 
