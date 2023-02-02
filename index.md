@@ -1,8 +1,8 @@
-[Tiedon hyödyntäjien käyttöönoton ja ylläpidon ohje, koostava sovellus](instructions/Tiedon hyödyntäjien käyttöönoton ja ylläpidonohje_koostava sovellus.pdf)  
+[Tiedon hyödyntäjien käyttöönoton ja ylläpidon ohje koostava sovellus](instructions/Tiedon hyödyntäjien käyttöönoton ja ylläpidonohje_koostava sovellus.pdf)  
 [Deployment and maintenance instructions for data users, Aggregating Application](instructions/Deployment and maintenance instructions for data users_Aggregating Application.pdf)  
-[Description of the aggregating application’s query API](index_en.html)  
+[Description of the aggregating application’s query API](index_en.md)  
 [Instruktioner för uppgiftsanvändare om ibruktagande och underhåll, sammanställningsprogrammet](instructions/Instruktioner för uppgiftsanvändare om ibruktagande och underhåll_sammanställningsprogrammet.pdf)  
-[Beskrivning av sammanställningsprogrammets frågegränssnitt](index_sv.html)
+[Beskrivning av sammanställningsprogrammets frågegränssnitt](index_sv.md)  
 
 # Koostavan sovelluksen rajapintakuvaus
 
