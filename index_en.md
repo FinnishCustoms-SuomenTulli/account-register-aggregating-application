@@ -79,7 +79,7 @@ Table 2.2 presents the meaning of different variables in the flow diagram.
 
 Muuttuja|Kuvaus
 ---|---
-POLLING_INTERVAL|Polling interval; the time the client has to wait before the next query. If a client’s polling interval is too short, the server may reject transaction processing (error code 3, see [Table 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
+POLLING_INTERVAL|Polling interval; the time the client has to wait before the next query is 1 minute. If a client’s polling interval is too short, the server may reject transaction processing (error code 3, see [Table 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
 POLLING_TIME_LIMIT|The permitted time limit for polling, after which it will be stopped. If no response is still received, a new query must be made or the case must be transferred to manual processing.
 
 The valid values of the variables shown in Table 2.1 are presented in the attached documents.
@@ -108,7 +108,7 @@ The codes to be returned are defined in ISO code set StatusResponse1Code, and th
 |PART|PartialResponse|Response is partially provided.|Not used.|
 
 #### Result retention time in the aggregating application
-Complete results are retained for at most the pre-defined time after their completion, during which the results must be retrieved. Results are only deleted after the expiry of the aforementioned time limit, not after their retrieval. The value of the time limit is described in the attached documents.
+Complete results are retained for at most 24 hours after their completion, during which the results must be retrieved. Results are only deleted after the expiry of the aforementioned time limit, not after their retrieval. 
 
 ## <a name="chapter3"></a> 3. Information security
 
