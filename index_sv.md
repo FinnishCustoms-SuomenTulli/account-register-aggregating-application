@@ -82,8 +82,6 @@ Parameter|Beskrivning
 POLLING_INTERVAL|Pollingintervall, ett tidsintervall som klienten måste vänta ut före följande förfrågning är 1 minut. Om klienten pollar servern för frekvent, kan servern avvisa behandlingen av transaktionen (felkod 3, se [Tabell 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
 POLLING_TIME_LIMIT|Maximal tid för pollingar, innan man slutar. Om inget svar fås, ska man göra en helt ny förfrågan eller överföra ärendet till manuell handläggning.
 
-Värdena för gällande parameter som anges i tabell 2.1 anges i den bifogade dokumentationen.
-
 Förfrågningen har följande flöde:
 1. Klienten skickar ett frågemeddelande till Query API.
 2. Som svar returnerar Query API en nyckel (resultKey).
