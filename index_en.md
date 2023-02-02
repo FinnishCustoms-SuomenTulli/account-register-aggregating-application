@@ -82,8 +82,6 @@ Muuttuja|Kuvaus
 POLLING_INTERVAL|Polling interval; the time the client has to wait before the next query is 1 minute. If a client’s polling interval is too short, the server may reject transaction processing (error code 3, see [Table 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
 POLLING_TIME_LIMIT|The permitted time limit for polling, after which it will be stopped. If no response is still received, a new query must be made or the case must be transferred to manual processing.
 
-The valid values of the variables shown in Table 2.1 are presented in the attached documents.
-
 The flow of the query is as follows:
 1. The client sends a query message to the query API.
 2. The query API returns a key as a response (resultKey).
