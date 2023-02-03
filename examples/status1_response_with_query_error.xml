@@ -213,7 +213,7 @@ EDr0</X509Certificate>
             <auth002:InfReqRspn>
                <auth002:RspnId>ABC1234</auth002:RspnId>
                <auth002:InvstgtnId>ABC1234</auth002:InvstgtnId>
-               <auth002:RspnSts>COMP</auth002:RspnSts>
+               <auth002:RspnSts>NRES</auth002:RspnSts>
                <auth002:SchCrit>
                   <auth002:Acct>
                      <auth002:Id>
@@ -247,14 +247,7 @@ EDr0</X509Certificate>
                                  <fin021:ResultKey>0c94092e-a175-4ba5-818d-9f9c72f86587</fin021:ResultKey>
                               </fin021:QueryKeyList>
                               <fin021:ResultKeyList>
-                                 <fin021:ResultKey datasourceOrganisationId="1111111-2">eebe1a21-5c92-451f-8a73-e4642d80b94a</fin021:ResultKey>
-                                 <fin021:ResultKey datasourceOrganisationId="2222222-1" errorCode="0">e5c69741-cd22-4152-92c5-7dbfb8052f14</fin021:ResultKey>
-                                 <fin021:ResultKey datasourceOrganisationId="1111111-1">90770b26-f949-4532-8172-44e9a3151f03</fin021:ResultKey>
-                                 <fin021:ResultKey datasourceOrganisationId="0245442-8">7ac5dfea-b5d4-45c5-a977-fd8a144140ef</fin021:ResultKey>
-                                 <fin021:ResultKey datasourceOrganisationId="5555555-1" errorCode="0">b4082be2-f1c5-4977-aa8e-9da137ba6cbb</fin021:ResultKey>
-                                 <fin021:ResultKey datasourceOrganisationId="4444444-1" errorCode="0">d75ce4fa-9069-455f-8621-159e28c9c414</fin021:ResultKey>
-                                 <fin021:ResultKey datasourceOrganisationId="3333333-1" errorCode="0">96dbe8b6-3f14-4965-9c57-ca89408de3d1</fin021:ResultKey>
-                                 <fin021:ResultKey datasourceOrganisationId="1111111-3">e4f93abf-c15d-4c52-8840-a76b82db653e</fin021:ResultKey>
+                                 <<fin021:ResultKey errorCode="TIMEOUT"/>
                               </fin021:ResultKeyList>
                            </fin021:QueryResultResponse>
                         </fin021:Document>

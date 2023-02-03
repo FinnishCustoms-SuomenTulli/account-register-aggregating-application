@@ -10,11 +10,11 @@
 
 ## Versionhistorik
 
-Version|Datum|Beskrivning
----|---|---
-1.0|24.10.2022|Version 1.0
-1.1|1.12.2022|Uppdaterat stycken 4.6, 4.7, exemplen och version av fin021-schema
-
+| Version | Datum      | Beskrivning                                                        |
+|---------|------------|--------------------------------------------------------------------|
+| 1.0     | 24.10.2022 | Version 1.0                                                        |
+| 1.1     | 1.12.2022  | Uppdaterat stycken 4.6, 4.7, exemplen och version av fin021-schema |
+| 1.2    | 03.02.2023 | Updated chapters 4.6, 4.8, 4.9, fin021 schema version and examples |
 
 ## Innehåll
 
@@ -37,12 +37,12 @@ Version|Datum|Beskrivning
 
 ### 1.1 Termer och förkortningar
 
-Förkortning eller term|Förklaring
----|---
-Gränssnitt|Standardenlig praxis eller kontaktyta som möjliggör överföring av information mellan enheter, programvaror eller användare. 
-WS (Web Service)|Webbaserat datorprogram som med hjälp av standardiserade internetprotokoll ställer tjänster till förfogande för applikationerna. Tjänsten som datasöksystemet tillhandahåller är förfrågan om uppgifter.
-Endpoint|Gränssnittstjänst som finns tillgänglig på en viss webbadress.
-WSDL|(Web Service Description Language) Strukturellt beskrivningsspråk som används för att beskriva funktioner som en webbtjänst erbjuder.
+| Förkortning eller term | Förklaring                                                                                                                                                                                               |
+|------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Gränssnitt             | Standardenlig praxis eller kontaktyta som möjliggör överföring av information mellan enheter, programvaror eller användare.                                                                              |
+| WS (Web Service)       | Webbaserat datorprogram som med hjälp av standardiserade internetprotokoll ställer tjänster till förfogande för applikationerna. Tjänsten som datasöksystemet tillhandahåller är förfrågan om uppgifter. |
+| Endpoint               | Gränssnittstjänst som finns tillgänglig på en viss webbadress.                                                                                                                                           |
+| WSDL                   | (Web Service Description Language) Strukturellt beskrivningsspråk som används för att beskriva funktioner som en webbtjänst erbjuder.                                                                    |
 
 ### 1.2 Dokumentets syfte och omfattning
 
@@ -54,7 +54,7 @@ Detta dokument kompletterar Tullens föreskrift om ett övervakningssystem för 
 
 [fin.020.001.01](schemas/fin.020.001.01.xsd)
 
-[fin.021.001.02](schemas/fin.021.001.02.xsd)
+[fin.021.001.03](schemas/fin.021.001.03.xsd)
 
 [Anvisning om informationssäkerheten inom elektronisk ärendehantering](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
@@ -77,10 +77,10 @@ I tabell 2.1 redogörs för parametrarna i flödesschemat.
 
 *__Tabell 2.1.__ Parametrarna i flödesschemat*
 
-Parameter|Beskrivning
----|---
-POLLING_INTERVAL|Pollingintervall, ett tidsintervall som klienten måste vänta ut före följande förfrågning är 1 minut. Om klienten pollar servern för frekvent, kan servern avvisa behandlingen av transaktionen (felkod 3, se [Tabell 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
-POLLING_TIME_LIMIT|Maximal tid för pollingar, innan man slutar. Om inget svar fås, ska man göra en helt ny förfrågan eller överföra ärendet till manuell handläggning.
+| Parameter          | Beskrivning                                                                                                                                                                                                                                                                                                            |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| POLLING_INTERVAL   | Pollingintervall, ett tidsintervall som klienten måste vänta ut före följande förfrågning är 1 minut. Om klienten pollar servern för frekvent, kan servern avvisa behandlingen av transaktionen (felkod 3, se [Tabell 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)). |
+| POLLING_TIME_LIMIT | Maximal tid för pollingar, innan man slutar. Om inget svar fås, ska man göra en helt ny förfrågan eller överföra ärendet till manuell handläggning.                                                                                                                                                                    |
 
 Förfrågningen har följande flöde:
 1. Klienten skickar ett frågemeddelande till Query API.
@@ -99,11 +99,11 @@ Responskoderna definieras i ISO-koduppsättningen StatusResponse1Code; användni
 
 *__Tabell 2.2.__ Användning av värden för StatusResponse1Code*
 
-|Kod|Namn|Definition|Beskrivning|
-|:--|:--|:--|:--|
-|COMP|CompleteResponse|Response is complete.|Svarsmeddelandet innehåller sökresultaten.|
-|NRES|NoResponseYet|Response not provided yet.|Svarsmeddelandet innehåller inga sökresultat, gör en ny förfrågan senare.|
-|PART|PartialResponse|Response is partially provided.|Används inte.|
+| Kod  |Namn|Definition|Beskrivning|
+|:---|:---|:---|:---|
+| COMP |CompleteResponse|Response is complete.|Svarsmeddelandet innehåller sökresultaten.|
+| NRES |NoResponseYet|Response not provided yet.|Svarsmeddelandet innehåller inga sökresultat, gör en ny förfrågan senare.|
+| PART |PartialResponse|Response is partially provided.|Används inte.|
 
 #### Förvaringstid för resultaten i sammanställningsprogrammet
 De färdiga resultaten förvaras högst 24 timmar efter att de sammanställts och de ska hämtas under denna tid. Resultaten raderas inte när de hämtas, utan först när nämnda tidsfrist har löpt ut. 
@@ -157,7 +157,7 @@ Schemat för undermeddelandet definieras i filen [fin.020](schemas/fin.020.001.0
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Kodlista för uppgifter som söks||
 
 ### <a name="4-6"></a> 4.6 Utvidgat meddelande Fin021 (QueryResultResponse)
-Schemat för undermeddelandet definieras i filen [fin.021](schemas/fin.021.001.02.xsd). 
+Schemat för undermeddelandet definieras i filen [fin.021](schemas/fin.021.001.03.xsd). 
 I likhet med de övriga undermeddelandena returneras undermeddelandet i [svarsmeddelandet från datasöksystemet](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01) i elementet [ReturnIndicator1](#4-7).
 
 Följande data returneras som attribut för ResultKeyList-elementet:
@@ -170,24 +170,26 @@ Följande data returneras som attribut för ResultKeyList-elementet:
 |&nbsp;&nbsp;&nbsp;&nbsp;QueryKeyList|[1..1]|QueryKeyList|Kodlista för förfrågningar||
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[1..1]|ResultKeyList|Kodlista för resultatdata||
 
-|Namn|[min..max]|Typ|Beskrivning|Anteckningar
-|:---|:---|:---|:---|:---|
-|QueryKeyList| | | ||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|UUID för resultatet||
-|ResultKeyList| | | ||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|UUID för resultatet|Valfria attribut: `datasourceOrganisationId` och `errorCode`|
+| Namn                              | [min..max] | Typ        | Beskrivning         | Anteckningar                                                 |
+|:----------------------------------|:-----------|:-----------|:--------------------|:-------------------------------------------------------------|
+| QueryKeyList                      |            |            |                     ||     |
+| &nbsp;&nbsp;&nbsp;&nbsp;ResultKey | [1..n]     | Max256Text | UUID för resultatet ||     |
+| ResultKeyList                     |            |            |                     ||     |
+| &nbsp;&nbsp;&nbsp;&nbsp;ResultKey | [1..n]     | Max256TextAllowedEmpty | UUID för resultatet or empty in case of a query error| Valfria attribut: `datasourceOrganisationId` och `errorCode` |
 
 ### <a name="4-7"></a> 4.7 Användning av elementet ReturnIndicator1 med fin.021-meddelande
 
 ReturnIndicator1 innehåller en enskild typ av sökresultat, precis som i [svarsmeddelandet](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01) i datasöksystemets frågegränssnitt. I likhet med de övriga undermeddelanden som returneras i förfrågan ingår fin.021 i detta element.
 
-|XPath|Typ|Beskrivning|
-|:---|:---|:---|
-|RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|Innehåller det utvidgade meddelandets meddelande-id (fin.021.001.02))|
-|RtrInd/InvstgtnRslt|InvestigationResult1Choice|Returneras elementet `Rslt` av typen SupplementaryDataEnvelope1, som innehåller undermeddelandet [QueryResultResponse](#4-6) eller elementet `InvstgtnSts` med koden `NFOU`, om inga uppgifter hittas med den kod som använts i förfrågan.
+| XPath                       | Typ                        | Beskrivning                                                                                                                                                                                                                                |
+|:----------------------------|:---------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | Innehåller det utvidgade meddelandets meddelande-id (fin.021.001.03))                                                                                                                                                                      |
+| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Returneras elementet `Rslt` av typen SupplementaryDataEnvelope1, som innehåller undermeddelandet [QueryResultResponse](#4-6) eller elementet `InvstgtnSts` med koden `NFOU`, om inga uppgifter hittas med den kod som använts i förfrågan. |
 
 ### <a name="4-8"></a> 4.8 Hantering av felsituationer
 På felhantering och returnering av koder tillämpas relevanta delar av definitionerna i avsnitt [Scenarier för frågegränssnittets WS-meddelandetrafik](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#4-12) i datasöksystemets frågegränssnitt.
+
+The response from Status API can be an empty ResultKey along with an errorCode to indicate that something has gone wrong with the query. No datasources have been queried at this point and there won't be any results to fetch. Currently "TIMEOUT" is the only produced errorCode in this case.
 
 I svarsmeddelandena som returneras från status- och resultatgränssnitten innehåller fin021-delmeddelandet även information om ett eventuellt fel som har uppstått i en del av det enskilda datasöksystem.
 Denna information skickas i 'errorCode'-attributet för ResultKey-elementet.
@@ -195,6 +197,6 @@ Denna information skickas i 'errorCode'-attributet för ResultKey-elementet.
 ### <a name="4-9"></a> 4.9 Exempelmeddelanden
 Exempelmeddelanden för varje frågemeddelande med svar finns i mappen examples:
 - [Frågemeddelande](examples/query1.xml) och [svar](examples/query1_response.xml)
-- [Statusförfrågan](examples/status1.xml) och [svar](examples/status1_response.xml)
+- [Statusförfrågan](examples/status1.xml) och [svar](examples/status1_response.xml), and [Query error response](examples/status1_response_with_query_error.xml).
 - [Resultatförfrågan](examples/result1.xml) och [svar](examples/result1_response.xml)
   

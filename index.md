@@ -10,11 +10,11 @@
 
 ## Versiohistoria
 
-Versio|Päivämäärä|Kuvaus
----|---|---
-1.0|24.10.2022|Versio 1.0
-1.1|29.11.2022|Päivitetty kappaleet 4.6, 4.7, esimerkit sekä fin021-skeeman versio
-
+| Versio | Päivämäärä | Kuvaus                                                              |
+|--------|------------|---------------------------------------------------------------------|
+| 1.0    | 24.10.2022 | Versio 1.0                                                          |
+| 1.1    | 29.11.2022 | Päivitetty kappaleet 4.6, 4.7, esimerkit sekä fin021-skeeman versio |
+| 1.2    | 03.02.2023 | Updated chapters 4.6, 4.8, 4.9, fin021 schema version and examples  |
 
 ## Sisällysluettelo
 
@@ -37,12 +37,12 @@ Versio|Päivämäärä|Kuvaus
 
 ### 1.1 Termit ja lyhenteet
 
-Lyhenne tai termi|Selite
----|---
-Rajapinta|Standardin mukainen käytäntö tai yhtymäkohta, joka mahdollistaa tietojen siirron laitteiden, ohjelmien tai käyttäjän välillä. 
-WS (Web Service)|Verkkopalvelimessa toimiva ohjelmisto, joka tarjoaa standardoitujen internetyhteyskäytäntöjen avulla palveluja sovellusten käytettäväksi. Tiedonhakujärjestelmä tarjoaa palveluna tietojen kyselyn.
-Endpoint|Rajapintapalvelu, joka on saatavilla tietyssä verkko-osoitteessa
-WSDL| (Web Service Description Language) Rakenteellinen kuvauskieli, jolla kuvataan web palvelun tarjoamat toiminnallisuudet.
+| Lyhenne tai termi | Selite                                                                                                                                                                                              |
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Rajapinta         | Standardin mukainen käytäntö tai yhtymäkohta, joka mahdollistaa tietojen siirron laitteiden, ohjelmien tai käyttäjän välillä.                                                                       |
+| WS (Web Service)  | Verkkopalvelimessa toimiva ohjelmisto, joka tarjoaa standardoitujen internetyhteyskäytäntöjen avulla palveluja sovellusten käytettäväksi. Tiedonhakujärjestelmä tarjoaa palveluna tietojen kyselyn. |
+| Endpoint          | Rajapintapalvelu, joka on saatavilla tietyssä verkko-osoitteessa                                                                                                                                    |
+| WSDL              | (Web Service Description Language) Rakenteellinen kuvauskieli, jolla kuvataan web palvelun tarjoamat toiminnallisuudet.                                                                             |
 
 ### 1.2 Dokumentin tarkoitus ja kattavuus
 
@@ -54,7 +54,7 @@ Tämä dokumentti täydentää Tullin julkaisemaa määräystä pankki- ja maksu
 
 [fin.020.001.01](schemas/fin.020.001.01.xsd)
 
-[fin.021.001.02](schemas/fin.021.001.02.xsd)
+[fin.021.001.03](schemas/fin.021.001.03.xsd)
 
 [Sähköisen asioinnin tietoturvallisuus -ohje](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
@@ -77,10 +77,10 @@ Taulukossa 2.1. on esitetty vuokaavioon liittyvien muuttujien merkitys.
 
 *__Taulukko 2.1.__ Vuokaavioon liittyvät muuttujat*
 
-Muuttuja|Kuvaus
----|---
-POLLING_INTERVAL|Pollausväli eli viive joka clientin on odotettava ennen seuraavaa kyselyä on 1 minuutti. Jos client pollaa serveriä liian tiheästi, voi server hylätä transaktion käsittelyn (virhekoodi 3, ks. [taulukko 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
-POLLING_TIME_LIMIT|Kuinka kauan pollausta on sallittua tehdä, ennen kuin lopetetaan. Jos vastausta ei edelleenkään saada, on joko tehtävä kokonaan uusi kysely tai siirrettävä asia manuaaliseen käsittelyyn.
+| Muuttuja           | Kuvaus                                                                                                                                                                                                                                                                                                     |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| POLLING_INTERVAL   | Pollausväli eli viive joka clientin on odotettava ennen seuraavaa kyselyä on 1 minuutti. Jos client pollaa serveriä liian tiheästi, voi server hylätä transaktion käsittelyn (virhekoodi 3, ks. [taulukko 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)). |
+| POLLING_TIME_LIMIT | Kuinka kauan pollausta on sallittua tehdä, ennen kuin lopetetaan. Jos vastausta ei edelleenkään saada, on joko tehtävä kokonaan uusi kysely tai siirrettävä asia manuaaliseen käsittelyyn.                                                                                                                 |
 
 Kyselyn vuo kulkee seuraavasti:
 1. Client lähettää kyselysanoman Query API:in.
@@ -99,11 +99,11 @@ Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka 
 
 *__Taulukko 2.2.__ StatusResponse1Code arvojen käyttö*
 
-|Koodi|Nimi|Määritelmä|Kuvaus|
-|:--|:--|:--|:--|
-|COMP|CompleteResponse|Response is complete.|Vastaussanoma sisältää hakutulokset|
-|NRES|NoResponseYet|Response not provided yet.|Vastaussanoma ei sisällä hakutuloksia, tee uusi kysely myöhemmin.|
-|PART|PartialResponse|Response is partially provided.|Ei käytössä|
+|Koodi|Nimi|Määritelmä| Kuvaus                                                            |
+|:---|:---|:---|:---|
+|COMP|CompleteResponse|Response is complete.| Vastaussanoma sisältää hakutulokset                               |
+|NRES|NoResponseYet|Response not provided yet.| Vastaussanoma ei sisällä hakutuloksia, tee uusi kysely myöhemmin. |
+|PART|PartialResponse|Response is partially provided.| Ei käytössä                                                       |
 
 #### Tulosten säilytysaika Koostavassa sovelluksessa
 Valmiita tuloksia pidetään tallessa korkeintaan 24 tunnin ajan niiden valmistumisesta, jona aikana tulokset on noudettava. Tuloksia ei poisteta haettaessa, vaan vasta em. aikarajan umpeuduttua. 
@@ -167,7 +167,7 @@ Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijain
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|Haun tai tuloksen UUID|Toistaiseksi tuetaan vain yhtä arvoa kerrallaan|
 
 ### <a name="kyselyrajapinta-fin021"></a> 4.6 Sanomalaajennus Fin021 (QueryResultResponse)
-Alisanoman skeema on määritelty tiedostossa [fin.021](schemas/fin.021.001.02.xsd). 
+Alisanoman skeema on määritelty tiedostossa [fin.021](schemas/fin.021.001.03.xsd).
 Alisanoma palautetaan [Tiedonhakujärjestelmän vastaussanomassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01)
 muiden alisanomien tapaan [ReturnIndicator1](#kyselyrajapinta-rtrInd)-elementin sisällä.
 
@@ -182,12 +182,12 @@ ResultKeyList-elementin attribuutteina palautetaan seuraavat tiedot:
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[0..1]|ResultKeyList|Lista tulostietojen tunnisteista||
 
 
-|Nimi|[min..max]|Tyyppi|Kuvaus|Huomioita|
-|:---|:---|:---|:---|:---|
-|QueryKeyList| | | ||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|Tuloksen UUID||
-|ResultKeyList| | | ||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|Tuloksen UUID|Optionaaliset attribuutit: `datasourceOrganisationId` ja `errorCode`|
+|Nimi|[min..max]|Tyyppi| Kuvaus         |Huomioita|
+|:---|:---|:---|:---------------|:---|
+|QueryKeyList| | |                ||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text| Tuloksen UUID  ||
+|ResultKeyList| | |                ||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256TextAllowedEmpty| Tuloksen UUID or empty in case of a query error |Optionaaliset attribuutit: `datasourceOrganisationId` ja `errorCode`|
 
 
 ### <a name="kyselyrajapinta-rtrInd"></a> 4.7 Elementin ReturnIndicator1 käyttö fin.021-sanoman kanssa
@@ -195,13 +195,15 @@ ResultKeyList-elementin attribuutteina palautetaan seuraavat tiedot:
 ReturnIndicator1 sisältää yksittäisen hakutulostyypin esiintymän, kuten Tiedonhakujärjestelmän kyselyrajapinnan [vastaussanomassakin](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01).
 fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat alisanomat.
 
-|XPath|Tyyppi|Kuvaus|
-|:---|:---|:---|
-|RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|sisältää sanomalaajennuksen sanoma-id:n (fin.021.001.02)|
-|RtrInd/InvstgtnRslt|InvestigationResult1Choice|palautetaan `Rslt` elementti tyyppiä SupplementaryDataEnvelope1, joka sisältää alisanoman [QueryResultResponse](#kyselyrajapinta-fin021) tai elementin `InvstgtnSts` koodilla `NFOU`, jos kyselyssä käytetyllä tunnuksella ei löydy tietoa.
+| XPath                       | Tyyppi                     | Kuvaus                                                                                                                                                                                                                                      |
+|:----------------------------|:---------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | sisältää sanomalaajennuksen sanoma-id:n (fin.021.001.03)                                                                                                                                                                                    |
+| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | palautetaan `Rslt` elementti tyyppiä SupplementaryDataEnvelope1, joka sisältää alisanoman [QueryResultResponse](#kyselyrajapinta-fin021) tai elementin `InvstgtnSts` koodilla `NFOU`, jos kyselyssä käytetyllä tunnuksella ei löydy tietoa. |
 
 ### <a name="kyselyrajapinta-virhetilanteet"></a> 4.8 Virhetilanteiden hallinta
 Virheiden hallinta ja palautettavat koodit noudattavat soveltuvin osin Tiedonhakujärjestelmän kyselyrajapinnan [Kyselyrajapinnan WS-sanomaliikenteen skenaariot](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12) -kappaleen määrityksiä.
+
+The response from Status API can be an empty ResultKey along with an errorCode to indicate that something has gone wrong with the query. No datasources have been queried at this point and there won't be any results to fetch. Currently "TIMEOUT" is the only produced errorCode in this case.
 
 Status- ja tulosrajapinnoista palautuvissa vastaussanomissa fin021-alisanomassa on myös tieto mahdollisesta virheestä, joka on tapahtunut yksittäisen tiedonlähteen osalla. 
 Tämä tieto välitetään ResultKey-elementin `errorCode`-attribuutissa.
@@ -209,6 +211,6 @@ Tämä tieto välitetään ResultKey-elementin `errorCode`-attribuutissa.
 ### <a name="kyselyrajapinta-esimerkit"></a> 4.9 Esimerkkisanomat
 Esimerkkisanomat kustakin kyselysanomasta ja sen vastauksesta löytyvät examples-kansiosta:
 - [Kyselysanoma](examples/query1.xml) ja [vastaus](examples/query1_response.xml)
-- [Status-kysely](examples/status1.xml) ja [vastaus](examples/status1_response.xml)
+- [Status-kysely](examples/status1.xml) ja [vastaus](examples/status1_response.xml), and [Query error response](examples/status1_response_with_query_error.xml).
 - [Tulos-kysely](examples/result1.xml) ja [vastaus](examples/result1_response.xml)
   

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2021 rel. 3 (x64) (http://www.altova.com) by Tulli (Tulli) -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:fin.021.001.02" targetNamespace="urn:fin.021.001.02" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn:fin.021.001.03" targetNamespace="urn:fin.021.001.03" elementFormDefault="qualified">
     <xs:element name="Document" type="Document"/>
     <xs:complexType name="Document">
         <xs:sequence>
@@ -23,9 +23,10 @@
             <xs:element name="ResultKey" maxOccurs="unbounded">
                 <xs:complexType>
                     <xs:simpleContent>
-                        <xs:extension base="Max256Text">
+                        <xs:extension base="Max256TextAllowedEmpty">
                             <xs:attribute name="datasourceOrganisationId" type="Max140Text"/>
                             <xs:attribute name="errorCode" type="Max35Text"/>
+                            <xs:attribute name="errorDescription" type="Max256Text"/>
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>
@@ -41,6 +42,12 @@
     <xs:simpleType name="Max256Text">
         <xs:restriction base="xs:string">
             <xs:minLength value="1"/>
+            <xs:maxLength value="256"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Max256TextAllowedEmpty">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="0"/>
             <xs:maxLength value="256"/>
         </xs:restriction>
     </xs:simpleType>

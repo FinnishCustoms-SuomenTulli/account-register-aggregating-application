@@ -237,11 +237,11 @@ EDr0</X509Certificate>
                </auth002:SchCrit>
                <auth002:RtrInd>
                   <auth002:AuthrtyReqTp>
-                     <auth002:MsgNmId>fin.021.001.02</auth002:MsgNmId>
+                     <auth002:MsgNmId>fin.021.001.03</auth002:MsgNmId>
                   </auth002:AuthrtyReqTp>
                   <auth002:InvstgtnRslt>
                      <auth002:Rslt>
-                        <fin021:Document xmlns:fin021="urn:fin.021.001.02">
+                        <fin021:Document xmlns:fin021="urn:fin.021.001.03">
                            <fin021:QueryResultResponse>
                               <fin021:QueryKeyList>
                                  <fin021:ResultKey>0c94092e-a175-4ba5-818d-9f9c72f86587</fin021:ResultKey>
