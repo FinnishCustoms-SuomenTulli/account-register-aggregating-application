@@ -175,7 +175,7 @@ Följande data returneras som attribut för ResultKeyList-elementet:
 | QueryKeyList                      |            |            |                     ||     |
 | &nbsp;&nbsp;&nbsp;&nbsp;ResultKey | [1..n]     | Max256Text | UUID för resultatet ||     |
 | ResultKeyList                     |            |            |                     ||     |
-| &nbsp;&nbsp;&nbsp;&nbsp;ResultKey | [1..n]     | Max256TextAllowedEmpty | UUID för resultatet or empty in case of a query error| Valfria attribut: `datasourceOrganisationId` och `errorCode` |
+| &nbsp;&nbsp;&nbsp;&nbsp;ResultKey | [1..n]     | Max256TextAllowedEmpty | UUID för resultatet eller tom i fall av fel| Valfria attribut: `datasourceOrganisationId` och `errorCode` |
 
 ### <a name="4-7"></a> 4.7 Användning av elementet ReturnIndicator1 med fin.021-meddelande
 
@@ -189,7 +189,7 @@ ReturnIndicator1 innehåller en enskild typ av sökresultat, precis som i [svars
 ### <a name="4-8"></a> 4.8 Hantering av felsituationer
 På felhantering och returnering av koder tillämpas relevanta delar av definitionerna i avsnitt [Scenarier för frågegränssnittets WS-meddelandetrafik](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#4-12) i datasöksystemets frågegränssnitt.
 
-The response from Status API can be an empty ResultKey along with an errorCode to indicate that something has gone wrong with the query. No datasources have been queried at this point and there won't be any results to fetch. Currently "TIMEOUT" is the only produced errorCode in this case.
+Svarsmeddelandena som returneras från statusgränssnitten kan vara tom och innehålla en felkod i fall något har gått fel med förfrågan. The response from Status API can be an empty ResultKey along with an errorCode to indicate that something has gone wrong with the query. I detta fall förfrågan har inte skickats tilla datakällor och det kommer inte att vara resultater att hämta. För närvarande "TIMEOUT" är den enda felkod som returneras i detta fall.
 
 I svarsmeddelandena som returneras från status- och resultatgränssnitten innehåller fin021-delmeddelandet även information om ett eventuellt fel som har uppstått i en del av det enskilda datasöksystem.
 Denna information skickas i 'errorCode'-attributet för ResultKey-elementet.
@@ -197,6 +197,6 @@ Denna information skickas i 'errorCode'-attributet för ResultKey-elementet.
 ### <a name="4-9"></a> 4.9 Exempelmeddelanden
 Exempelmeddelanden för varje frågemeddelande med svar finns i mappen examples:
 - [Frågemeddelande](examples/query1.xml) och [svar](examples/query1_response.xml)
-- [Statusförfrågan](examples/status1.xml) och [svar](examples/status1_response.xml), and [Query error response](examples/status1_response_with_query_error.xml).
+- [Statusförfrågan](examples/status1.xml) och [svar](examples/status1_response.xml), och [felmeddelande](examples/status1_response_with_query_error.xml).
 - [Resultatförfrågan](examples/result1.xml) och [svar](examples/result1_response.xml)
   
