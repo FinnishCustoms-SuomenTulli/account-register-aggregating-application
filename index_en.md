@@ -107,7 +107,7 @@ The codes to be returned are defined in ISO code set StatusResponse1Code, and th
 
 
 #### Result retention time in the aggregating application
-Complete results are retained for at most 24 hours after their completion, during which the results must be retrieved. Results are only deleted after the expiry of the aforementioned time limit, not after their retrieval. 
+Results are deleted once they have been retrieved. Complete results are retained for at most 24 hours after their completion, during which the results must be retrieved. 
 
 ## <a name="chapter3"></a> 3. Information security
 
@@ -198,8 +198,9 @@ Error management and returned codes follow the specifications of the [WS message
 
 The response from Status API can be an empty ResultKey along with an errorCode to indicate that something has gone wrong with the query. No datasources have been queried at this point and there won't be any results to fetch. Currently "TIMEOUT" is the only produced errorCode in this case.
 
-The responses from Status and Result APIs include also information of possible errors concerning certain datasources.
-This information is returned in `errorCode` attribute of the ResultKey element.
+The responses from Status and Result APIs include also information of possible errors concerning certain datasources. This information is returned in `errorCode` attribute of the ResultKey element.
+
+It is not possible to query information concerning time period before September 1st 2020 from the aggregating application. The query API rejects queries where investigation period (InvstgtnPrd) is before that.
 
 ### <a name="4-9"></a> 4.9 Example messages
 Examples of each query message and their responses are available in the examples folder:
