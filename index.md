@@ -106,7 +106,7 @@ Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka 
 |PART|PartialResponse|Response is partially provided.| Ei käytössä                                                       |
 
 #### Tulosten säilytysaika Koostavassa sovelluksessa
-Valmiita tuloksia pidetään tallessa korkeintaan 24 tunnin ajan niiden valmistumisesta, jona aikana tulokset on noudettava. Tuloksia ei poisteta haettaessa, vaan vasta em. aikarajan umpeuduttua. 
+Tulokset poistetaan kun ne on noudettu. Valmiita tuloksia pidetään tallessa korkeintaan 24 tunnin ajan niiden valmistumisesta, jona aikana tulokset on noudettava. 
 
 ## <a name="tietoturva"></a> 3. Tietoturva
 
@@ -205,8 +205,9 @@ Virheiden hallinta ja palautettavat koodit noudattavat soveltuvin osin Tiedonhak
 
 Status-rajapinnan vastaus voi olla tyhjä ResultKey sekä virhekoodi, mikä tarkoittaa että kyselyn käsittelyssä on tapahtunut virhe. Tällöin kyselyä ei ole välitetty tietolähteisiin eikä kyselyyn tule noudettavia vastauksia. Tällä hetkellä "TIMEOUT" on ainoa virhekoodi, joka palautetaan tässä tilanteessa. 
 
-Status- ja tulosrajapinnoista palautuvissa vastaussanomissa fin021-alisanomassa on myös tieto mahdollisesta virheestä, joka on tapahtunut yksittäisen tiedonlähteen osalla. 
-Tämä tieto välitetään ResultKey-elementin `errorCode`-attribuutissa.
+Status- ja tulosrajapinnoista palautuvissa vastaussanomissa fin021-alisanomassa on myös tieto mahdollisesta virheestä, joka on tapahtunut yksittäisen tiedonlähteen osalla. Tämä tieto välitetään ResultKey-elementin `errorCode`-attribuutissa.
+
+Koostavan sovelluksen kautta ei ole mahdollista kysellä 1.9.2020 aikaisempia tietoja. Koostavan sovelluksen kyselyrajapinta hylkää kyselyt, joissa haettu aikaväli (InvstgtnPrd) on ennen tätä.
 
 ### <a name="kyselyrajapinta-esimerkit"></a> 4.9 Esimerkkisanomat
 Esimerkkisanomat kustakin kyselysanomasta ja sen vastauksesta löytyvät examples-kansiosta:
