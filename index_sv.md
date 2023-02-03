@@ -106,7 +106,7 @@ Responskoderna definieras i ISO-koduppsättningen StatusResponse1Code; användni
 | PART |PartialResponse|Response is partially provided.|Används inte.|
 
 #### Förvaringstid för resultaten i sammanställningsprogrammet
-De färdiga resultaten förvaras högst 24 timmar efter att de sammanställts och de ska hämtas under denna tid. Resultaten raderas inte när de hämtas, utan först när nämnda tidsfrist har löpt ut. 
+Resultaten raderas när de hämtas. De färdiga resultaten förvaras högst 24 timmar efter att de sammanställts och de ska hämtas under denna tid. 
 
 ## <a name="chapter3"></a> 3. Datasäkerhet
 
@@ -191,8 +191,9 @@ På felhantering och returnering av koder tillämpas relevanta delar av definiti
 
 Svarsmeddelandena som returneras från statusgränssnitten kan vara tom och innehålla en felkod i fall något har gått fel med förfrågan. The response from Status API can be an empty ResultKey along with an errorCode to indicate that something has gone wrong with the query. I detta fall förfrågan har inte skickats tilla datakällor och det kommer inte att vara resultater att hämta. För närvarande "TIMEOUT" är den enda felkod som returneras i detta fall.
 
-I svarsmeddelandena som returneras från status- och resultatgränssnitten innehåller fin021-delmeddelandet även information om ett eventuellt fel som har uppstått i en del av det enskilda datasöksystem.
-Denna information skickas i 'errorCode'-attributet för ResultKey-elementet.
+I svarsmeddelandena som returneras från status- och resultatgränssnitten innehåller fin021-delmeddelandet även information om ett eventuellt fel som har uppstått i en del av det enskilda datasöksystem. Denna information skickas i 'errorCode'-attributet för ResultKey-elementet.
+
+Det är inte möjligt att söka information som gäller tid före 1 september 2020 från sammanställningsprogrammet. Sammanställningsprogrammets frågegränssnitt avvisar förfrågor var tidsintervall för sökning (InvstgtnPrd) är före det.
 
 ### <a name="4-9"></a> 4.9 Exempelmeddelanden
 Exempelmeddelanden för varje frågemeddelande med svar finns i mappen examples:
