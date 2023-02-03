@@ -187,7 +187,7 @@ ResultKeyList-elementin attribuutteina palautetaan seuraavat tiedot:
 |QueryKeyList| | |                ||
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text| Tuloksen UUID  ||
 |ResultKeyList| | |                ||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256TextAllowedEmpty| Tuloksen UUID or empty in case of a query error |Optionaaliset attribuutit: `datasourceOrganisationId` ja `errorCode`|
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256TextAllowedEmpty| Tuloksen UUID tai virhetilanteessa tyhjä |Optionaaliset attribuutit: `datasourceOrganisationId` ja `errorCode`|
 
 
 ### <a name="kyselyrajapinta-rtrInd"></a> 4.7 Elementin ReturnIndicator1 käyttö fin.021-sanoman kanssa
@@ -203,7 +203,7 @@ fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat
 ### <a name="kyselyrajapinta-virhetilanteet"></a> 4.8 Virhetilanteiden hallinta
 Virheiden hallinta ja palautettavat koodit noudattavat soveltuvin osin Tiedonhakujärjestelmän kyselyrajapinnan [Kyselyrajapinnan WS-sanomaliikenteen skenaariot](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12) -kappaleen määrityksiä.
 
-The response from Status API can be an empty ResultKey along with an errorCode to indicate that something has gone wrong with the query. No datasources have been queried at this point and there won't be any results to fetch. Currently "TIMEOUT" is the only produced errorCode in this case.
+Status-rajapinnan vastaus voi olla tyhjä ResultKey sekä virhekoodi, mikä tarkoittaa että kyselyn käsittelyssä on tapahtunut virhe. Tällöin kyselyä ei ole välitetty tietolähteisiin eikä kyselyyn tule noudettavia vastauksia. Tällä hetkellä "TIMEOUT" on ainoa virhekoodi, joka palautetaan tässä tilanteessa. 
 
 Status- ja tulosrajapinnoista palautuvissa vastaussanomissa fin021-alisanomassa on myös tieto mahdollisesta virheestä, joka on tapahtunut yksittäisen tiedonlähteen osalla. 
 Tämä tieto välitetään ResultKey-elementin `errorCode`-attribuutissa.
@@ -211,6 +211,6 @@ Tämä tieto välitetään ResultKey-elementin `errorCode`-attribuutissa.
 ### <a name="kyselyrajapinta-esimerkit"></a> 4.9 Esimerkkisanomat
 Esimerkkisanomat kustakin kyselysanomasta ja sen vastauksesta löytyvät examples-kansiosta:
 - [Kyselysanoma](examples/query1.xml) ja [vastaus](examples/query1_response.xml)
-- [Status-kysely](examples/status1.xml) ja [vastaus](examples/status1_response.xml), and [Query error response](examples/status1_response_with_query_error.xml).
+- [Status-kysely](examples/status1.xml) ja [vastaus](examples/status1_response.xml), ja [virheilmoitus](examples/status1_response_with_query_error.xml).
 - [Tulos-kysely](examples/result1.xml) ja [vastaus](examples/result1_response.xml)
   
