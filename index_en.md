@@ -6,15 +6,13 @@
 
 # Description of the aggregating application’s query API
 
-*Document version 1.1*
+*Document version 1.0*
 
 ## Version history
 
 | Version | Date       | Description                                                        |
 |---------|------------|--------------------------------------------------------------------|
-| 1.0     | 24.10.2022 | Version 1.0                                                        |
-| 1.1     | 1.12.2022  | Updated chapters 4.6, 4.7, examples and version of fin021 schema   |
-| 1.2    | 03.02.2023 | Updated chapters 4.6, 4.8, 4.9, fin021 schema version and examples |
+| 1.0     | 7.2.2023 | Version 1.0                                                        |
 
 ## Table of contents
 
