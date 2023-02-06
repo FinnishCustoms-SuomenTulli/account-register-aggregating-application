@@ -6,15 +6,13 @@
 
 # Koostavan sovelluksen rajapintakuvaus
 
-*Dokumentin versio 1.1*
+*Dokumentin versio 1.0*
 
 ## Versiohistoria
 
 | Versio | Päivämäärä | Kuvaus                                                              |
 |--------|------------|---------------------------------------------------------------------|
-| 1.0    | 24.10.2022 | Versio 1.0                                                          |
-| 1.1    | 29.11.2022 | Päivitetty kappaleet 4.6, 4.7, esimerkit sekä fin021-skeeman versio |
-| 1.2    | 03.02.2023 | Updated chapters 4.6, 4.8, 4.9, fin021 schema version and examples  |
+| 1.0    | 7.2.2023 | Versio 1.0                                                          |
 
 ## Sisällysluettelo
 
@@ -203,7 +201,7 @@ fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat
 ### <a name="kyselyrajapinta-virhetilanteet"></a> 4.8 Virhetilanteiden hallinta
 Virheiden hallinta ja palautettavat koodit noudattavat soveltuvin osin Tiedonhakujärjestelmän kyselyrajapinnan [Kyselyrajapinnan WS-sanomaliikenteen skenaariot](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12) -kappaleen määrityksiä.
 
-Status-rajapinnan vastaus voi olla tyhjä ResultKey sekä virhekoodi, mikä tarkoittaa että kyselyn käsittelyssä on tapahtunut virhe. Tällöin kyselyä ei ole välitetty tietolähteisiin eikä kyselyyn tule noudettavia vastauksia. Tällä hetkellä "TIMEOUT" on ainoa virhekoodi, joka palautetaan tässä tilanteessa. 
+Status-rajapinnan vastaus voi olla tyhjä ResultKey ja virhekoodi, mikä tarkoittaa että kyselyn käsittelyssä on tapahtunut virhe. Tällöin kyselyä ei ole välitetty tietolähteisiin eikä kyselyyn tule noudettavia vastauksia. Tällä hetkellä "TIMEOUT" on ainoa virhekoodi, joka palautetaan tässä tilanteessa. 
 
 Status- ja tulosrajapinnoista palautuvissa vastaussanomissa fin021-alisanomassa on myös tieto mahdollisesta virheestä, joka on tapahtunut yksittäisen tiedonlähteen osalla. Tämä tieto välitetään ResultKey-elementin `errorCode`-attribuutissa.
 
