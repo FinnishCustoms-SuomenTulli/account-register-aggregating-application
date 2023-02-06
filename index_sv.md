@@ -6,15 +6,13 @@
 
 # Beskrivning av sammanställningsprogrammets frågegränssnitt
 
-*Dokumentversion 1.1*
+*Dokumentversion 1.0*
 
 ## Versionhistorik
 
 | Version | Datum      | Beskrivning                                                        |
 |---------|------------|--------------------------------------------------------------------|
-| 1.0     | 24.10.2022 | Version 1.0                                                        |
-| 1.1     | 1.12.2022  | Uppdaterat stycken 4.6, 4.7, exemplen och version av fin021-schema |
-| 1.2    | 03.02.2023 | Updated chapters 4.6, 4.8, 4.9, fin021 schema version and examples |
+| 1.0     | 7.2.2023 | Version 1.0                                                        |
 
 ## Innehåll
 
@@ -189,7 +187,7 @@ ReturnIndicator1 innehåller en enskild typ av sökresultat, precis som i [svars
 ### <a name="4-8"></a> 4.8 Hantering av felsituationer
 På felhantering och returnering av koder tillämpas relevanta delar av definitionerna i avsnitt [Scenarier för frågegränssnittets WS-meddelandetrafik](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#4-12) i datasöksystemets frågegränssnitt.
 
-Svarsmeddelandena som returneras från statusgränssnitten kan vara tom och innehålla en felkod i fall något har gått fel med förfrågan. The response from Status API can be an empty ResultKey along with an errorCode to indicate that something has gone wrong with the query. I detta fall förfrågan har inte skickats tilla datakällor och det kommer inte att vara resultater att hämta. För närvarande "TIMEOUT" är den enda felkod som returneras i detta fall.
+Svarsmeddelandena som returneras från statusgränssnitten kan vara tom och innehålla en felkod i fall något har gått fel med förfrågan. I detta fall förfrågan har inte skickats tilla datakällor och det kommer inte att vara resultater att hämta. För närvarande "TIMEOUT" är den enda felkod som returneras i detta fall.
 
 I svarsmeddelandena som returneras från status- och resultatgränssnitten innehåller fin021-delmeddelandet även information om ett eventuellt fel som har uppstått i en del av det enskilda datasöksystem. Denna information skickas i 'errorCode'-attributet för ResultKey-elementet.
 
