@@ -6,15 +6,13 @@
 
 # Description of the aggregating application’s query API
 
-*Document version 1.1*
+*Document version 1.0*
 
 ## Version history
 
-Version|Date|Description
----|---|---
-1.0|24.10.2022|Version 1.0
-1.1|1.12.2022|Updated chapters 4.6, 4.7, examples and version of fin021 schema
-
+| Version | Date       | Description                                                        |
+|---------|------------|--------------------------------------------------------------------|
+| 1.0     | 7.2.2023 | Version 1.0                                                        |
 
 ## Table of contents
 
@@ -37,12 +35,12 @@ Version|Date|Description
 
 ### 1.1 Terms and abbreviations
 
-Abbreviation or term|Definition
----|---
-Interface|A standard practice or connection point that allows the transfer of information between devices, programmes and the user. 
-WS (Web Service)|Software operating in a network server, providing services for use by applications through standardised internet connection practices. The data retrieval system provides information queries as a service.
-Endpoint|An interface service available at a certain network address.
-WSDL| (Web Service Description Language) A structural description language describing the functionalities provided by the web service.
+| Abbreviation or term | Definition                                                                                                                                                                                                  |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Interface            | A standard practice or connection point that allows the transfer of information between devices, programmes and the user.                                                                                   |
+| WS (Web Service)     | Software operating in a network server, providing services for use by applications through standardised internet connection practices. The data retrieval system provides information queries as a service. |
+| Endpoint             | An interface service available at a certain network address.                                                                                                                                                |
+| WSDL                 | (Web Service Description Language) A structural description language describing the functionalities provided by the web service.                                                                            |
 
 ### 1.2 Purpose and scope of the document
 
@@ -54,7 +52,7 @@ This document supplements the regulation issued by Finnish Customs on the Bank a
 
 [fin.020.001.01](schemas/fin.020.001.01.xsd)
 
-[fin.021.001.02](schemas/fin.021.001.02.xsd)
+[fin.021.001.03](schemas/fin.021.001.03.xsd)
 
 [Guidelines on the information security of e-services](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
@@ -77,10 +75,10 @@ Table 2.2 presents the meaning of different variables in the flow diagram.
 
 *__Table 2.1.__ Variables in the flow diagram*
 
-Muuttuja|Kuvaus
----|---
-POLLING_INTERVAL|Polling interval; the time the client has to wait before the next query is 1 minute. If a client’s polling interval is too short, the server may reject transaction processing (error code 3, see [Table 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)).
-POLLING_TIME_LIMIT|The permitted time limit for polling, after which it will be stopped. If no response is still received, a new query must be made or the case must be transferred to manual processing.
+| Muuttuja           | Kuvaus                                                                                                                                                                                                                                                                                                    |
+|--------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| POLLING_INTERVAL   | Polling interval; the time the client has to wait before the next query is 1 minute. If a client’s polling interval is too short, the server may reject transaction processing (error code 3, see [Table 4.12.1](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12)). |
+| POLLING_TIME_LIMIT | The permitted time limit for polling, after which it will be stopped. If no response is still received, a new query must be made or the case must be transferred to manual processing.                                                                                                                    |
 
 The flow of the query is as follows:
 1. The client sends a query message to the query API.
@@ -99,14 +97,15 @@ The codes to be returned are defined in ISO code set StatusResponse1Code, and th
 
 *__Table 2.2.__ Use of StatusResponse1Code values*
 
-|Code|Name|Definition|Description|
-|:--|:--|:--|:--|
-|COMP|CompleteResponse|Response is complete.|The response message includes the retrieval results.|
-|NRES|NoResponseYet|Response not provided yet.|The response message does not include retrieval results; make a new query later.|
-|PART|PartialResponse|Response is partially provided.|Not used.|
+| Code | Name             | Definition                      | Description                                                                      |
+|:---|:---|:---|:---|
+| COMP | CompleteResponse | Response is complete.           | The response message includes the retrieval results.                             |
+| NRES | NoResponseYet    | Response not provided yet.      | The response message does not include retrieval results; make a new query later. |
+| PART | PartialResponse  | Response is partially provided. | Not used.                                                                        |
+
 
 #### Result retention time in the aggregating application
-Complete results are retained for at most 24 hours after their completion, during which the results must be retrieved. Results are only deleted after the expiry of the aforementioned time limit, not after their retrieval. 
+Results are deleted once they have been retrieved. Complete results are retained for at most 24 hours after their completion, during which the results must be retrieved. 
 
 ## <a name="chapter3"></a> 3. Information security
 
@@ -162,7 +161,7 @@ The submessage schema is defined in the [fin.020](schemas/fin.020.001.01.xsd) fi
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|UUID of the query or result|Only one value at a time is supported for now|
 
 ### <a name="4-6"></a> 4.6 Message extension Fin021 (QueryResultResponse)
-The submessage schema is defined in the [fin.021](schemas/fin.021.001.02.xsd) file. 
+The submessage schema is defined in the [fin.021](schemas/fin.021.001.03.xsd) file. 
 The submessage is returned in the [data retrieval system’s response message](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#InformationRequestResponseV01) in the [ReturnIndicator1](#4-7) element similarly to other submessages.
 
 The following data is returned as attributes of the ResultKeyList element:
@@ -176,31 +175,34 @@ The following data is returned as attributes of the ResultKeyList element:
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKeyList|[0..1]|ResultKeyList|A list of the identifiers of returned information||
 
 
-|Name|[min..max]|Type|Description|Notes|
-|:---|:---|:---|:---|:---|
-|QueryKeyList| | | ||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|UUID of the result||
-|ResultKeyList| | | ||
-|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text|UUID of the result|Optional attributes: `datasourceOrganisationId` and `errorCode`|
+|Name|[min..max]|Type| Description                                          |Notes|
+|:---|:---|:---|:-----------------------------------------------------|:---|
+|QueryKeyList| | |                                                      ||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256Text| UUID of the result                                   ||
+|ResultKeyList| | |                                                      ||
+|&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256TextAllowedEmpty| UUID of the result or empty in case of a query error |Optional attributes: `datasourceOrganisationId` and `errorCode`|
 
 ### <a name="4-7"></a> 4.7 Use of the ReturnIndicator1 element with the fin.021 message
 
 ReturnIndicator1 includes the presence of a single type of search result as in the [response messages](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#InformationRequestResponseV01) of the data retrieval system’s query API. The fin.021 submessage is returned in this element similarly to other submessages returned in the query.
 
-|XPath|Type|Description|
-|:---|:---|:---|
-|RtrInd/AuthrtyReqTp/MsgNmId|Max35Text|Includes the message ID of the message extension (fin.021.001.02))|
-|RtrInd/InvstgtnRslt|InvestigationResult1Choice|Returning `Rslt` element type SupplementaryDataEnvelope1, which includes the [QueryResultResponse](#4-6) submessage or the `InvstgtnSts` element, useing code `NFOU`, if no information can be found using the identifier used in the query.
+| XPath                       | Type                       | Description                                                                                                                                                                                                                                  |
+|:----------------------------|:---------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | Includes the message ID of the message extension (fin.021.001.03))                                                                                                                                                                           |
+| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Returning `Rslt` element type SupplementaryDataEnvelope1, which includes the [QueryResultResponse](#4-6) submessage or the `InvstgtnSts` element, useing code `NFOU`, if no information can be found using the identifier used in the query. |
 
 ### <a name="4-8"></a> 4.8 Error management
 Error management and returned codes follow the specifications of the [WS message traffic scenarios in the query API](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#4-12) chapter for the data retrieval system’s query API, where applicable.
 
-The responses from Status and Result APIs include also information of possible errors concerning certain datasources.
-This information is returned in `errorCode` attribute of the ResultKey element.
+The response from Status API can be an empty ResultKey along with an errorCode to indicate that something has gone wrong with the query. No datasources have been queried at this point and there won't be any results to fetch. Currently "TIMEOUT" is the only produced errorCode in this case.
+
+The responses from Status and Result APIs include also information of possible errors concerning certain datasources. This information is returned in `errorCode` attribute of the ResultKey element.
+
+It is not possible to query information concerning time period before September 1st 2020 from the aggregating application. The query API rejects queries where investigation period (InvstgtnPrd) is before that.
 
 ### <a name="4-9"></a> 4.9 Example messages
 Examples of each query message and their responses are available in the examples folder:
 - [Query message](examples/query1.xml) and [response](examples/query1_response.xml)
-- [Status query](examples/status1.xml) and [response](examples/status1_response.xml)
+- [Status query](examples/status1.xml) and [response](examples/status1_response.xml), and [Query error response](examples/status1_response_with_query_error.xml).
 - [Result query](examples/result1.xml) and [response](examples/result1_response.xml)
   
