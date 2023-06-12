@@ -136,6 +136,18 @@ Tätä tunnusta käytetään kyselyn tilan tarkistamiseen [Status-rajapinnasta](
 
 Muut alisanomat palauttavat statuksen NFOU, mikä ei tässä tapauksessa merkitse mitään.
 
+#### <a name="fin012"></a> 4.2.1 Sanomalaajennus InformationRequestFIN012
+
+Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijaintiin.
+
+|Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan|XPath|
+|:---|:---|:---|:---|:---|:---|
+|InformationRequestFIN012| | | |[auth.001](#InformationRequestOpeningV01)|`/Document/InfReqOpng/SplmtryData/Envlp`|
+|&nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry|[1..1]|[AuthorityInquirySet](#authority-inquiry-set)|Kyselyyn liittyvät viranomaisen tiedot| |
+|&nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria|[0..\*]||Käytetään hakuun tallelokeron tunnisteella.| |
+|&nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources|[0..\*]| |Tiedonlähteet, joille kysely lähetetään. Jos elementti puuttuu sanomasta, kysely lähetetään kaikille tiedonlähteille.| |
+|&nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest|[0..1]|boolean|Käytetään arvoa "true", kun kysely liittyy kansainväliseen tietopyyntöön.| |
+
 ### <a name="kyselyrajapinta-status"></a> 4.3 Status-rajapinta
 Status-rajapintaan lähetettävä sanoma koostuu samasta sanomasisällöstä kuin kyselyä tehtäessä, lisäksi kyselyrajapinnan vastauksena saatu tunnus välitetään [fin.020-alisanomassa](#kyselyrajapinta-fin020).
 
