@@ -129,7 +129,7 @@ Rajapinnassa käytettävä sanomarakenne on päätasolla identtinen Tullin julka
 Tämän lisäksi rajapintaan on määritelty alisanomat [fin.020](#kyselyrajapinta-fin020) ja [fin.021](#kyselyrajapinta-fin021), joilla välitetään tarvittavat tunnisteet haun tilan tarkistamiseksi ja tulosten hakemiseksi.
 
 ### <a name="kyselyrajapinta-kysely"></a> 4.2 Kyselyrajapinta
-Kyselyrajapintaan lähetettävä sanoma on täysin samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma.
+Kyselyrajapintaan lähetettävä sanoma on enimmäkseen samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma. Fin012 sanomalaajennuksessa on käytettävissä kaksi lisäkenttää: RequestedDataSources ja InternationalRequest. RequestedDataSources-kenttää käytetään kohdistamaan kysely yhteen tai useampaan tiedonlähteeseen (tiedonhakujärjestemät ja tilirekisteri). Kohdistettu kysely välitetään ainoastaan kentässä määritellyille tiedonlähteille. InternationalRequest-kenttää käyttäen voidaan merkitä kyselyn liittyvän kansainväliseen tietopyyntöön.
 
 Vastaussanoma noudattaa myös samaa rakennetta, mutta auth.002-sanoman yhtenä alisanomana on fin.021-sanoma, joka kertoo vastaanotetun kyselyn tunnuksen. 
 Tätä tunnusta käytetään kyselyn tilan tarkistamiseen [Status-rajapinnasta](#kyselyrajapinta-status). 
