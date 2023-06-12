@@ -129,7 +129,7 @@ Rajapinnassa käytettävä sanomarakenne on päätasolla identtinen Tullin julka
 Tämän lisäksi rajapintaan on määritelty alisanomat [fin.020](#kyselyrajapinta-fin020) ja [fin.021](#kyselyrajapinta-fin021), joilla välitetään tarvittavat tunnisteet haun tilan tarkistamiseksi ja tulosten hakemiseksi.
 
 ### <a name="kyselyrajapinta-kysely"></a> 4.2 Kyselyrajapinta
-Kyselyrajapintaan lähetettävä sanoma on enimmäkseen samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma. Fin012 sanomalaajennuksessa on käytettävissä kaksi lisäkenttää: RequestedDataSources ja InternationalRequest. RequestedDataSources-kenttää käytetään kohdistamaan kysely yhteen tai useampaan tiedonlähteeseen (tiedonhakujärjestemät ja tilirekisteri). Kohdistettu kysely välitetään ainoastaan kentässä määritellyille tiedonlähteille. InternationalRequest-kenttää käyttäen voidaan merkitä kyselyn liittyvän kansainväliseen tietopyyntöön.
+Kyselyrajapintaan lähetettävä sanoma on enimmäkseen samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma. Fin012 sanomalaajennuksessa on käytettävissä kaksi lisäkenttää: RequestedDataSources ja InternationalRequest. RequestedDataSources-kenttää käytetään kohdistamaan kysely yhteen tai useampaan tiedonlähteeseen (tiedonhakujärjestemät ja tilirekisteri). Kohdistettu kysely välitetään ainoastaan kentässä määritellyille tiedonlähteille. InternationalRequest-kenttää käyttäen merkitään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön rahoitustietodirektiiviin 1153/2019 mukaisesti.
 
 Vastaussanoma noudattaa myös samaa rakennetta, mutta auth.002-sanoman yhtenä alisanomana on fin.021-sanoma, joka kertoo vastaanotetun kyselyn tunnuksen. 
 Tätä tunnusta käytetään kyselyn tilan tarkistamiseen [Status-rajapinnasta](#kyselyrajapinta-status). 
@@ -145,7 +145,7 @@ Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijain
 |InformationRequestFIN012| | | |[auth.001](#InformationRequestOpeningV01)|`/Document/InfReqOpng/SplmtryData/Envlp`|
 |&nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry|[1..1]|[AuthorityInquirySet](#authority-inquiry-set)|Kyselyyn liittyvät viranomaisen tiedot| |
 |&nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria|[0..\*]||Käytetään hakuun tallelokeron tunnisteella.| |
-|&nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources|[0..\*]| |Tiedonlähteet, joille kysely lähetetään. Jos elementti puuttuu sanomasta, kysely lähetetään kaikille tiedonlähteille.| |
+|&nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources|[0..\*]|Y-tunnus|Tiedonlähde tai tiedonlähteet, joille kysely lähetetään. Jos elementti puuttuu sanomasta, kysely lähetetään kaikille tiedonlähteille.| |
 |&nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest|[0..1]|boolean|Käytetään arvoa "true", kun kysely liittyy kansainväliseen tietopyyntöön.| |
 
 ### <a name="kyselyrajapinta-status"></a> 4.3 Status-rajapinta
