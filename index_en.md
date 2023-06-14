@@ -129,11 +129,23 @@ The message structure used in the API is identical at the main level to the spec
 In addition, the [fin.020](#4-5) and [fin.021](#4-6) submessages have been defined for the API to transmit the identifiers required to check the retrieval status and retrieve results.
 
 ### <a name="4-2"></a> 4.2 Query API
-Messages sent to the query API are identical to the messages used in the [query API of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta).
+Messages sent to the query API are similar to the messages used in the [query API of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta). Message extension fin012 has two additional elements: RequestedDataSources and InternationalRequest. RequestedDataSources element is used to aim the query to one or several data sources (data retrieval systems and account register). The query with RequestedDataSources element is only forwarded to data source(s) specified in the element. InternationalRequest element is used to mark that the query is related to international/cross-border information request according to the Directive on using financial information 1153/2019. 
 
 Response messages also follow the same structure, while the fin.021 message is used as a submessage in the auth.002 message to indicate the identifier of the received query. This identifier is used to check the query status in the [status API](#4-3). 
 
 Other submessages return status NFOU, which is insignificant in this case.
+
+#### <a name="4-2-1"></a> 4.2.1 Message extension InformationRequestFIN012
+
+The message extension is appended to the Xpath location of the ISO 20022 message listed in the table.
+
+|Name|[min..max]|Type|Description|Appended to message|XPath|
+|:---|:---|:---|:---|:---|:---|
+|InformationRequestFIN012| | | |[auth.001](#information-request-opening-v01)|`/Document/InfReqOpng/SplmtryData/Envlp`|
+|&nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry|[1..1]|[AuthorityInquirySet](#authority-inquiry-set)|Authority details associated with the query| |
+|&nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria|[0..*]||Used for the search by safety-deposit box ID.||
+|&nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources|[0..*]|Business ID|Data source(s) the query is sent to. If the element is missing, query is sent to all data sources.||
+|&nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest|[0..1]|boolean|Used for the search by safety-deposit box ID.||
 
 ### <a name="4-3"></a> 4.3 Status API
 Messages sent to the status API consist of the same message content as queries. In addition, the identifier received as the query API’s response is transmitted through the [fin.020 submessage](#4-5).
