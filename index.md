@@ -54,6 +54,8 @@ Tämä dokumentti täydentää Tullin julkaisemaa määräystä pankki- ja maksu
 
 [fin.021.001.03](schemas/fin.021.001.03.xsd)
 
+[fin.012.001.03](schemas/fin.012.001.03.xsd)
+
 [Sähköisen asioinnin tietoturvallisuus -ohje](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
 ### 1.4 Yleiskuvaus
@@ -137,16 +139,31 @@ Tätä tunnusta käytetään kyselyn tilan tarkistamiseen [Status-rajapinnasta](
 Muut alisanomat palauttavat statuksen NFOU, mikä ei tässä tapauksessa merkitse mitään.
 
 #### <a name="fin012"></a> 4.2.1 Sanomalaajennus InformationRequestFIN012
-
+Alisanoman skeema on määritelty tiedostossa [fin.012](schemas/fin.012.001.03.xsd).
 Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijaintiin.
 
-|Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan|XPath|
-|:---|:---|:---|:---|:---|:---|
-|InformationRequestFIN012| | | |[auth.001](#InformationRequestOpeningV01)|`/Document/InfReqOpng/SplmtryData/Envlp`|
-|&nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry|[1..1]|[AuthorityInquirySet](#authority-inquiry-set)|Kyselyyn liittyvät viranomaisen tiedot| |
-|&nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria|[0..\*]||Käytetään hakuun tallelokeron tunnisteella.| |
-|&nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources|[0..\*]|Y-tunnus|Tiedonlähde tai tiedonlähteet, joille kysely lähetetään. Jos elementti puuttuu sanomasta, kysely lähetetään kaikille tiedonlähteille.| |
-|&nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest|[0..1]|boolean|Käytetään arvoa "true", kun kysely liittyy kansainväliseen tietopyyntöön.| |
+| Nimi                                             | [min..max] | Tyyppi                                         | Kuvaus                                                                                                                                | Liitetään sanomaan | XPath                                    |
+|:-------------------------------------------------|:-----------|:-----------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|:-------------------|:-----------------------------------------|
+| InformationRequestFIN012                         |            |                                                |                                                                                                                                       | auth.001           | `/Document/InfReqOpng/SplmtryData/Envlp` |
+| &nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry         | [1..1]     | [AuthorityInquirySet](#authority-inquiry-set)  | Kyselyyn liittyvät viranomaisen tiedot                                                                                                |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria | [0..\*]    |                                                | Käytetään hakuun tallelokeron tunnisteella.                                                                                           |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources     | [0..1]     | [RequestedDataSources](#requested-datasources) | Tiedonlähde tai tiedonlähteet, joille kysely lähetetään. Jos elementti puuttuu sanomasta, kysely lähetetään kaikille tiedonlähteille. |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest     | [0..1]     | boolean                                        | Käytetään arvoa "true", kun kysely liittyy kansainväliseen tietopyyntöön.                                                             |                    |
+
+#### <a name="authority-inquiry-set"></a> AuthorityInquirySet
+
+| Nimi                                       | Tyyppi     | Käytössä | Kuvaus                                          |
+|:-------------------------------------------|:-----------|:---------|:------------------------------------------------|
+| AuthorityInquirySet                        |            |          |                                                 |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Kyllä    | Kyselyn tehneen viranomaisen tunnus             |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Kyllä    | Kyselyn tehneen viranomaisen esihenkilön tunnus |
+
+#### <a name="requested-datasources"></a> RequestedDataSources
+
+| Nimi                                    | [min..max] | Tyyppi    | Kuvaus                 |
+|:----------------------------------------|:-----------|:----------|:-----------------------|
+| RequestedDataSources                    |            |           |                        |
+| &nbsp;&nbsp;&nbsp;&nbsp;DataSourceOrgId | [1..\*]    | Max35Text | Tiedonlähteen Y-tunnus |
 
 ### <a name="kyselyrajapinta-status"></a> 4.3 Status-rajapinta
 Status-rajapintaan lähetettävä sanoma koostuu samasta sanomasisällöstä kuin kyselyä tehtäessä, lisäksi kyselyrajapinnan vastauksena saatu tunnus välitetään [fin.020-alisanomassa](#kyselyrajapinta-fin020).

@@ -54,6 +54,8 @@ This document supplements the regulation issued by Finnish Customs on the Bank a
 
 [fin.021.001.03](schemas/fin.021.001.03.xsd)
 
+[fin.012.001.03](schemas/fin.012.001.03.xsd)
+
 [Guidelines on the information security of e-services](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
 ### 1.4 General description
@@ -134,6 +136,34 @@ Messages sent to the query API are identical to the messages used in the [query 
 Response messages also follow the same structure, while the fin.021 message is used as a submessage in the auth.002 message to indicate the identifier of the received query. This identifier is used to check the query status in the [status API](#4-3). 
 
 Other submessages return status NFOU, which is insignificant in this case.
+
+#### <a name="fin012"></a> 4.2.1 Message extension InformationRequestFIN012
+
+The submessage schema is defined in the [fin.012](schemas/fin.012.001.03.xsd) file.
+The message extension is appended to the Xpath location of the ISO 20022 message listed in the table.
+
+| Nimi                                             | [min..max] | Tyyppi                                         | Kuvaus                                                                                                                                  | Liitetään sanomaan | XPath                                    |
+|:-------------------------------------------------|:-----------|:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------|:-----------------------------------------|
+| InformationRequestFIN012                         |            |                                                |                                                                                                                                         | auth.001           | `/Document/InfReqOpng/SplmtryData/Envlp` |
+| &nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry         | [1..1]     | [AuthorityInquirySet](#authority-inquiry-set)  | Authority details associated with the query                                                                                             |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria | [0..\*]    |                                                | Used for the search by safety-deposit box ID.                                                                                           |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources     | [0..1]     | [RequestedDataSources](#requested-datasources) | Datasource or datasources that will receive the query. If the element is missing from the message, the query is sent to all datasources |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest     | [0..1]     | boolean                                        | Value "true" is used if the query is linked to an international information request.                                                    |                    |
+
+#### <a name="authority-inquiry-set"></a> AuthorityInquirySet
+
+| Nimi                                       | Tyyppi     | Käytössä | Kuvaus                                              |
+|:-------------------------------------------|:-----------|:---------|:----------------------------------------------------|
+| AuthorityInquirySet                        |            |          |                                                     |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Kyllä    | Identifier of the official that is making the query |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Kyllä    | Identifier of the official's superior               |
+
+#### <a name="requested-datasources"></a> RequestedDataSources
+
+| Nimi                                    | [min..max] | Tyyppi    | Kuvaus                              |
+|:----------------------------------------|:-----------|:----------|:------------------------------------|
+| RequestedDataSources                    |            |           |                                     |
+| &nbsp;&nbsp;&nbsp;&nbsp;DataSourceOrgId | [1..\*]    | Max35Text | Datasource's business identity code |
 
 ### <a name="4-3"></a> 4.3 Status API
 Messages sent to the status API consist of the same message content as queries. In addition, the identifier received as the query API’s response is transmitted through the [fin.020 submessage](#4-5).
