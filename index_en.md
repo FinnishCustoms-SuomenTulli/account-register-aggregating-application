@@ -13,6 +13,7 @@
 | Version | Date       | Description                                                        |
 |---------|------------|--------------------------------------------------------------------|
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
+| 1.01    | X.6.2023 | XXX                                                        |
 
 ## Table of contents
 
@@ -129,7 +130,7 @@ The message structure used in the API is identical at the main level to the spec
 In addition, the [fin.020](#4-5) and [fin.021](#4-6) submessages have been defined for the API to transmit the identifiers required to check the retrieval status and retrieve results.
 
 ### <a name="4-2"></a> 4.2 Query API
-Messages sent to the query API are similar to the messages used in the [query API of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta). Message extension fin012 has two additional elements: RequestedDataSources and InternationalRequest. RequestedDataSources element is used to aim the query to one or several data sources (data retrieval systems and account register). The query with RequestedDataSources element is only forwarded to data source(s) specified in the element. InternationalRequest element is used to mark that the query is related to international/cross-border information request according to the Directive on using financial information 1153/2019. 
+Messages sent to the query API are similar to the messages used in the [query API of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta). Message extension fin012 has two additional elements that are not used in data retrieval systems' messages: RequestedDataSources and InternationalRequest. RequestedDataSources element is used to aim the query to one or several data sources (data retrieval systems and account register). The query with RequestedDataSources element is only forwarded to data source(s) specified in the element. InternationalRequest element is used to mark that the query is related to international/cross-border information request based on the directive on using financial information ((EU) 2019/1153) article 19 and national anti-money laundering act (444/2017) 4 § in chapter 2. 
 
 Response messages also follow the same structure, while the fin.021 message is used as a submessage in the auth.002 message to indicate the identifier of the received query. This identifier is used to check the query status in the [status API](#4-3). 
 
