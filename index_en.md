@@ -142,7 +142,7 @@ Other submessages return status NFOU, which is insignificant in this case.
 The submessage schema is defined in the [fin.012](schemas/fin.012.001.03.xsd) file.
 The message extension is appended to the Xpath location of the ISO 20022 message listed in the table.
 
-| Nimi                                             | [min..max] | Tyyppi                                         | Kuvaus                                                                                                                                  | Liitetään sanomaan | XPath                                    |
+| Name                                             | [min..max] | Type                                           | Description                                                                                                                             | Liitetään sanomaan | XPath                                    |
 |:-------------------------------------------------|:-----------|:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------|:-----------------------------------------|
 | InformationRequestFIN012                         |            |                                                |                                                                                                                                         | auth.001           | `/Document/InfReqOpng/SplmtryData/Envlp` |
 | &nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry         | [1..1]     | [AuthorityInquirySet](#authority-inquiry-set)  | Authority details associated with the query                                                                                             |                    |
@@ -152,15 +152,15 @@ The message extension is appended to the Xpath location of the ISO 20022 message
 
 #### <a name="authority-inquiry-set"></a> AuthorityInquirySet
 
-| Nimi                                       | Tyyppi     | Käytössä | Kuvaus                                              |
-|:-------------------------------------------|:-----------|:---------|:----------------------------------------------------|
-| AuthorityInquirySet                        |            |          |                                                     |
-| &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Kyllä    | Identifier of the official that is making the query |
-| &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Kyllä    | Identifier of the official's superior               |
+| Name                                       | Type       | In use | Description                                         |
+|:-------------------------------------------|:-----------|:-------|:----------------------------------------------------|
+| AuthorityInquirySet                        |            |        |                                                     |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Yes    | Identifier of the official that is making the query |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Yes    | Identifier of the official's superior               |
 
 #### <a name="requested-datasources"></a> RequestedDataSources
 
-| Nimi                                    | [min..max] | Tyyppi    | Kuvaus                              |
+| Name                                    | [min..max] | Type      | Description                         |
 |:----------------------------------------|:-----------|:----------|:------------------------------------|
 | RequestedDataSources                    |            |           |                                     |
 | &nbsp;&nbsp;&nbsp;&nbsp;DataSourceOrgId | [1..\*]    | Max35Text | Datasource's business identity code |
