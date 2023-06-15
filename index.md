@@ -12,7 +12,8 @@
 
 | Versio | Päivämäärä | Kuvaus                                                              |
 |--------|------------|---------------------------------------------------------------------|
-| 1.0    | 7.2.2023 | Versio 1.0                                                          |
+| 1.0    | 7.2.2023   | Versio 1.0                                                          |
+| 1.01   | X.6.2023   | Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. |
 
 ## Sisällysluettelo
 
@@ -131,7 +132,7 @@ Rajapinnassa käytettävä sanomarakenne on päätasolla identtinen Tullin julka
 Tämän lisäksi rajapintaan on määritelty alisanomat [fin.020](#kyselyrajapinta-fin020) ja [fin.021](#kyselyrajapinta-fin021), joilla välitetään tarvittavat tunnisteet haun tilan tarkistamiseksi ja tulosten hakemiseksi.
 
 ### <a name="kyselyrajapinta-kysely"></a> 4.2 Kyselyrajapinta
-Kyselyrajapintaan lähetettävä sanoma on enimmäkseen samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma. Fin012 sanomalaajennuksessa on käytettävissä kaksi lisäkenttää: RequestedDataSources ja InternationalRequest. RequestedDataSources-kenttää käytetään kohdistamaan kysely yhteen tai useampaan tiedonlähteeseen (tiedonhakujärjestemät ja tilirekisteri). Kohdistettu kysely välitetään ainoastaan kentässä määritellyille tiedonlähteille. InternationalRequest-kenttää käyttäen merkitään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön rahoitustietodirektiiviin 1153/2019 mukaisesti.
+Kyselyrajapintaan lähetettävä sanoma on enimmäkseen samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma. Erona tiedonhakujärjestelmien kyselyrajapinnassa käytettävään sanomaan, fin012 sanomalaajennuksessa on käytettävissä kaksi lisäkenttää: RequestedDataSources ja InternationalRequest. RequestedDataSources-kenttää käytetään kohdistamaan kysely yhteen tai useampaan tiedonlähteeseen (tiedonhakujärjestemät ja tilirekisteri). Kohdistettu kysely välitetään ainoastaan kentässä määritellyille tiedonlähteille. InternationalRequest-kenttää käyttäen merkitään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön rahoitustietodirektiiviin ((EU) 2019/1153) 19 artiklaan ja kansallisen rahanpesulain (444/2017) 2 luvun 4 §:ään perustuen.
 
 Vastaussanoma noudattaa myös samaa rakennetta, mutta auth.002-sanoman yhtenä alisanomana on fin.021-sanoma, joka kertoo vastaanotetun kyselyn tunnuksen. 
 Tätä tunnusta käytetään kyselyn tilan tarkistamiseen [Status-rajapinnasta](#kyselyrajapinta-status). 
