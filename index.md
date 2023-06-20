@@ -13,7 +13,7 @@
 | Versio | Päivämäärä | Kuvaus                                                              |
 |--------|------------|---------------------------------------------------------------------|
 | 1.0    | 7.2.2023   | Versio 1.0                                                          |
-| 1.01   | X.6.2023   | Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. |
+| 1.01   | X.6.2023   | Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuu 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|
 
 ## Sisällysluettelo
 
@@ -27,7 +27,7 @@
   4.4 [Tulosrajapinta](#kyselyrajapinta-tulos)    
   4.5 [Sanomalaajennus Fin020 (QueryResultRequest)](#kyselyrajapinta-fin020)    
   4.6 [Sanomalaajennus Fin021 (QueryResultResponse)](#kyselyrajapinta-fin021)    
-  4.7 [Elementin ReturnIndicator1 käyttö fin.021-sanoman kanssa](#kyselyrajapinta-rtrInd)    
+  4.7 [Elementin ReturnIndicator1 käyttö](#kyselyrajapinta-rtrInd)    
   4.8 [Virhetilanteiden hallinta](#kyselyrajapinta-virhetilanteet)    
   4.9 [Esimerkkisanomat](#kyselyrajapinta-esimerkit)    
   
@@ -218,7 +218,7 @@ ResultKeyList-elementin attribuutteina palautetaan seuraavat tiedot:
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256TextAllowedEmpty| Tuloksen UUID tai virhetilanteessa tyhjä |Optionaaliset attribuutit: `datasourceOrganisationId` ja `errorCode`|
 
 
-### <a name="kyselyrajapinta-rtrInd"></a> 4.7 Elementin ReturnIndicator1 käyttö fin.021-sanoman kanssa
+### <a name="kyselyrajapinta-rtrInd"></a> 4.7 Elementin ReturnIndicator1 käyttö
 
 ReturnIndicator1 sisältää yksittäisen hakutulostyypin esiintymän, kuten Tiedonhakujärjestelmän kyselyrajapinnan [vastaussanomassakin](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#InformationRequestResponseV01).
 fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat alisanomat.
@@ -226,7 +226,7 @@ fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat
 | XPath                       | Tyyppi                     | Kuvaus                                                                                                                                                                                                                                      |
 |:----------------------------|:---------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | sisältää sanomalaajennuksen sanoma-id:n (fin.021.001.03)                                                                                                                                                                                    |
-| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | palautetaan `Rslt` elementti tyyppiä SupplementaryDataEnvelope1, joka sisältää alisanoman [QueryResultResponse](#kyselyrajapinta-fin021) tai elementin `InvstgtnSts` koodilla `NFOU`, jos kyselyssä käytetyllä tunnuksella ei löydy tietoa. |
+| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Palautetaan `Rslt` elementti tyyppiä SupplementaryDataEnvelope1, joka sisältää jonkin alisanomista ([fin.021](#kyselyrajapinta-fin021), supl.027, fin.013 tai fin.002) tai elementin `InvstgtnSts`. `InvstgtnSts` palautetaan koodilla `NFOU`, jos kyselyssä käytetyllä tunnuksella ei löydy alisanomassa palautettavaa tietoa. `InvstgtnSts` palautetaan koodilla `NOAP` siinä tapauksessa, että luonnollisen tai oikeushenkilön nimihaulla tilirekisteristä löytyy jonkin toimijan tiedoista useita hakua vastaavia luonnollisia tai oikeushenkilöitä.|
 
 ### <a name="kyselyrajapinta-virhetilanteet"></a> 4.8 Virhetilanteiden hallinta
 Virheiden hallinta ja palautettavat koodit noudattavat soveltuvin osin Tiedonhakujärjestelmän kyselyrajapinnan [Kyselyrajapinnan WS-sanomaliikenteen skenaariot](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12) -kappaleen määrityksiä.
