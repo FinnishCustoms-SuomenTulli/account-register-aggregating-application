@@ -6,13 +6,14 @@
 
 # Description of the aggregating application’s query API
 
-*Document version 1.0*
+*Document version 1.01*
 
 ## Version history
 
 | Version | Date       | Description                                                        |
 |---------|------------|--------------------------------------------------------------------|
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
+| 1.01    | X.6.2023 | Updated chapter 4.2 with two new data elements. One is used to |
 
 ## Table of contents
 
