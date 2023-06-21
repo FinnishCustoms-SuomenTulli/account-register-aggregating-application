@@ -6,14 +6,14 @@
 
 # Koostavan sovelluksen rajapintakuvaus
 
-*Dokumentin versio 1.0*
+*Dokumentin versio 1.01*
 
 ## Versiohistoria
 
 | Versio | Päivämäärä | Kuvaus                                                              |
 |--------|------------|---------------------------------------------------------------------|
 | 1.0    | 7.2.2023   | Versio 1.0                                                          |
-| 1.01   | X.6.2023   | Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuu 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|
+| 1.01   | X.6.2023   | Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|
 
 ## Sisällysluettelo
 
@@ -134,10 +134,7 @@ Tämän lisäksi rajapintaan on määritelty alisanomat [fin.020](#kyselyrajapin
 ### <a name="kyselyrajapinta-kysely"></a> 4.2 Kyselyrajapinta
 Kyselyrajapintaan lähetettävä sanoma on enimmäkseen samanlainen kuin [Tiedonhakujärjestelmien kyselyrajapinnassa](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta) käytettävä sanoma. Erona tiedonhakujärjestelmien kyselyrajapinnassa käytettävään sanomaan, fin012 sanomalaajennuksessa on käytettävissä kaksi lisäkenttää: RequestedDataSources ja InternationalRequest. RequestedDataSources-kenttää käytetään kohdistamaan kysely yhteen tai useampaan tiedonlähteeseen (tiedonhakujärjestemät ja tilirekisteri). Kohdistettu kysely välitetään ainoastaan kentässä määritellyille tiedonlähteille. InternationalRequest-kenttää käyttäen merkitään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön rahoitustietodirektiiviin ((EU) 2019/1153) 19 artiklaan ja kansallisen rahanpesulain (444/2017) 2 luvun 4 §:ään perustuen.
 
-Vastaussanoma noudattaa myös samaa rakennetta, mutta auth.002-sanoman yhtenä alisanomana on fin.021-sanoma, joka kertoo vastaanotetun kyselyn tunnuksen. 
-Tätä tunnusta käytetään kyselyn tilan tarkistamiseen [Status-rajapinnasta](#kyselyrajapinta-status). 
-
-Muut alisanomat palauttavat statuksen NFOU, mikä ei tässä tapauksessa merkitse mitään.
+Vastaussanoma noudattaa myös samaa rakennetta, mutta auth.002-sanoman yhtenä alisanomana on fin.021-sanoma, joka kertoo vastaanotetun kyselyn tunnuksen. Tätä tunnusta käytetään kyselyn tilan tarkistamiseen [Status-rajapinnasta](#kyselyrajapinta-status). Status-rajapinnassa muut alisanomat palauttavat statuksen NFOU, mikä ei tässä tapauksessa merkitse mitään.
 
 #### <a name="fin012"></a> 4.2.1 Sanomalaajennus InformationRequestFIN012
 Alisanoman skeema on määritelty tiedostossa [fin.012](schemas/fin.012.001.03.xsd).
@@ -240,6 +237,6 @@ Koostavan sovelluksen kautta ei ole mahdollista kysellä 1.9.2020 aikaisempia ti
 ### <a name="kyselyrajapinta-esimerkit"></a> 4.9 Esimerkkisanomat
 Esimerkkisanomat kustakin kyselysanomasta ja sen vastauksesta löytyvät examples-kansiosta:
 - [Kyselysanoma](examples/query1.xml) ja [vastaus](examples/query1_response.xml)
-- [Status-kysely](examples/status1.xml) ja [vastaus](examples/status1_response.xml), ja [virheilmoitus](examples/status1_response_with_query_error.xml).
-- [Tulos-kysely](examples/result1.xml) ja [vastaus](examples/result1_response.xml)
+- [Status-kysely](examples/status1.xml), [vastaus](examples/status1_response.xml) ja [virheilmoitus](examples/status1_response_with_query_error.xml).
+- [Tulos-kysely](examples/result1.xml), [vastaus](examples/result1_response.xml) ja [vastaus kyselyn kohdistuksella ja kansainvälisellä tietopyynnöllä](examples/query_with_requested_datasources_and_international_request.xml).
   
