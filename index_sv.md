@@ -6,13 +6,14 @@
 
 # Beskrivning av sammanställningsprogrammets frågegränssnitt
 
-*Dokumentversion 1.0*
+*Dokumentversion 1.01*
 
 ## Versionhistorik
 
 | Version | Datum      | Beskrivning                                                        |
 |---------|------------|--------------------------------------------------------------------|
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
+| 1.01    | x.6.2023 |  |
 
 ## Innehåll
 
@@ -141,25 +142,25 @@ De övriga undermeddelandena returnerar status NFOU, som i detta fall saknar bet
 The submessage schema is defined in the [fin.012](schemas/fin.012.001.03.xsd) file.
 The message extension is appended to the Xpath location of the ISO 20022 message listed in the table.
 
-| Name                                             | [min..max] | Type                                           | Description                                                                                                                             | Liitetään sanomaan | XPath                                    |
+| Namn                                             | [min..max] | Typ                                           | Beskrivning                                                                                                                             | Kopplas till meddelandet | XPath                                    |
 |:-------------------------------------------------|:-----------|:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------|:-----------------------------------------|
 | InformationRequestFIN012                         |            |                                                |                                                                                                                                         | auth.001           | `/Document/InfReqOpng/SplmtryData/Envlp` |
-| &nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry         | [1..1]     | [AuthorityInquirySet](#authority-inquiry-set)  | Authority details associated with the query                                                                                             |                    |
-| &nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria | [0..\*]    |                                                | Used for the search by safety-deposit box ID.                                                                                           |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry         | [1..1]     | [AuthorityInquirySet](#authority-inquiry-set)  | Myndighetsuppgifter i anknytning till förfrågan.                                                                                             |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria | [0..\*]    |                                                | Används för att söka med bankfackets identifieringsuppgift.                                                                                          |                    |
 | &nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources     | [0..1]     | [RequestedDataSources](#requested-datasources) | Datasource or datasources that will receive the query. If the element is missing from the message, the query is sent to all datasources |                    |
 | &nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest     | [0..1]     | boolean                                        | Value "true" is used if the query is linked to an international information request.                                                    |                    |
 
 #### <a name="authority-inquiry-set"></a> AuthorityInquirySet
 
-| Name                                       | Type       | In use | Description                                         |
+| Namn                                       | Typ       | Används | Beskrivning                                         |
 |:-------------------------------------------|:-----------|:-------|:----------------------------------------------------|
 | AuthorityInquirySet                        |            |        |                                                     |
-| &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Yes    | Identifier of the official that is making the query |
-| &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Yes    | Identifier of the official's superior               |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Yes    | Myndighetens (person) kod |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Yes    | Chefens kod               |
 
 #### <a name="requested-datasources"></a> RequestedDataSources
 
-| Name                                    | [min..max] | Type      | Description                         |
+| Namn                                    | [min..max] | Typ       | Beskrivning                         |
 |:----------------------------------------|:-----------|:----------|:------------------------------------|
 | RequestedDataSources                    |            |           |                                     |
 | &nbsp;&nbsp;&nbsp;&nbsp;DataSourceOrgId | [1..\*]    | Max35Text | Datasource's business identity code |
@@ -169,7 +170,7 @@ Meddelandet som skickas till statusgränssnittet har samma innehåll som förfr�
 
 Svarsmeddelandet är detsamma som i svar från [frågegränssnittet](#4-2) plus följande: 
 - Om förfrågan inte är slutförd, returneras statuskoden NRES i fältet RspnSts i schemat Auth.002.
-- •	Om förfrågan är klar, returneras statuskoden COMP i fältet RspnSts i schemat Auth.002 och dessutom i undermeddelandet [fin.021](#4-6) den kod som använts i statusförfrågan och en lista på koder med vilka resultaten kan hämtas ur [resultatgränssnittet](#4-4). 
+- Om förfrågan är klar, returneras statuskoden COMP i fältet RspnSts i schemat Auth.002 och dessutom i undermeddelandet [fin.021](#4-6) den kod som använts i statusförfrågan och en lista på koder med vilka resultaten kan hämtas ur [resultatgränssnittet](#4-4). 
 
 ### <a name="4-4"></a> 4.4 Resultatgränssnitt
 Meddelandet som skickas till resultatgränssnittet har samma innehåll som förfrågan, och de koder som mottagits som svar från statusgränssnittet anges dessutom en i taget i undermeddelandet [fin.020](#4-5).
