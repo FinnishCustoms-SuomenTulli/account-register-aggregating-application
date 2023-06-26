@@ -27,7 +27,7 @@
   4.4 [Resultatgränssnitt](#4-4)    
   4.5 [Utvidgat meddelande Fin020 (QueryResultRequest)](#4-5)    
   4.6 [Utvidgat meddelande Fin021 (QueryResultResponse)](#4-6)    
-  4.7 [Användning av elementet ReturnIndicator1 med fin.021-meddelande](#4-7)    
+  4.7 [Användning av elementet ReturnIndicator1](#4-7)    
   4.8 [Hantering av felsituationer](#4-8)    
   4.9 [Exempelmeddelanden](#4-9)    
   
@@ -133,22 +133,19 @@ I gränssnittet har dessutom definierats undermeddelandena [fin.020](#4-5) och [
 ### <a name="4-2"></a> 4.2 Frågegränssnitt
 Meddelandet som skickas till frågegränssnittet är identiskt med meddelandet i [frågegränssnittet för datasöksystemen](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#fragegranssnitt).
 
-Svarsmeddelandet har också samma struktur, men meddelandet auth.002 innehåller undermeddelandet fin.021, som anger koden för den förfrågan som mottagits. Koden används vid kontroll av förfrågans status i [statusgränssnittet](#4-3). 
+Svarsmeddelandet har också samma struktur, men meddelandet auth.002 innehåller undermeddelandet fin.021, som anger koden för den förfrågan som mottagits. Koden används vid kontroll av förfrågans status i [statusgränssnittet](#4-3). I statusgränsnittet returnerar de övriga undermeddelandena status NFOU, som i detta fall saknar betydelse.
 
-De övriga undermeddelandena returnerar status NFOU, som i detta fall saknar betydelse.
+#### <a name="fin012"></a> 4.2.1 Utvidgat meddelande InformationRequestFIN012
 
-#### <a name="fin012"></a> 4.2.1 Message extension InformationRequestFIN012
-
-The submessage schema is defined in the [fin.012](schemas/fin.012.001.03.xsd) file.
-The message extension is appended to the Xpath location of the ISO 20022 message listed in the table.
+Schemat för undermeddelanden är bestämt i [fin.012](schemas/fin.012.001.03.xsd) fil. Det utvidgade meddelandet kopplas till ISO 20022-meddelandets XPath-läge som anges i tabellen.
 
 | Namn                                             | [min..max] | Typ                                           | Beskrivning                                                                                                                             | Kopplas till meddelandet | XPath                                    |
 |:-------------------------------------------------|:-----------|:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------|:-----------------------------------------|
 | InformationRequestFIN012                         |            |                                                |                                                                                                                                         | auth.001           | `/Document/InfReqOpng/SplmtryData/Envlp` |
 | &nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry         | [1..1]     | [AuthorityInquirySet](#authority-inquiry-set)  | Myndighetsuppgifter i anknytning till förfrågan.                                                                                             |                    |
 | &nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria | [0..\*]    |                                                | Används för att söka med bankfackets identifieringsuppgift.                                                                                          |                    |
-| &nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources     | [0..1]     | [RequestedDataSources](#requested-datasources) | Datasource or datasources that will receive the query. If the element is missing from the message, the query is sent to all datasources |                    |
-| &nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest     | [0..1]     | boolean                                        | Value "true" is used if the query is linked to an international information request.                                                    |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources     | [0..1]     | [RequestedDataSources](#requested-datasources) | Datakällan eller datakällor som mottagar förfrågan. Om elementet saknas från meddelandet, skickas förfrågan till alla datakällor. |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest     | [0..1]     | boolean                                        | Värdet "true" används om förfrågan kopplas till internationell information begäran.                                                    |                    |
 
 #### <a name="authority-inquiry-set"></a> AuthorityInquirySet
 
@@ -163,7 +160,7 @@ The message extension is appended to the Xpath location of the ISO 20022 message
 | Namn                                    | [min..max] | Typ       | Beskrivning                         |
 |:----------------------------------------|:-----------|:----------|:------------------------------------|
 | RequestedDataSources                    |            |           |                                     |
-| &nbsp;&nbsp;&nbsp;&nbsp;DataSourceOrgId | [1..\*]    | Max35Text | Datasource's business identity code |
+| &nbsp;&nbsp;&nbsp;&nbsp;DataSourceOrgId | [1..\*]    | Max35Text | Datakällas FO-nummer |
 
 ### <a name="4-3"></a> 4.3 Statusgränssnitt
 Meddelandet som skickas till statusgränssnittet har samma innehåll som förfrågan, och den kod som fanns i svaret från frågegränssnittet skickas dessutom i undermeddelandet [fin.020 submessage](#4-5).
@@ -206,14 +203,14 @@ Följande data returneras som attribut för ResultKeyList-elementet:
 | ResultKeyList                     |            |            |                     ||     |
 | &nbsp;&nbsp;&nbsp;&nbsp;ResultKey | [1..n]     | Max256TextAllowedEmpty | UUID för resultatet eller tom i fall av fel| Valfria attribut: `datasourceOrganisationId` och `errorCode` |
 
-### <a name="4-7"></a> 4.7 Användning av elementet ReturnIndicator1 med fin.021-meddelande
+### <a name="4-7"></a> 4.7 Användning av elementet ReturnIndicator1
 
 ReturnIndicator1 innehåller en enskild typ av sökresultat, precis som i [svarsmeddelandet](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01) i datasöksystemets frågegränssnitt. I likhet med de övriga undermeddelanden som returneras i förfrågan ingår fin.021 i detta element.
 
 | XPath                       | Typ                        | Beskrivning                                                                                                                                                                                                                                |
 |:----------------------------|:---------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | Innehåller det utvidgade meddelandets meddelande-id (fin.021.001.03))                                                                                                                                                                      |
-| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Returneras elementet `Rslt` av typen SupplementaryDataEnvelope1, som innehåller undermeddelandet [QueryResultResponse](#4-6) eller elementet `InvstgtnSts` med koden `NFOU`, om inga uppgifter hittas med den kod som använts i förfrågan. |
+| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Returneras elementet `Rslt` av typen SupplementaryDataEnvelope1, som innehåller ett av undermeddelandena ([fin.021](#4-6), supl.027, fin.013 eller fin.002) eller elementet `InvstgtnSts`. `InvstgtnSts` returneras med koden `NFOU`, om inga uppgifter hittas med den kod som använts i förfrågan. `InvstgtnSts` returneras med koden `NOAP` om flera träffar hittas från en aktörs data is kontoregister med namnsökning på fysisk eller juridisk person. |
 
 ### <a name="4-8"></a> 4.8 Hantering av felsituationer
 På felhantering och returnering av koder tillämpas relevanta delar av definitionerna i avsnitt [Scenarier för frågegränssnittets WS-meddelandetrafik](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#4-12) i datasöksystemets frågegränssnitt.
@@ -227,6 +224,6 @@ Det är inte möjligt att söka information som gäller tid före 1 september 20
 ### <a name="4-9"></a> 4.9 Exempelmeddelanden
 Exempelmeddelanden för varje frågemeddelande med svar finns i mappen examples:
 - [Frågemeddelande](examples/query1.xml) och [svar](examples/query1_response.xml)
-- [Statusförfrågan](examples/status1.xml) och [svar](examples/status1_response.xml), och [felmeddelande](examples/status1_response_with_query_error.xml).
-- [Resultatförfrågan](examples/result1.xml) och [svar](examples/result1_response.xml)
+- [Statusförfrågan](examples/status1.xml) och [svar](examples/status1_response.xml) och [felmeddelande](examples/status1_response_with_query_error.xml).
+- [Resultatförfrågan](examples/result1.xml), [svar](examples/result1_response.xml) och [svar med riktad förfråga och internationell begäran](examples/query_with_requested_datasources_and_international_request.xml).
   
