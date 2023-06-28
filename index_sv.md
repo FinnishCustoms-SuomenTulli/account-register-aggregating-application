@@ -13,7 +13,7 @@
 | Version | Datum      | Beskrivning                                                        |
 |---------|------------|--------------------------------------------------------------------|
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
-| 1.01    | x.6.2023 |  |
+| 1.01    | x.6.2023 | Uppdaterade två nya datafält i avsnitt 4.2. Det ena används för att rikta förfrågan till angiven datakälla eller angivna datakällor, det andra för att märka att förfrågan kopplas till en internationell/gränsöverskridande information begäran. Dessutom updaterade i avsnitt 4.7 hur InvstgtnSts NOAP används i svarsmeddelandet. |
 
 ## Innehåll
 
@@ -131,7 +131,7 @@ Den meddelandestruktur som används i gränssnittet är på huvudnivån identisk
 I gränssnittet har dessutom definierats undermeddelandena [fin.020](#4-5) och [fin.021](#4-6), för förmedling av de nödvändiga koderna för kontroll av sökningens status och hämtning av sökresultaten.
 
 ### <a name="4-2"></a> 4.2 Frågegränssnitt
-Meddelandet som skickas till frågegränssnittet är för det mesta liknar meddelandet i [frågegränssnittet för datasöksystemen](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#fragegranssnitt). Skillnaden mellan meddelandet i datasöksystemets och sammanställningsprogrammets frågegränsnitt är att fin012 utvidgat meddelande har två ytterligare datafält i sammanställningsprogrammets frågegränsnitt: RequestedDataSources och InternationalRequest. RequestedDataSources fältet används för att rikta förfrågan till ett eller flera datakällor (datasöksystem och kontoregister). Riktad förfrågan skickas bara till angivna datakällor. InternationalRequest används för att märka att förfrågan kopplas till internationell/gränsöverskridande information begäran enligt ((EU) 2019/1153) artikel 19 och nationella lagen om penningtvätt (444/2017) 2 kap 4 §.
+Meddelandet som skickas till frågegränssnittet är för det mesta liknar meddelandet i [frågegränssnittet för datasöksystemen](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#fragegranssnitt). Skillnaden mellan meddelandet i datasöksystemets och sammanställningsprogrammets frågegränsnitt är att fin012 utvidgat meddelande har två ytterligare datafält i sammanställningsprogrammets frågegränsnitt: RequestedDataSources och InternationalRequest. RequestedDataSources fältet används för att rikta förfrågan till ett eller flera datakällor (datasöksystem och kontoregister). Riktad förfrågan skickas bara till angivna datakällor. InternationalRequest används för att märka att förfrågan kopplas till en internationell/gränsöverskridande information begäran enligt ((EU) 2019/1153) artikel 19 och nationella lagen om penningtvätt (444/2017) 2 kap 4 §.
 
 Svarsmeddelandet har också samma struktur, men meddelandet auth.002 innehåller undermeddelandet fin.021, som anger koden för den förfrågan som mottagits. Koden används vid kontroll av förfrågans status i [statusgränssnittet](#4-3). I statusgränsnittet returnerar de övriga undermeddelandena status NFOU, som i detta fall saknar betydelse.
 
