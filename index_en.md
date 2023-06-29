@@ -13,7 +13,7 @@
 | Version | Date       | Description                                                        |
 |---------|------------|--------------------------------------------------------------------|
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
-| 1.01    | 28.6.2023 | Added schema for fin.012 and a new example message. Updated chapter 4.2 with two new data elements. One is used to aim the query to specific datasource(s), the other to mark that the query is related to an international/cross-border information request. Also updated chapter 4.7 with use of InvstgtnSts NOAP in response messages. |
+| 1.01    | 29.6.2023 | Added schema for fin.012 and a new example message. Updated chapter 4.2 with two new data elements. One is used to aim the query to specific datasource(s), the other to mark that the query is related to an international/cross-border information request. Also updated chapter 4.7 with use of InvstgtnSts NOAP in response messages. |
 
 ## Table of contents
 
