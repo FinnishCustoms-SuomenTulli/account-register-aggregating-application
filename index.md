@@ -13,7 +13,7 @@
 | Versio | Päivämäärä | Kuvaus                                                              |
 |--------|------------|---------------------------------------------------------------------|
 | 1.0    | 7.2.2023   | Versio 1.0                                                          |
-| 1.01   | 28.6.2023   | Lisätty skeema sanomalle fin.012 ja uusi esimerkkisanoma. Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|
+| 1.01   | 29.6.2023   | Lisätty skeema sanomalle fin.012 ja uusi esimerkkisanoma. Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|
 
 ## Sisällysluettelo
 
