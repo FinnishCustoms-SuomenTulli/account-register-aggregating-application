@@ -6,13 +6,14 @@
 
 # Beskrivning av sammanställningsprogrammets frågegränssnitt
 
-*Dokumentversion 1.0*
+*Dokumentversion 1.01*
 
 ## Versionhistorik
 
 | Version | Datum      | Beskrivning                                                        |
 |---------|------------|--------------------------------------------------------------------|
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
+| 1.01    | 29.6.2023 | Schema för fin.012 och ett nytt exempelmeddelande har lagts till. Uppdaterade två nya datafält i avsnitt 4.2. Det ena används för att rikta förfrågan till angiven datakälla eller angivna datakällor, det andra för att märka att förfrågan kopplas till en internationell/gränsöverskridande information begäran. Dessutom updaterade i avsnitt 4.7 hur InvstgtnSts NOAP används i svarsmeddelandet. |
 
 ## Innehåll
 
@@ -26,7 +27,7 @@
   4.4 [Resultatgränssnitt](#4-4)    
   4.5 [Utvidgat meddelande Fin020 (QueryResultRequest)](#4-5)    
   4.6 [Utvidgat meddelande Fin021 (QueryResultResponse)](#4-6)    
-  4.7 [Användning av elementet ReturnIndicator1 med fin.021-meddelande](#4-7)    
+  4.7 [Användning av elementet ReturnIndicator1](#4-7)    
   4.8 [Hantering av felsituationer](#4-8)    
   4.9 [Exempelmeddelanden](#4-9)    
   
@@ -53,6 +54,8 @@ Detta dokument kompletterar Tullens föreskrift om ett övervakningssystem för 
 [fin.020.001.01](schemas/fin.020.001.01.xsd)
 
 [fin.021.001.03](schemas/fin.021.001.03.xsd)
+
+[fin.012.001.03](schemas/fin.012.001.03.xsd)
 
 [Anvisning om informationssäkerheten inom elektronisk ärendehantering](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
@@ -128,18 +131,43 @@ Den meddelandestruktur som används i gränssnittet är på huvudnivån identisk
 I gränssnittet har dessutom definierats undermeddelandena [fin.020](#4-5) och [fin.021](#4-6), för förmedling av de nödvändiga koderna för kontroll av sökningens status och hämtning av sökresultaten.
 
 ### <a name="4-2"></a> 4.2 Frågegränssnitt
-Meddelandet som skickas till frågegränssnittet är identiskt med meddelandet i [frågegränssnittet för datasöksystemen](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#fragegranssnitt).
+Meddelandet som skickas till frågegränssnittet är likt meddelandet i [frågegränssnittet för datasöksystemen](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#fragegranssnitt). Skillnaden mellan meddelandet i datasöksystemets och sammanställningsprogrammets frågegränsnitt är att fin012 utvidgat meddelande har två ytterligare datafält i sammanställningsprogrammets frågegränsnitt: RequestedDataSources och InternationalRequest. RequestedDataSources fältet används för att rikta förfrågan till en eller flera datakällor (datasöksystem och kontoregister). Riktad förfrågan skickas endast till angivna datakällor. InternationalRequest används för att märka att förfrågan kopplas till en internationell/gränsöverskridande information begäran enligt ((EU) 2019/1153) artikel 19 och nationella lagen om penningtvätt (444/2017) 2 kap 4 §.
 
-Svarsmeddelandet har också samma struktur, men meddelandet auth.002 innehåller undermeddelandet fin.021, som anger koden för den förfrågan som mottagits. Koden används vid kontroll av förfrågans status i [statusgränssnittet](#4-3). 
+Svarsmeddelandet har också samma struktur, men meddelandet auth.002 innehåller undermeddelandet fin.021, som anger koden för den förfrågan som mottagits. Koden används vid kontroll av förfrågans status i [statusgränssnittet](#4-3). I statusgränsnittet returnerar de övriga undermeddelandena status NFOU, som i detta fall saknar betydelse.
 
-De övriga undermeddelandena returnerar status NFOU, som i detta fall saknar betydelse.
+#### <a name="fin012"></a> 4.2.1 Utvidgat meddelande InformationRequestFIN012
+
+Schemat för undermeddelanden är bestämt i [fin.012](schemas/fin.012.001.03.xsd) fil. Det utvidgade meddelandet kopplas till ISO 20022-meddelandets XPath-läge som anges i tabellen.
+
+| Namn                                             | [min..max] | Typ                                           | Beskrivning                                                                                                                             | Kopplas till meddelandet | XPath                                    |
+|:-------------------------------------------------|:-----------|:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------|:-----------------------------------------|
+| InformationRequestFIN012                         |            |                                                |                                                                                                                                         | auth.001           | `/Document/InfReqOpng/SplmtryData/Envlp` |
+| &nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry         | [1..1]     | [AuthorityInquirySet](#authority-inquiry-set)  | Myndighetsuppgifter i anknytning till förfrågan.                                                                                             |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria | [0..\*]    |                                                | Används för att söka med bankfackets identifieringsuppgift.                                                                                          |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources     | [0..1]     | [RequestedDataSources](#requested-datasources) | Datakällan eller datakällor som mottagar förfrågan. Om elementet saknas från meddelandet, skickas förfrågan till alla datakällor. |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest     | [0..1]     | boolean                                        | Värdet "true" används om förfrågan kopplas till internationell information begäran.                                                    |                    |
+
+#### <a name="authority-inquiry-set"></a> AuthorityInquirySet
+
+| Namn                                       | Typ       | Används | Beskrivning                                         |
+|:-------------------------------------------|:-----------|:-------|:----------------------------------------------------|
+| AuthorityInquirySet                        |            |        |                                                     |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Yes    | Myndighetens (person) kod |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Yes    | Chefens kod               |
+
+#### <a name="requested-datasources"></a> RequestedDataSources
+
+| Namn                                    | [min..max] | Typ       | Beskrivning                         |
+|:----------------------------------------|:-----------|:----------|:------------------------------------|
+| RequestedDataSources                    |            |           |                                     |
+| &nbsp;&nbsp;&nbsp;&nbsp;DataSourceOrgId | [1..\*]    | Max35Text | Datakällas FO-nummer |
 
 ### <a name="4-3"></a> 4.3 Statusgränssnitt
 Meddelandet som skickas till statusgränssnittet har samma innehåll som förfrågan, och den kod som fanns i svaret från frågegränssnittet skickas dessutom i undermeddelandet [fin.020 submessage](#4-5).
 
 Svarsmeddelandet är detsamma som i svar från [frågegränssnittet](#4-2) plus följande: 
 - Om förfrågan inte är slutförd, returneras statuskoden NRES i fältet RspnSts i schemat Auth.002.
-- •	Om förfrågan är klar, returneras statuskoden COMP i fältet RspnSts i schemat Auth.002 och dessutom i undermeddelandet [fin.021](#4-6) den kod som använts i statusförfrågan och en lista på koder med vilka resultaten kan hämtas ur [resultatgränssnittet](#4-4). 
+- Om förfrågan är slutförd, returneras statuskoden COMP i fältet RspnSts i schemat Auth.002 och dessutom i undermeddelandet [fin.021](#4-6) den kod som använts i statusförfrågan och en lista på koder med vilka resultaten kan hämtas ur [resultatgränssnittet](#4-4). 
 
 ### <a name="4-4"></a> 4.4 Resultatgränssnitt
 Meddelandet som skickas till resultatgränssnittet har samma innehåll som förfrågan, och de koder som mottagits som svar från statusgränssnittet anges dessutom en i taget i undermeddelandet [fin.020](#4-5).
@@ -175,14 +203,14 @@ Följande data returneras som attribut för ResultKeyList-elementet:
 | ResultKeyList                     |            |            |                     ||     |
 | &nbsp;&nbsp;&nbsp;&nbsp;ResultKey | [1..n]     | Max256TextAllowedEmpty | UUID för resultatet eller tom i fall av fel| Valfria attribut: `datasourceOrganisationId` och `errorCode` |
 
-### <a name="4-7"></a> 4.7 Användning av elementet ReturnIndicator1 med fin.021-meddelande
+### <a name="4-7"></a> 4.7 Användning av elementet ReturnIndicator1
 
 ReturnIndicator1 innehåller en enskild typ av sökresultat, precis som i [svarsmeddelandet](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#InformationRequestResponseV01) i datasöksystemets frågegränssnitt. I likhet med de övriga undermeddelanden som returneras i förfrågan ingår fin.021 i detta element.
 
 | XPath                       | Typ                        | Beskrivning                                                                                                                                                                                                                                |
 |:----------------------------|:---------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | Innehåller det utvidgade meddelandets meddelande-id (fin.021.001.03))                                                                                                                                                                      |
-| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Returneras elementet `Rslt` av typen SupplementaryDataEnvelope1, som innehåller undermeddelandet [QueryResultResponse](#4-6) eller elementet `InvstgtnSts` med koden `NFOU`, om inga uppgifter hittas med den kod som använts i förfrågan. |
+| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Returneras elementet `Rslt` av typen SupplementaryDataEnvelope1, som innehåller ett av undermeddelandena ([fin.021](#4-6), supl.027, fin.013 eller fin.002) eller elementet `InvstgtnSts`. `InvstgtnSts` returneras med koden `NFOU`, om inga uppgifter hittas med den kod som använts i förfrågan. `InvstgtnSts` returneras med koden `NOAP` om flera träffar hittas från en aktörs data i kontoregistret med namnsökning på fysisk eller juridisk person. |
 
 ### <a name="4-8"></a> 4.8 Hantering av felsituationer
 På felhantering och returnering av koder tillämpas relevanta delar av definitionerna i avsnitt [Scenarier för frågegränssnittets WS-meddelandetrafik](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#4-12) i datasöksystemets frågegränssnitt.
@@ -196,6 +224,6 @@ Det är inte möjligt att söka information som gäller tid före 1 september 20
 ### <a name="4-9"></a> 4.9 Exempelmeddelanden
 Exempelmeddelanden för varje frågemeddelande med svar finns i mappen examples:
 - [Frågemeddelande](examples/query1.xml) och [svar](examples/query1_response.xml)
-- [Statusförfrågan](examples/status1.xml) och [svar](examples/status1_response.xml), och [felmeddelande](examples/status1_response_with_query_error.xml).
-- [Resultatförfrågan](examples/result1.xml) och [svar](examples/result1_response.xml)
+- [Statusförfrågan](examples/status1.xml) och [svar](examples/status1_response.xml) och [felmeddelande](examples/status1_response_with_query_error.xml).
+- [Resultatförfrågan](examples/result1.xml), [svar](examples/result1_response.xml) och [svar med riktad förfråga och internationell begäran](examples/query_with_requested_datasources_and_international_request.xml).
   

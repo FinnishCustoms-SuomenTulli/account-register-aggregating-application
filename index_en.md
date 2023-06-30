@@ -6,13 +6,14 @@
 
 # Description of the aggregating application’s query API
 
-*Document version 1.0*
+*Document version 1.01*
 
 ## Version history
 
 | Version | Date       | Description                                                        |
 |---------|------------|--------------------------------------------------------------------|
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
+| 1.01    | 29.6.2023 | Added schema for fin.012 and a new example message. Updated chapter 4.2 with two new data elements. One is used to aim the query to specific datasource(s), the other to mark that the query is related to an international/cross-border information request. Also updated chapter 4.7 with use of InvstgtnSts NOAP in response messages. |
 
 ## Table of contents
 
@@ -26,7 +27,7 @@
   4.4 [Result API](#4-4)    
   4.5 [Message extension Fin020 (QueryResultRequest)](#4-5)    
   4.6 [Message extension Fin021 (QueryResultResponse)](#4-6)    
-  4.7 [Use of the ReturnIndicator1 element with the fin.021 message](#4-7)    
+  4.7 [Use of the ReturnIndicator1 element](#4-7)    
   4.8 [Error management](#4-8)    
   4.9 [Example messages](#4-9)    
   
@@ -53,6 +54,8 @@ This document supplements the regulation issued by Finnish Customs on the Bank a
 [fin.020.001.01](schemas/fin.020.001.01.xsd)
 
 [fin.021.001.03](schemas/fin.021.001.03.xsd)
+
+[fin.012.001.03](schemas/fin.012.001.03.xsd)
 
 [Guidelines on the information security of e-services](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
@@ -129,11 +132,37 @@ The message structure used in the API is identical at the main level to the spec
 In addition, the [fin.020](#4-5) and [fin.021](#4-6) submessages have been defined for the API to transmit the identifiers required to check the retrieval status and retrieve results.
 
 ### <a name="4-2"></a> 4.2 Query API
-Messages sent to the query API are identical to the messages used in the [query API of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta).
+Messages sent to the query API are similar to the messages used in the [query API of the data retrieval system](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#kyselyrajapinta). Message extension fin012 has two additional elements that are not used in data retrieval systems' messages: RequestedDataSources and InternationalRequest. RequestedDataSources element is used to aim the query to one or several data sources (data retrieval systems and account register). The query with RequestedDataSources element is only forwarded to data source(s) specified in the element. InternationalRequest element is used to mark that the query is related to an international/cross-border information request based on the directive on using financial information ((EU) 2019/1153) article 19 and national anti-money laundering act (444/2017) 4 § in chapter 2.
 
-Response messages also follow the same structure, while the fin.021 message is used as a submessage in the auth.002 message to indicate the identifier of the received query. This identifier is used to check the query status in the [status API](#4-3). 
+Response messages also follow the same structure, while the fin.021 message is used as a submessage in the auth.002 message to indicate the identifier of the received query. This identifier is used to check the query status in the [status API](#4-3). In status API, other submessages return status NFOU, which is insignificant in this case.
 
-Other submessages return status NFOU, which is insignificant in this case.
+#### <a name="fin012"></a> 4.2.1 Message extension InformationRequestFIN012
+
+The submessage schema is defined in the [fin.012](schemas/fin.012.001.03.xsd) file.
+The message extension is appended to the Xpath location of the ISO 20022 message listed in the table.
+
+| Name                                             | [min..max] | Type                                           | Description                                                                                                                             | Liitetään sanomaan | XPath                                    |
+|:-------------------------------------------------|:-----------|:-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------|:-------------------|:-----------------------------------------|
+| InformationRequestFIN012                         |            |                                                |                                                                                                                                         | auth.001           | `/Document/InfReqOpng/SplmtryData/Envlp` |
+| &nbsp;&nbsp;&nbsp;&nbsp;AuthorityInquiry         | [1..1]     | [AuthorityInquirySet](#authority-inquiry-set)  | Authority details associated with the query                                                                                             |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;AdditionalSearchCriteria | [0..\*]    |                                                | Used for the search by safety-deposit box ID.                                                                                           |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;RequestedDataSources     | [0..1]     | [RequestedDataSources](#requested-datasources) | Datasource or datasources that will receive the query. If the element is missing from the message, the query is sent to all datasources. |                    |
+| &nbsp;&nbsp;&nbsp;&nbsp;InternationalRequest     | [0..1]     | boolean                                        | Value "true" is used if the query is related to an international information request.                                                    |                    |
+
+#### <a name="authority-inquiry-set"></a> AuthorityInquirySet
+
+| Name                                       | Type       | In use | Description                                         |
+|:-------------------------------------------|:-----------|:-------|:----------------------------------------------------|
+| AuthorityInquirySet                        |            |        |                                                     |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Yes    | Identifier of the official that is making the query |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Yes    | Identifier of the official's superior               |
+
+#### <a name="requested-datasources"></a> RequestedDataSources
+
+| Name                                    | [min..max] | Type      | Description                         |
+|:----------------------------------------|:-----------|:----------|:------------------------------------|
+| RequestedDataSources                    |            |           |                                     |
+| &nbsp;&nbsp;&nbsp;&nbsp;DataSourceOrgId | [1..\*]    | Max35Text | Datasource's business identity code |
 
 ### <a name="4-3"></a> 4.3 Status API
 Messages sent to the status API consist of the same message content as queries. In addition, the identifier received as the query API’s response is transmitted through the [fin.020 submessage](#4-5).
@@ -182,14 +211,14 @@ The following data is returned as attributes of the ResultKeyList element:
 |ResultKeyList| | |                                                      ||
 |&nbsp;&nbsp;&nbsp;&nbsp;ResultKey|[1..n]|Max256TextAllowedEmpty| UUID of the result or empty in case of a query error |Optional attributes: `datasourceOrganisationId` and `errorCode`|
 
-### <a name="4-7"></a> 4.7 Use of the ReturnIndicator1 element with the fin.021 message
+### <a name="4-7"></a> 4.7 Use of the ReturnIndicator1 element
 
 ReturnIndicator1 includes the presence of a single type of search result as in the [response messages](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#InformationRequestResponseV01) of the data retrieval system’s query API. The fin.021 submessage is returned in this element similarly to other submessages returned in the query.
 
 | XPath                       | Type                       | Description                                                                                                                                                                                                                                  |
 |:----------------------------|:---------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | Includes the message ID of the message extension (fin.021.001.03))                                                                                                                                                                           |
-| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Returning `Rslt` element type SupplementaryDataEnvelope1, which includes the [QueryResultResponse](#4-6) submessage or the `InvstgtnSts` element, useing code `NFOU`, if no information can be found using the identifier used in the query. |
+| RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | Includes the message ID of the message extension (fin.021.001.03)) |
+| RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Returning `Rslt` element type SupplementaryDataEnvelope1, which includes one of the submessages ([fin.021](#4-6), supl.027, fin.013 or fin.002) or the `InvstgtnSts` element. `InvstgtnSts` is returned using code `NFOU`, if no information can be found using the identifier used in the query. `InvstgtnSts` is returned using code `NOAP` in case a query with the name of a natural or legal person has multiple hits in one party's data in account register. |
 
 ### <a name="4-8"></a> 4.8 Error management
 Error management and returned codes follow the specifications of the [WS message traffic scenarios in the query API](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_en.html#4-12) chapter for the data retrieval system’s query API, where applicable.
@@ -203,6 +232,6 @@ It is not possible to query information concerning time period before September 
 ### <a name="4-9"></a> 4.9 Example messages
 Examples of each query message and their responses are available in the examples folder:
 - [Query message](examples/query1.xml) and [response](examples/query1_response.xml)
-- [Status query](examples/status1.xml) and [response](examples/status1_response.xml), and [Query error response](examples/status1_response_with_query_error.xml).
-- [Result query](examples/result1.xml) and [response](examples/result1_response.xml)
+- [Status query](examples/status1.xml), [response](examples/status1_response.xml) and [Query error response](examples/status1_response_with_query_error.xml).
+- [Result query](examples/result1.xml), [response](examples/result1_response.xml) and [response with aimed query and international information request](examples/query_with_requested_datasources_and_international_request.xml).
   
