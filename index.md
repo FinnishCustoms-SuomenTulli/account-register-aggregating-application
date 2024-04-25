@@ -105,7 +105,7 @@ Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka 
 
 |Koodi|Nimi|Määritelmä| Kuvaus                                                            |
 |:---|:---|:---|:---|
-|COMP|CompleteResponse|Response is complete.| Vastaussanoma sisältää hakutulokset                               |
+|COMP|CompleteResponse|Response is complete.| Kysely on käsitelty ja mahdolliset tulokset ovat saatavilla.    |
 |NRES|NoResponseYet|Response not provided yet.| Vastaussanoma ei sisällä hakutuloksia, tee uusi kysely myöhemmin. |
 |PART|PartialResponse|Response is partially provided.| Ei käytössä                                                       |
 
