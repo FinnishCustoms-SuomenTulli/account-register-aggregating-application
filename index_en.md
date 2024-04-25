@@ -6,7 +6,7 @@
 
 # Description of the aggregating application’s query API
 
-*Document version 1.01*
+*Document version 1.02*
 
 ## Version history
 
@@ -14,6 +14,7 @@
 |---------|------------|--------------------------------------------------------------------|
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
 | 1.01    | 29.6.2023 | Added schema for fin.012 and a new example message. Updated chapter 4.2 with two new data elements. One is used to aim the query to specific datasource(s), the other to mark that the query is related to an international/cross-border information request. Also updated chapter 4.7 with use of InvstgtnSts NOAP in response messages. |
+| 1.02    | 26.4.2024 | Clarification to chapter 2 that status API returns COMP also when no hits were found. |
 
 ## Table of contents
 
@@ -89,9 +90,11 @@ The flow of the query is as follows:
 3. The client waits for a while (see POLLING_INTERVAL) and sends a status query containing the key to the status API.
 4. The status API either  
   a. returns code NRES if the results are not yet ready, or  
-  b. returns code COMP and a list of keys. 
-5. If the code is NRES, the client returns to step 3.
-6. If the code is COMP, the client sends a search result query to the result API using one of the keys received in step 4 b.
+  b. returns code COMP if the results are ready. If the query produced any hits, a list of keys is also returned. 
+5. If the code is  
+  a. NRES, the client returns to step 3.  
+  b. COMP and hits were found, the client sends a search result query to the result API using one of the keys received in step 4 b.
+  c. COMP but no hits, the process will end.
 7. The result API returns a search result message corresponding to the key that was sent.
 8. If there still are search results waiting for retrieval, the process will return to step 6 to repeat the search using the next key.
 9. If all search results have been received, the process will end.
@@ -102,7 +105,7 @@ The codes to be returned are defined in ISO code set StatusResponse1Code, and th
 
 | Code | Name             | Definition                      | Description                                                                      |
 |:---|:---|:---|:---|
-| COMP | CompleteResponse | Response is complete.           | The response message includes the retrieval results.                             |
+| COMP | CompleteResponse | Response is complete.           | The query has been completed and possible results are available.                 |
 | NRES | NoResponseYet    | Response not provided yet.      | The response message does not include retrieval results; make a new query later. |
 | PART | PartialResponse  | Response is partially provided. | Not used.                                                                        |
 
