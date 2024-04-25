@@ -6,14 +6,15 @@
 
 # Koostavan sovelluksen rajapintakuvaus
 
-*Dokumentin versio 1.01*
+*Dokumentin versio 1.02*
 
 ## Versiohistoria
 
 | Versio | Päivämäärä | Kuvaus                                                              |
 |--------|------------|---------------------------------------------------------------------|
 | 1.0    | 7.2.2023   | Versio 1.0                                                          |
-| 1.01   | 29.6.2023   | Lisätty skeema sanomalle fin.012 ja uusi esimerkkisanoma. Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|
+| 1.01   | 29.6.2023   | Lisätty skeema sanomalle fin.012 ja uusi esimerkkisanoma. Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|  
+| 1.02   | 26.4.2024   | Tarkennettu lukuun 2, että status-rajapinta palauttaa vastauksen COMP myös silloin, kun osumia ei löytynyt. |
 
 ## Sisällysluettelo
 
@@ -89,12 +90,14 @@ Kyselyn vuo kulkee seuraavasti:
 3. Client odottaa hetken (kts. POLLING_INTERVAL) ja lähettää avaimen sisältävän statuskyselyn Status APIin
 4. Status API joko  
   a. Palauttaa koodin NRES, jos tulokset eivät ole vielä valmiina, tai  
-  b. Palauttaa koodin COMP ja listan avaimia. 
-5. Jos koodi on *NRES*, Client palaa kohtaan 3.
-6. Jos koodi on *COMP*, Client lähettää hakutuloskyselyn yhdellä kohdassa 4.b. vastaanottamistaan avaimista Result APIin.
-7. Result API palauttaa lähetettyä avainta vastaavan hakutulossanoman.
-8. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6 ja toistetaan haku seuraavalla avaimella.
-9. Jos kaikki hakutulokset on saatu, loppu.
+  b. Palauttaa koodin COMP, jos kyselyn tulokset ovat valmiit. Jos kyselyyn on saatu osumia, palautuu myös lista avaimia. 
+5. Jos koodi on  
+  a. *NRES*, Client palaa kohtaan 3.  
+  b. *COMP* ja osumia on löytynyt, Client lähettää hakutuloskyselyn yhdellä kohdassa 4.b. vastaanottamistaan avaimista Result APIin.  
+  c. *COMP* mutta osumia ei löytynyt, loppu.  
+6. Result API palauttaa lähetettyä avainta vastaavan hakutulossanoman.
+7. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6 ja toistetaan haku seuraavalla avaimella.
+8. Jos kaikki hakutulokset on saatu, loppu.
  
 Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka arvojen käyttön on kuvattu Taulukossa 2.2.
 
