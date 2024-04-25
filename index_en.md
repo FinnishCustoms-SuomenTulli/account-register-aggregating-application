@@ -93,8 +93,8 @@ The flow of the query is as follows:
   b. returns code COMP if the results are ready. If the query produced any hits, a list of keys is also returned. 
 5. If the code is  
   a. NRES, the client returns to step 3.  
-  b. COMP and hits were found, the client sends a search result query to the result API using one of the keys received in step 4 b.
-  c. COMP but no hits, the process will end.
+  b. COMP and hits were found, the client sends a search result query to the result API using one of the keys received in step 4 b.  
+  c. COMP but no hits, the process will end.  
 7. The result API returns a search result message corresponding to the key that was sent.
 8. If there still are search results waiting for retrieval, the process will return to step 6 to repeat the search using the next key.
 9. If all search results have been received, the process will end.
