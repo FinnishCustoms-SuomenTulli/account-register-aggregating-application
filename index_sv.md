@@ -93,7 +93,7 @@ Förfrågningen har följande flöde:
   b. eller koden COMP, om svaret är färdigt. Om träff hittades, också en lista på nycklar returneras. 
 5. Om koden är  
   a. NRES, går klienten tillbaka till punkt 3.  
-  b. COMP och träff hittades, skickar klienten en förfrågan på sökresultat till Result API med en av de nycklar som den mottagit i punkt 4.b.
+  b. COMP och träff hittades, skickar klienten en förfrågan på sökresultat till Result API med en av de nycklar som den mottagit i punkt 4.b.  
   c. COMP och inga träff hittades, gå till slut.  
 6. Result API returnerar ett meddelande med det sökresultat som motsvarar nyckeln.
 7. Om alla sökresultat inte har hämtats, återgår man till punkt 6 och upprepar sökningen med nästa nyckel.
