@@ -6,7 +6,7 @@
 
 # Beskrivning av sammanställningsprogrammets frågegränssnitt
 
-*Dokumentversion 1.01*
+*Dokumentversion 1.02*
 
 ## Versionhistorik
 
@@ -14,6 +14,7 @@
 |---------|------------|--------------------------------------------------------------------|
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
 | 1.01    | 29.6.2023 | Schema för fin.012 och ett nytt exempelmeddelande har lagts till. Uppdaterade två nya datafält i avsnitt 4.2. Det ena används för att rikta förfrågan till angiven datakälla eller angivna datakällor, det andra för att märka att förfrågan kopplas till en internationell/gränsöverskridande information begäran. Dessutom updaterade i avsnitt 4.7 hur InvstgtnSts NOAP används i svarsmeddelandet. |
+| 1.02    | 25.4.2024 | Precisering i avsnitt 2: statusgränsnitt returnerar koden COMP också när inga träff hittades. |
 
 ## Innehåll
 
@@ -89,12 +90,14 @@ Förfrågningen har följande flöde:
 3. Klienten väntar en stund (se POLLING_INTERVAL) och skickar sedan en statusförfrågan med nyckeln till Status API.
 4. Status API returnerar  
   a. antingen koden NRES, om svaret inte ännu är färdigt  
-  b. eller koden COMP och en lista på nycklar. 
-5. Om koden är NRES, går klienten tillbaka till punkt 3.
-6. Om koden är COMP, skickar klienten en förfrågan på sökresultat till Result API med en av de nycklar som den mottagit i punkt 4.b.
-7. Result API returnerar ett meddelande med det sökresultat som motsvarar nyckeln.
-8. Om alla sökresultat inte har hämtats, återgår man till punkt 6 och upprepar sökningen med nästa nyckel.
-9. Om alla sökresultat har hämtats, gå till slut.
+  b. eller koden COMP, om svaret är färdigt. Om träff hittades, också en lista på nycklar returneras. 
+5. Om koden är  
+  a. NRES, går klienten tillbaka till punkt 3.  
+  b. COMP och träff hittades, skickar klienten en förfrågan på sökresultat till Result API med en av de nycklar som den mottagit i punkt 4.b.
+  c. COMP och inga träff hittades, gå till slut.  
+6. Result API returnerar ett meddelande med det sökresultat som motsvarar nyckeln.
+7. Om alla sökresultat inte har hämtats, återgår man till punkt 6 och upprepar sökningen med nästa nyckel.
+8. Om alla sökresultat har hämtats, gå till slut.
  
 Responskoderna definieras i ISO-koduppsättningen StatusResponse1Code; användningen av dem beskrivs i tabell 2.2.
 
@@ -102,7 +105,7 @@ Responskoderna definieras i ISO-koduppsättningen StatusResponse1Code; användni
 
 | Kod  |Namn|Definition|Beskrivning|
 |:---|:---|:---|:---|
-| COMP |CompleteResponse|Response is complete.|Svarsmeddelandet innehåller sökresultaten.|
+| COMP |CompleteResponse|Response is complete.|Förfrågan är färdig och eventuella resultaten finns tillgängliga.|
 | NRES |NoResponseYet|Response not provided yet.|Svarsmeddelandet innehåller inga sökresultat, gör en ny förfrågan senare.|
 | PART |PartialResponse|Response is partially provided.|Används inte.|
 
