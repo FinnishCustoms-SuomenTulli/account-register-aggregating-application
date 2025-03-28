@@ -15,7 +15,7 @@
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
 | 1.01    | 29.6.2023 | Schema för fin.012 och ett nytt exempelmeddelande har lagts till. Uppdaterade två nya datafält i avsnitt 4.2. Det ena används för att rikta förfrågan till angiven datakälla eller angivna datakällor, det andra för att märka att förfrågan kopplas till en internationell/gränsöverskridande information begäran. Dessutom updaterade i avsnitt 4.7 hur InvstgtnSts NOAP används i svarsmeddelandet. |
 | 1.02    | 25.4.2024 | Precisering i avsnitt 2: statusgränsnitt returnerar koden COMP också när inga träff hittades. |
-| 1.03    | 1.4.2025 | Beskrivning för användning av svarskoden PART har lagts till i avsnitt 2. |
+| 1.03    | 1.4.2025 | Beskrivning av användning av svarskoden PART har lagts till i avsnitt 2. |
 
 ## Innehåll
 
