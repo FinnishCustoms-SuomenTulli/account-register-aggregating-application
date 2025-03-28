@@ -104,11 +104,11 @@ The codes to be returned are defined in ISO code set StatusResponse1Code, and th
 
 *__Table 2.2.__ Use of StatusResponse1Code values*
 
-| Code | Name             | Definition                      | Description                                                                      |
+| Code | Name             | Definition                      | Description                              |
 |:---|:---|:---|:---|
-| COMP | CompleteResponse | Response is complete.           | The query has been completed and possible results are available.                 |
-| NRES | NoResponseYet    | Response not provided yet.      | The response message does not include retrieval results; make a new query later. |
-| PART | PartialResponse  | Response is partially provided. | Not used.                                                                        |
+| COMP | CompleteResponse | Response is complete.           | The query has been completely processed, all data sources have responded and possible results are available.                 |
+| NRES | NoResponseYet    | Response not provided yet.      | The data sources have not yet responded to the query, make a new query later. |
+| PART | PartialResponse  | Response is partially provided. | The query is partially processed, response from at least one data source is still expected. Possible results from responses so far are available. |
 
 
 #### Result retention time in the aggregating application
