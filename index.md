@@ -106,9 +106,9 @@ Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka 
 
 |Koodi|Nimi|Määritelmä| Kuvaus                                                            |
 |:---|:---|:---|:---|
-|COMP|CompleteResponse|Response is complete.| Kysely on käsitelty ja mahdolliset tulokset ovat saatavilla.    |
-|NRES|NoResponseYet|Response not provided yet.| Vastaussanoma ei sisällä hakutuloksia, tee uusi kysely myöhemmin. |
-|PART|PartialResponse|Response is partially provided.| Ei käytössä                                                       |
+|COMP|CompleteResponse|Response is complete.| Kysely on käsitelty kokonaan, kaikki tiedonlähteet ovat vastanneet ja mahdolliset tulokset ovat saatavilla. |
+|NRES|NoResponseYet|Response not provided yet.| Kyselyyn ei ole vielä saatu vastauksia tiedonlähteistä, tee uusi kysely myöhemmin. |
+|PART|PartialResponse|Response is partially provided.| Kysely on käsitelty osittain, ainakin yhdestä tiedonlähteestä odotetaan vielä vastausta. Mahdolliset tähän asti saadut tulokset ovat saatavilla. |
 
 #### Tulosten säilytysaika Koostavassa sovelluksessa
 Tulokset poistetaan kun ne on noudettu. Valmiita tuloksia pidetään tallessa korkeintaan 24 tunnin ajan niiden valmistumisesta, jona aikana tulokset on noudettava. 
