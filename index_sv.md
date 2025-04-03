@@ -86,19 +86,27 @@ I tabell 2.1 redogörs för parametrarna i flödesschemat.
 | POLLING_TIME_LIMIT | Maximal tid för pollingar, innan man slutar. Om inget svar fås, ska man göra en helt ny förfrågan eller överföra ärendet till manuell handläggning.                                                                                                                                                                    |
 
 Förfrågningen har följande flöde:
-1. Klienten skickar ett frågemeddelande till Query API.
-2. Som svar returnerar Query API en nyckel (resultKey).
-3. Klienten väntar en stund (se POLLING_INTERVAL) och skickar sedan en statusförfrågan med nyckeln till Status API.
-4. Status API returnerar  
-  a. antingen koden NRES, om svaret inte ännu är färdigt  
-  b. eller koden COMP, om svaret är färdigt. Om träff hittades, också en lista på nycklar returneras. 
-5. Om koden är  
-  a. NRES, går klienten tillbaka till punkt 3.  
-  b. COMP och träff hittades, skickar klienten en förfrågan på sökresultat till Result API med en av de nycklar som den mottagit i punkt 4.b.  
-  c. COMP och inga träff hittades, gå till slut.  
-6. Result API returnerar ett meddelande med det sökresultat som motsvarar nyckeln.
-7. Om alla sökresultat inte har hämtats, återgår man till punkt 6 och upprepar sökningen med nästa nyckel.
-8. Om alla sökresultat har hämtats, gå till slut.
+1. Programvaran anropar Query-ändpunkten innehållande ett frågemeddelande.
+2. Query-ändpunkten besvarar anropet med en nyckel (ResultKey).
+3. Programvaran bör vänta en stund (se POLLING INTERVAL), varefter ett status anrop till Status-ändpunkten tillsammans med nyckeln som fåtts i föregående steg kan utföras.
+4. Status-ändpunkten besvarar anropet med en statuskod (StatusResponseCode). Koden innehåller något av följande alternativ:  
+  a. NRES, inga resultat är klara  
+  b. PART, en del av svaren är klara  
+  c. COMP, alla sökresultat är klara  
+5. Om förfrågan gav ett eller flera resultat (PART eller COMP), returneras en lista bestående av nycklar(ResultKey), som används för att hämta färdiga svar.  
+6. Om koden som returnerats är:   
+  a. NRES, återgå till steg 3 eller alternativt avsultas processen.  
+  b. COMP innehållande träffar, programvarar anropar Result-ändpunkten med en av nycklarna som returnerats i steg 4b.  
+  c. COMP utan träffar, processen avslutas.  
+  d. PART, programvaran kan välja mellan att:  
+    1. Vänta på flera svar och gå tillbaka till steg 3 eller  
+    2. Hämta de svar med träffar som blivit klara (steg 6c och 6d)  
+7. Resultat-ändpunkten besvarar anropet med det sökresultat som motsvarar den angivna nyckeln.  
+8. Om fler sökresultat finns att avhämtas, går programvaran tillbaka till steg 6.c. och upprepar processen tills alla svar har avhämtats.
+9. Om koden som returnerats från Status ändpunkten innehåller PART kan programvaran välja mellan följande alternativ:  
+  a. återgå till steg 3 och göra ett nytt anrop för att få nya nycklar på färdiga resultat (ResultKeys)  
+  b. Inga nya anrop och processen kan avslutas  
+10. Då alla sökresultat har avhämtats kan processen avslutas.  
  
 Responskoderna definieras i ISO-koduppsättningen StatusResponse1Code; användningen av dem beskrivs i tabell 2.2.
 
