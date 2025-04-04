@@ -15,7 +15,7 @@
 | 1.0     | 7.2.2023   | Version 1.0                                                        |
 | 1.01    | 29.6.2023  | Added schema for fin.012 and a new example message. Updated chapter 4.2 with two new data elements. One is used to aim the query to specific datasource(s), the other to mark that the query is related to an international/cross-border information request. Also updated chapter 4.7 with use of InvstgtnSts NOAP in response messages. |
 | 1.02    | 25.4.2024  | Clarification to chapter 2 that status API returns COMP also when no hits were found. | 
-| 1.03    | 1.4.2025   | Added description for using PART response code in chapter 2. |
+| 1.03    | 4.4.2025   | Added description for using PART response code in chapter 2. |
 
 ## Table of contents
 
