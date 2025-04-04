@@ -15,7 +15,7 @@
 | 1.0    | 7.2.2023   | Versio 1.0                                                          |
 | 1.01   | 29.6.2023  | Lisätty skeema sanomalle fin.012 ja uusi esimerkkisanoma. Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|  
 | 1.02   | 25.4.2024  | Tarkennettu lukuun 2, että status-rajapinta palauttaa vastauksen COMP myös silloin, kun osumia ei löytynyt. | 
-| 1.03   | 1.4.2025   | Lisätty kuvaus PART vastauskoodin käytöstä lukuun 2. |
+| 1.03   | 4.4.2025   | Lisätty kuvaus PART vastauskoodin käytöstä lukuun 2. |
 
 ## Sisällysluettelo
 
