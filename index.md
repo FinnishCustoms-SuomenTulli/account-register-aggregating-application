@@ -6,15 +6,16 @@
 
 # Koostavan sovelluksen rajapintakuvaus
 
-*Dokumentin versio 1.02*
+*Dokumentin versio 1.03*
 
 ## Versiohistoria
 
 | Versio | Päivämäärä | Kuvaus                                                              |
 |--------|------------|---------------------------------------------------------------------|
 | 1.0    | 7.2.2023   | Versio 1.0                                                          |
-| 1.01   | 29.6.2023   | Lisätty skeema sanomalle fin.012 ja uusi esimerkkisanoma. Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|  
-| 1.02   | 25.4.2024   | Tarkennettu lukuun 2, että status-rajapinta palauttaa vastauksen COMP myös silloin, kun osumia ei löytynyt. |
+| 1.01   | 29.6.2023  | Lisätty skeema sanomalle fin.012 ja uusi esimerkkisanoma. Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|  
+| 1.02   | 25.4.2024  | Tarkennettu lukuun 2, että status-rajapinta palauttaa vastauksen COMP myös silloin, kun osumia ei löytynyt. | 
+| 1.03   | 4.4.2025   | Lisätty kuvaus PART vastauskoodin käytöstä lukuun 2. |
 
 ## Sisällysluettelo
 
@@ -85,19 +86,27 @@ Taulukossa 2.1. on esitetty vuokaavioon liittyvien muuttujien merkitys.
 | POLLING_TIME_LIMIT | Kuinka kauan pollausta on sallittua tehdä, ennen kuin lopetetaan. Jos vastausta ei edelleenkään saada, on joko tehtävä kokonaan uusi kysely tai siirrettävä asia manuaaliseen käsittelyyn.                                                                                                                 |
 
 Kyselyn vuo kulkee seuraavasti:
-1. Client lähettää kyselysanoman Query API:in.
-2. Query API palauttaa vastauksena avaimen (resultKey).
-3. Client odottaa hetken (kts. POLLING_INTERVAL) ja lähettää avaimen sisältävän statuskyselyn Status APIin
-4. Status API joko  
-  a. Palauttaa koodin NRES, jos tulokset eivät ole vielä valmiina, tai  
-  b. Palauttaa koodin COMP, jos kyselyn tulokset ovat valmiit. Jos kyselyyn on saatu osumia, palautuu myös lista avaimia. 
-5. Jos koodi on  
-  a. *NRES*, Client palaa kohtaan 3.  
-  b. *COMP* ja osumia on löytynyt, Client lähettää hakutuloskyselyn yhdellä kohdassa 4.b. vastaanottamistaan avaimista Result APIin.  
-  c. *COMP* mutta osumia ei löytynyt, loppu.  
-6. Result API palauttaa lähetettyä avainta vastaavan hakutulossanoman.
-7. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6 ja toistetaan haku seuraavalla avaimella.
-8. Jos kaikki hakutulokset on saatu, loppu.
+1. Client lähettää kyselysanoman Query Endpointtiin.  
+2. Query Endpoint palauttaa vastauksena avaimen (ResultKey).  
+3. Client odottaa hetken (kts. POLLING_INTERVAL) ja lähettää avaimen sisältävän statuskyselyn Status Endpointtiin.
+4. Status Endpoint palauttaa vastauskoodin (StatusResponseCode). Koodi on joko  
+    a. NRES, jos tuloksia ei ole vielä valmiina,  
+    b. PART, jos osa tuloksista on valmiina, tai  
+    c. COMP, jos kyselyn kaikki tulokset ovat valmiit.  
+5. Jos kyselyyn on saatu osumia (PART tai COMP vastaus), palautuu myös lista avaimia (ResultKey), joilla valmistuneet vastaukset voi hakea.
+6. Jos koodi on  
+  a. NRES, Client palaa kohtaan 3 tai loppu.  
+  b. COMP ja osumia on löytynyt, Client lähettää hakutuloskyselyn yhdellä kohdassa 5 vastaanottamistaan avaimista Result Endpointtiin.  
+  c. COMP mutta osumia ei löytynyt, loppu.  
+  d. PART, Client valitsee joko  
+    1. Odottaa, että lisää vastauksia valmistuu (paluu kohtaan 3) tai  
+    2. Hakea valmistuneet vastaukset, jos osumia on löytynyt (kohdat 6.c. ja 6.d.)  
+7. Result Endpoint palauttaa lähetettyä avainta vastaavan hakutulossanoman.  
+8. Jos hakutuloksia on vielä hakematta, palataan kohtaan 6.c. ja toistetaan haku seuraavalla avaimella.  
+9. Jos Status Endpointin palauttama koodi oli PART,  
+  a. Client palaa kohtaan 3 kyselemään onko uusia vastauksia (uudet ResultKeyt) valmistunut, tai  
+  b. Jos kyselyä ei tarvitse tai kannata jatkaa, loppu.  
+10. Jos kaikki hakutulokset on saatu, loppu.  
  
 Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka arvojen käyttön on kuvattu Taulukossa 2.2.
 
@@ -105,9 +114,9 @@ Palautettavat koodit on määritelty ISO-koodistossa StatusResponse1Code, jonka 
 
 |Koodi|Nimi|Määritelmä| Kuvaus                                                            |
 |:---|:---|:---|:---|
-|COMP|CompleteResponse|Response is complete.| Kysely on käsitelty ja mahdolliset tulokset ovat saatavilla.    |
-|NRES|NoResponseYet|Response not provided yet.| Vastaussanoma ei sisällä hakutuloksia, tee uusi kysely myöhemmin. |
-|PART|PartialResponse|Response is partially provided.| Ei käytössä                                                       |
+|COMP|CompleteResponse|Response is complete.| Kysely on käsitelty kokonaan, kaikki tiedonlähteet ovat vastanneet ja mahdolliset tulokset ovat saatavilla. |
+|NRES|NoResponseYet|Response not provided yet.| Kyselyyn ei ole vielä saatu vastauksia tiedonlähteistä, tee uusi kysely myöhemmin. |
+|PART|PartialResponse|Response is partially provided.| Kysely on käsitelty osittain, ainakin yhdestä tiedonlähteestä odotetaan vielä vastausta. Mahdolliset tähän asti saadut tulokset ovat saatavilla. |
 
 #### Tulosten säilytysaika Koostavassa sovelluksessa
 Tulokset poistetaan kun ne on noudettu. Valmiita tuloksia pidetään tallessa korkeintaan 24 tunnin ajan niiden valmistumisesta, jona aikana tulokset on noudettava. 
