@@ -114,9 +114,9 @@ Responskoderna definieras i ISO-koduppsättningen StatusResponse1Code; användni
 
 | Kod  |Namn|Definition|Beskrivning|
 |:---|:---|:---|:---|
-| COMP |CompleteResponse|Response is complete.|Förfrågan är färdig och eventuella resultaten finns tillgängliga.|
-| NRES |NoResponseYet|Response not provided yet.|Svarsmeddelandet innehåller inga sökresultat, gör en ny förfrågan senare.|
-| PART |PartialResponse|Response is partially provided.|Används inte.|
+| COMP |CompleteResponse|Response is complete.|Förfrågan är färdig, alla datakällorna har besvarat och eventuella resultat är tillgängliga.|
+| NRES |NoResponseYet|Response not provided yet.|Svarsmeddelandet innehåller för tillfället inga sökresultat, gör en ny förfrågan senare.|
+| PART |PartialResponse|Response is partially provided.|Förfrågan har bearbetats delvis, en eller flera av datakällorna har inte besvarat förfrågan. Eventuella färdiga resultat är tillgängliga att avhämtas.|
 
 #### Förvaringstid för resultaten i sammanställningsprogrammet
 Resultaten raderas när de hämtas. De färdiga resultaten förvaras högst 24 timmar efter att de sammanställts och de ska hämtas under denna tid. 
