@@ -6,15 +6,16 @@
 
 # Description of the aggregating application’s query API
 
-*Document version 1.02*
+*Document version 1.03*
 
 ## Version history
 
 | Version | Date       | Description                                                        |
 |---------|------------|--------------------------------------------------------------------|
-| 1.0     | 7.2.2023 | Version 1.0                                                        |
-| 1.01    | 29.6.2023 | Added schema for fin.012 and a new example message. Updated chapter 4.2 with two new data elements. One is used to aim the query to specific datasource(s), the other to mark that the query is related to an international/cross-border information request. Also updated chapter 4.7 with use of InvstgtnSts NOAP in response messages. |
-| 1.02    | 25.4.2024 | Clarification to chapter 2 that status API returns COMP also when no hits were found. |
+| 1.0     | 7.2.2023   | Version 1.0                                                        |
+| 1.01    | 29.6.2023  | Added schema for fin.012 and a new example message. Updated chapter 4.2 with two new data elements. One is used to aim the query to specific datasource(s), the other to mark that the query is related to an international/cross-border information request. Also updated chapter 4.7 with use of InvstgtnSts NOAP in response messages. |
+| 1.02    | 25.4.2024  | Clarification to chapter 2 that status API returns COMP also when no hits were found. | 
+| 1.03    | 4.4.2025   | Added description for using PART response code in chapter 2. |
 
 ## Table of contents
 
@@ -85,29 +86,37 @@ Table 2.2 presents the meaning of different variables in the flow diagram.
 | POLLING_TIME_LIMIT | The permitted time limit for polling, after which it will be stopped. If no response is still received, a new query must be made or the case must be transferred to manual processing.                                                                                                                    |
 
 The flow of the query is as follows:
-1. The client sends a query message to the query API.
-2. The query API returns a key as a response (resultKey).
-3. The client waits for a while (see POLLING_INTERVAL) and sends a status query containing the key to the status API.
-4. The status API either  
-  a. returns code NRES if the results are not yet ready, or  
-  b. returns code COMP if the results are ready. If the query produced any hits, a list of keys is also returned. 
-5. If the code is  
-  a. NRES, the client returns to step 3.  
-  b. COMP and hits were found, the client sends a search result query to the result API using one of the keys received in step 4 b.  
-  c. COMP but no hits, the process will end.  
-7. The result API returns a search result message corresponding to the key that was sent.
-8. If there still are search results waiting for retrieval, the process will return to step 6 to repeat the search using the next key.
-9. If all search results have been received, the process will end.
+1. The Client sends a query message to the Query Endpoint.  
+2. The Query Endpoint returns a key as a response (ResultKey).  
+3. The Client waits for a while (see POLLING_INTERVAL) and sends a status query containing the key to the Status Endpoint.  
+4. The Status Endpoint returns a response code (StatusResponseCode). The code is either  
+  a. NRES if there are no ready results yet,  
+  b. PART if some but not all results are ready, or  
+  c. COMP if all results are ready.  
+5. If the query produced any hits (PART or COMP response), a list of keys (ResultKey) for retrieving the responses is also returned. 
+6. If the code is  
+  a. NRES, the Client returns to step 3, or the process ends.
+  b. COMP and hits were found, the client sends a search result query to the Result Endpoint using one of the keys received in step 5.  
+  c. COMP but no hits, the process ends.  
+  d. PART, the Client chooses to either  
+    1. Wait for more responses to be ready (return to step 3) or  
+    2. Retrieve the responses that are ready, if hits were found (steps 6.c. and 6.d.)  
+7. The Result Endpoint returns the search result message corresponding to the key that was sent.  
+8. If there still are search results waiting for retrieval, the process will return to step 6.c. to repeat the search using the next key.  
+9. If the code returned by Status Endpoint was PART,  
+  a. The Client returns to step 3 to query if new responses (new ResultKeys) are ready, or  
+  b. If further queries are not needed or feasible, the process ends.  
+10. If all search results have been retrieved, the process ends.  
  
 The codes to be returned are defined in ISO code set StatusResponse1Code, and the use of its values is described in Table 2.2.
 
 *__Table 2.2.__ Use of StatusResponse1Code values*
 
-| Code | Name             | Definition                      | Description                                                                      |
+| Code | Name             | Definition                      | Description                              |
 |:---|:---|:---|:---|
-| COMP | CompleteResponse | Response is complete.           | The query has been completed and possible results are available.                 |
-| NRES | NoResponseYet    | Response not provided yet.      | The response message does not include retrieval results; make a new query later. |
-| PART | PartialResponse  | Response is partially provided. | Not used.                                                                        |
+| COMP | CompleteResponse | Response is complete.           | The query has been completely processed, all data sources have responded and possible results are available.                 |
+| NRES | NoResponseYet    | Response not provided yet.      | The data sources have not yet responded to the query, make a new query later. |
+| PART | PartialResponse  | Response is partially provided. | The query is partially processed, response from at least one data source is still expected. Possible results from responses so far are available. |
 
 
 #### Result retention time in the aggregating application

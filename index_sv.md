@@ -6,7 +6,7 @@
 
 # Beskrivning av sammanställningsprogrammets frågegränssnitt
 
-*Dokumentversion 1.02*
+*Dokumentversion 1.03*
 
 ## Versionhistorik
 
@@ -15,6 +15,7 @@
 | 1.0     | 7.2.2023 | Version 1.0                                                        |
 | 1.01    | 29.6.2023 | Schema för fin.012 och ett nytt exempelmeddelande har lagts till. Uppdaterade två nya datafält i avsnitt 4.2. Det ena används för att rikta förfrågan till angiven datakälla eller angivna datakällor, det andra för att märka att förfrågan kopplas till en internationell/gränsöverskridande information begäran. Dessutom updaterade i avsnitt 4.7 hur InvstgtnSts NOAP används i svarsmeddelandet. |
 | 1.02    | 25.4.2024 | Precisering i avsnitt 2: statusgränsnitt returnerar koden COMP också när inga träff hittades. |
+| 1.03    | 4.4.2025 | Beskrivning på användning av PART svarskoden har lagts till i avsnitt 2. |
 
 ## Innehåll
 
@@ -85,19 +86,27 @@ I tabell 2.1 redogörs för parametrarna i flödesschemat.
 | POLLING_TIME_LIMIT | Maximal tid för pollingar, innan man slutar. Om inget svar fås, ska man göra en helt ny förfrågan eller överföra ärendet till manuell handläggning.                                                                                                                                                                    |
 
 Förfrågningen har följande flöde:
-1. Klienten skickar ett frågemeddelande till Query API.
-2. Som svar returnerar Query API en nyckel (resultKey).
-3. Klienten väntar en stund (se POLLING_INTERVAL) och skickar sedan en statusförfrågan med nyckeln till Status API.
-4. Status API returnerar  
-  a. antingen koden NRES, om svaret inte ännu är färdigt  
-  b. eller koden COMP, om svaret är färdigt. Om träff hittades, också en lista på nycklar returneras. 
-5. Om koden är  
-  a. NRES, går klienten tillbaka till punkt 3.  
-  b. COMP och träff hittades, skickar klienten en förfrågan på sökresultat till Result API med en av de nycklar som den mottagit i punkt 4.b.  
-  c. COMP och inga träff hittades, gå till slut.  
-6. Result API returnerar ett meddelande med det sökresultat som motsvarar nyckeln.
-7. Om alla sökresultat inte har hämtats, återgår man till punkt 6 och upprepar sökningen med nästa nyckel.
-8. Om alla sökresultat har hämtats, gå till slut.
+1. Programvaran anropar Query-ändpunkten innehållande ett frågemeddelande.
+2. Query-ändpunkten besvarar anropet med en nyckel (ResultKey).
+3. Programvaran bör vänta en stund (se POLLING INTERVAL), varefter ett status anrop till Status-ändpunkten tillsammans med nyckeln som fåtts i föregående steg kan utföras.
+4. Status-ändpunkten besvarar anropet med en statuskod (StatusResponseCode). Koden innehåller något av följande alternativ:  
+  a. NRES, inga resultat är klara  
+  b. PART, en del av svaren är klara  
+  c. COMP, alla sökresultat är klara  
+5. Om förfrågan gav ett eller flera resultat (PART eller COMP), returneras en lista bestående av nycklar(ResultKey), som används för att hämta färdiga svar.  
+6. Om koden som returnerats är:   
+  a. NRES, återgå till steg 3 eller alternativt avsultas processen.  
+  b. COMP innehållande träffar, programvarar anropar Result-ändpunkten med en av nycklarna som returnerats i steg 4b.  
+  c. COMP utan träffar, processen avslutas.  
+  d. PART, programvaran kan välja mellan att:  
+    1. Vänta på flera svar och gå tillbaka till steg 3 eller  
+    2. Hämta de svar med träffar som blivit klara (steg 6c och 6d)  
+7. Resultat-ändpunkten besvarar anropet med det sökresultat som motsvarar den angivna nyckeln.  
+8. Om fler sökresultat finns att avhämtas, går programvaran tillbaka till steg 6.c. och upprepar processen tills alla svar har avhämtats.
+9. Om koden som returnerats från Status ändpunkten innehåller PART kan programvaran välja mellan följande alternativ:  
+  a. återgå till steg 3 och göra ett nytt anrop för att få nya nycklar på färdiga resultat (ResultKeys)  
+  b. Inga nya anrop och processen kan avslutas  
+10. Då alla sökresultat har avhämtats kan processen avslutas.  
  
 Responskoderna definieras i ISO-koduppsättningen StatusResponse1Code; användningen av dem beskrivs i tabell 2.2.
 
@@ -105,9 +114,9 @@ Responskoderna definieras i ISO-koduppsättningen StatusResponse1Code; användni
 
 | Kod  |Namn|Definition|Beskrivning|
 |:---|:---|:---|:---|
-| COMP |CompleteResponse|Response is complete.|Förfrågan är färdig och eventuella resultaten finns tillgängliga.|
-| NRES |NoResponseYet|Response not provided yet.|Svarsmeddelandet innehåller inga sökresultat, gör en ny förfrågan senare.|
-| PART |PartialResponse|Response is partially provided.|Används inte.|
+| COMP |CompleteResponse|Response is complete.|Förfrågan är färdig, alla datakällorna har besvarat och eventuella resultat är tillgängliga.|
+| NRES |NoResponseYet|Response not provided yet.|Svarsmeddelandet innehåller för tillfället inga sökresultat, gör en ny förfrågan senare.|
+| PART |PartialResponse|Response is partially provided.|Förfrågan har bearbetats delvis, en eller flera av datakällorna har inte besvarat förfrågan. Eventuella färdiga resultat är tillgängliga att avhämtas.|
 
 #### Förvaringstid för resultaten i sammanställningsprogrammet
 Resultaten raderas när de hämtas. De färdiga resultaten förvaras högst 24 timmar efter att de sammanställts och de ska hämtas under denna tid. 
