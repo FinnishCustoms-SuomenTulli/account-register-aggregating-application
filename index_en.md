@@ -6,7 +6,7 @@
 
 # Description of the aggregating application’s query API
 
-*Document version 1.03*
+*Document version 1.04*
 
 ## Version history
 
