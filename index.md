@@ -6,7 +6,7 @@
 
 # Koostavan sovelluksen rajapintakuvaus
 
-*Dokumentin versio 1.03*
+*Dokumentin versio 1.04*
 
 ## Versiohistoria
 
@@ -14,8 +14,9 @@
 |--------|------------|---------------------------------------------------------------------|
 | 1.0    | 7.2.2023   | Versio 1.0                                                          |
 | 1.01   | 29.6.2023  | Lisätty skeema sanomalle fin.012 ja uusi esimerkkisanoma. Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|  
-| 1.02   | 25.4.2024  | Tarkennettu lukuun 2, että status-rajapinta palauttaa vastauksen COMP myös silloin, kun osumia ei löytynyt. | 
-| 1.03   | 4.4.2025   | Lisätty kuvaus PART vastauskoodin käytöstä lukuun 2. |
+| 1.02   | 25.4.2024  | Tarkennettu lukuun 2, että status-rajapinta palauttaa vastauksen COMP myös silloin, kun osumia ei löytynyt. |  
+| 1.03   | 4.4.2025   | Lisätty kuvaus PART vastauskoodin käytöstä lukuun 2. |  
+| 1.04   | 5.5.2026   | Päivitetty sanoma fin.012 versioon 04. Päivitetty WSDL viittaukset ohjaamaan uuteen WSDL:n. |  
 
 ## Sisällysluettelo
 
@@ -51,13 +52,13 @@ Tämä dokumentti täydentää Tullin julkaisemaa määräystä pankki- ja maksu
 
 ### 1.3 Viittaukset
 
-[Tiedonhakujärjestelmän WSDL](https://finnishcustoms-suomentulli.github.io/account-register-information-query/wsdl/data-retrieval-system-wsdl.xml)
+[Koostavan sovelluksen WSDL](https://github.com/FinnishCustoms-SuomenTulli/account-monitoring-system/blob/main/wsdl/aggregator.002.wsdl)
 
 [fin.020.001.01](schemas/fin.020.001.01.xsd)
 
 [fin.021.001.03](schemas/fin.021.001.03.xsd)
 
-[fin.012.001.03](schemas/fin.012.001.03.xsd)
+[fin.012.001.04](schemas/fin.012.001.04.xsd)
 
 [Sähköisen asioinnin tietoturvallisuus -ohje](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
@@ -127,8 +128,7 @@ Tietoturvakäytäntö noudattaa samoja periaatteita, kuin [Tiedonhakujärjestelm
 
 ## <a name="kyselyrajapinta"></a> 4. Koostavan sovelluksen rajapinta
 
-Rajapinta toteutetaan SOAP/XML Web Servicenä, jonka [WSDL](https://finnishcustoms-suomentulli.github.io/account-register-information-query/wsdl/data-retrieval-system-wsdl.xml) on julkaistu Tiedonhakujärjestelmän kyselyrajapintakuvaus
--dokumentin yhteydessä.
+Rajapinta toteutetaan SOAP/XML Web Servicenä, joka on kuvattu tässä [WSDL:ssä](https://github.com/FinnishCustoms-SuomenTulli/account-monitoring-system/blob/main/wsdl/aggregator.002.wsdl).
 
 SOAP-protokollasta käytetään versiota 1.1.
 
@@ -167,6 +167,7 @@ Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijain
 | AuthorityInquirySet                        |            |          |                                                 |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Kyllä    | Kyselyn tehneen viranomaisen tunnus             |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Kyllä    | Kyselyn tehneen viranomaisen esihenkilön tunnus |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialOrgId      | Max140Text | Kyllä    | Kyselyn tehnyt viranomaisorganisaatio           |
 
 #### <a name="requested-datasources"></a> RequestedDataSources
 
