@@ -16,7 +16,7 @@
 | 1.01   | 29.6.2023  | Lisätty skeema sanomalle fin.012 ja uusi esimerkkisanoma. Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|  
 | 1.02   | 25.4.2024  | Tarkennettu lukuun 2, että status-rajapinta palauttaa vastauksen COMP myös silloin, kun osumia ei löytynyt. |  
 | 1.03   | 4.4.2025   | Lisätty kuvaus PART vastauskoodin käytöstä lukuun 2. |  
-| 1.04   | 5.5.2026   | Päivitetty sanoma fin.012 versioon 04. Päivitetty WSDL viittaukset ohjaamaan uuteen WSDL:n. |  
+| 1.04   | 6.5.2026   | Päivitetty sanoma fin.012 versioon 04. Päivitetty WSDL viittaukset ohjaamaan uuteen WSDL:n. |  
 
 ## Sisällysluettelo
 
@@ -167,7 +167,7 @@ Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijain
 | AuthorityInquirySet                        |            |          |                                                 |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Kyllä    | Kyselyn tehneen viranomaisen tunnus             |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Kyllä    | Kyselyn tehneen viranomaisen esihenkilön tunnus |
-| &nbsp;&nbsp;&nbsp;&nbsp;OfficialOrgId      | Max140Text | Kyllä    | Kyselyn tehneen viranomaisorganisaation Y-tunnus     |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialOrgId      | Max140Text | Kyllä    | Kyselyn tehneen viranomaisen Y-tunnus           |
 
 #### <a name="requested-datasources"></a> RequestedDataSources
 
