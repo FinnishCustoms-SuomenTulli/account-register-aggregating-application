@@ -16,7 +16,7 @@
 | 1.01    | 29.6.2023  | Added schema for fin.012 and a new example message. Updated chapter 4.2 with two new data elements. One is used to aim the query to specific datasource(s), the other to mark that the query is related to an international/cross-border information request. Also updated chapter 4.7 with use of InvstgtnSts NOAP in response messages. |
 | 1.02    | 25.4.2024  | Clarification to chapter 2 that status API returns COMP also when no hits were found. | 
 | 1.03    | 4.4.2025   | Added description for using PART response code in chapter 2. |  
-| 1.04    | 5.5.2026   | Updated message fin.012 to version 04. Updated WSDL references to direct to the new WSDL. |  
+| 1.04    | 6.5.2026   | Updated message fin.012 to version 04. Updated WSDL references to direct to the new WSDL. |  
 
 ## Table of contents
 
@@ -169,7 +169,7 @@ The message extension is appended to the Xpath location of the ISO 20022 message
 | AuthorityInquirySet                        |            |        |                                                     |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Yes    | Identifier of the official that is making the query |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Yes    | Identifier of the official's superior               |
-| &nbsp;&nbsp;&nbsp;&nbsp;OfficialOrgId      | Max140Text | Yes    | Authority organisation who made the query           |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialOrgId      | Max140Text | Yes    | Business ID of the authority who made the query |
 
 #### <a name="requested-datasources"></a> RequestedDataSources
 
