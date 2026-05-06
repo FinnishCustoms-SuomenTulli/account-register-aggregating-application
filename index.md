@@ -167,7 +167,7 @@ Sanomalaajennus liitetään taulukossa listattuun ISO 20022 sanoman XPath-sijain
 | AuthorityInquirySet                        |            |          |                                                 |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Kyllä    | Kyselyn tehneen viranomaisen tunnus             |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Kyllä    | Kyselyn tehneen viranomaisen esihenkilön tunnus |
-| &nbsp;&nbsp;&nbsp;&nbsp;OfficialOrgId      | Max140Text | Kyllä    | Kyselyn tehnyt viranomaisorganisaatio           |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialOrgId      | Max140Text | Kyllä    | Kyselyn tehneen viranomaisorganisaation Y-tunnus     |
 
 #### <a name="requested-datasources"></a> RequestedDataSources
 
