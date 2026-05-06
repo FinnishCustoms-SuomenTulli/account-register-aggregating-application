@@ -16,7 +16,7 @@
 | 1.01    | 29.6.2023 | Schema för fin.012 och ett nytt exempelmeddelande har lagts till. Uppdaterade två nya datafält i avsnitt 4.2. Det ena används för att rikta förfrågan till angiven datakälla eller angivna datakällor, det andra för att märka att förfrågan kopplas till en internationell/gränsöverskridande information begäran. Dessutom updaterade i avsnitt 4.7 hur InvstgtnSts NOAP används i svarsmeddelandet. |
 | 1.02    | 25.4.2024 | Precisering i avsnitt 2: statusgränsnitt returnerar koden COMP också när inga träff hittades. |
 | 1.03    | 4.4.2025 | Beskrivning på användning av PART svarskoden har lagts till i avsnitt 2. |  
-| 1.04    | 5.5.2026 | Fin.012 meddelandet har uppdaterats till versionen 04. Länkar till WSDL har uppdaterats att länka till den nya WSDL. |  
+| 1.04    | 6.5.2026 | Fin.012 meddelandet har uppdaterats till versionen 04. Länkar till WSDL har uppdaterats att länka till den nya WSDL. |  
 
 ## Innehåll
 
@@ -167,7 +167,7 @@ Schemat för undermeddelanden är bestämt i [fin.012](schemas/fin.012.001.03.xs
 | AuthorityInquirySet                        |            |        |                                                     |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Yes    | Myndighetens (person) kod |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Yes    | Chefens kod               |
-| &nbsp;&nbsp;&nbsp;&nbsp;OfficialOrgId      | Max140Text | Yes    | Myndighetsorganisation som skickade frågandet       |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialOrgId      | Max140Text | Yes    | FO-nummer av myndigheten som skickade förfrågan      |
 
 #### <a name="requested-datasources"></a> RequestedDataSources
 
