@@ -151,7 +151,7 @@ EDr0</X509Certificate>
                                     <urn3:AuthorityInquiry>
                                         <urn3:OfficialId>Viranomaisen nimi</urn3:OfficialId>
                                         <urn3:OfficialSuperiorId>Esimiehen nimi</urn3:OfficialSuperiorId>
-                                        <urn3:OfficialOrgId>Viranomaisorganisaatio</urn3:OfficialOrgId>
+                                        <urn3:OfficialOrgId>Viranomaisorganisaation Y-tunnus</urn3:OfficialOrgId>
                                     </urn3:AuthorityInquiry>
                                 </urn3:InfReqFin012>
                             </urn3:Document>
