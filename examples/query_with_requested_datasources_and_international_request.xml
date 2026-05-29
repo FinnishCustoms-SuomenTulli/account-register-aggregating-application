@@ -168,6 +168,7 @@
                                     <fin012:AuthorityInquiry>
                                         <fin012:OfficialId>Viranomaisen nimi</fin012:OfficialId>
                                         <fin012:OfficialSuperiorId>Esimiehen nimi</fin012:OfficialSuperiorId>
+                                        <fin012:OfficialOrgId>Viranomaisorganisaation Y-tunnus</fin012:OfficialOrgId>
                                     </fin012:AuthorityInquiry>
                                     <fin012:RequestedDataSources>
                                         <fin012:DataSourceOrgId>1111111-2</fin012:DataSourceOrgId>

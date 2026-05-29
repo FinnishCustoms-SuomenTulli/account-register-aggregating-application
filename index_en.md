@@ -6,7 +6,7 @@
 
 # Description of the aggregating application’s query API
 
-*Document version 1.03*
+*Document version 1.04*
 
 ## Version history
 
@@ -15,7 +15,8 @@
 | 1.0     | 7.2.2023   | Version 1.0                                                        |
 | 1.01    | 29.6.2023  | Added schema for fin.012 and a new example message. Updated chapter 4.2 with two new data elements. One is used to aim the query to specific datasource(s), the other to mark that the query is related to an international/cross-border information request. Also updated chapter 4.7 with use of InvstgtnSts NOAP in response messages. |
 | 1.02    | 25.4.2024  | Clarification to chapter 2 that status API returns COMP also when no hits were found. | 
-| 1.03    | 4.4.2025   | Added description for using PART response code in chapter 2. |
+| 1.03    | 4.4.2025   | Added description for using PART response code in chapter 2. |  
+| 1.04    | 6.5.2026   | Updated message fin.012 to version 04. Updated WSDL references to direct to the new WSDL. |  
 
 ## Table of contents
 
@@ -51,13 +52,13 @@ This document supplements the regulation issued by Finnish Customs on the Bank a
 
 ### 1.3 References
 
-[Data retrieval system WSDL](https://finnishcustoms-suomentulli.github.io/account-register-information-query/wsdl/data-retrieval-system-wsdl.xml)
+[Aggregating application WSDL](https://github.com/FinnishCustoms-SuomenTulli/account-monitoring-system/blob/main/wsdl/aggregator.002.wsdl)
 
 [fin.020.001.01](schemas/fin.020.001.01.xsd)
 
 [fin.021.001.03](schemas/fin.021.001.03.xsd)
 
-[fin.012.001.03](schemas/fin.012.001.03.xsd)
+[fin.012.001.04](schemas/fin.012.001.04.xsd)
 
 [Guidelines on the information security of e-services](http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/80012/VM_25_2017.pdf)
 
@@ -128,7 +129,7 @@ Information security practices follow the same principles described in the speci
 
 ## <a name="chapter4"></a> 4. Aggregating application API
 
-The API will be implemented as a SOAP/XML web service, whose [WSDL](https://finnishcustoms-suomentulli.github.io/account-register-information-query/wsdl/data-retrieval-system-wsdl.xml) has been published in conjunction with the query API description of the data retrieval system.
+The API will be implemented as a SOAP/XML web service, which is described in this [WSDL](https://github.com/FinnishCustoms-SuomenTulli/account-monitoring-system/blob/main/wsdl/aggregator.002.wsdl).
 
 SOAP protocol version 1.1 will be used.
 
@@ -168,6 +169,7 @@ The message extension is appended to the Xpath location of the ISO 20022 message
 | AuthorityInquirySet                        |            |        |                                                     |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialId         | Max140Text | Yes    | Identifier of the official that is making the query |
 | &nbsp;&nbsp;&nbsp;&nbsp;OfficialSuperiorId | Max140Text | Yes    | Identifier of the official's superior               |
+| &nbsp;&nbsp;&nbsp;&nbsp;OfficialOrgId      | Max140Text | Yes    | Business ID of the authority who made the query |
 
 #### <a name="requested-datasources"></a> RequestedDataSources
 
