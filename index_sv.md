@@ -6,7 +6,7 @@
 
 # Beskrivning av sammanställningsprogrammets frågegränssnitt
 
-*Dokumentversion 1.03*
+*Dokumentversion 1.04*
 
 ## Versionhistorik
 
@@ -16,6 +16,7 @@
 | 1.01    | 29.6.2023 | Schema för fin.012 och ett nytt exempelmeddelande har lagts till. Uppdaterade två nya datafält i avsnitt 4.2. Det ena används för att rikta förfrågan till angiven datakälla eller angivna datakällor, det andra för att märka att förfrågan kopplas till en internationell/gränsöverskridande information begäran. Dessutom updaterade i avsnitt 4.7 hur InvstgtnSts NOAP används i svarsmeddelandet. |
 | 1.02    | 25.4.2024 | Precisering i avsnitt 2: statusgränsnitt returnerar koden COMP också när inga träff hittades. |
 | 1.03    | 4.4.2025 | Beskrivning på användning av PART svarskoden har lagts till i avsnitt 2. |
+| 1.04    | 29.5.2026| Beskrivning på användning av X-correlation-ID har lagts till i avsnitt 4.8. |
 
 ## Innehåll
 
@@ -29,9 +30,10 @@
   4.4 [Resultatgränssnitt](#4-4)    
   4.5 [Utvidgat meddelande Fin020 (QueryResultRequest)](#4-5)    
   4.6 [Utvidgat meddelande Fin021 (QueryResultResponse)](#4-6)    
-  4.7 [Användning av elementet ReturnIndicator1](#4-7)    
-  4.8 [Hantering av felsituationer](#4-8)    
-  4.9 [Exempelmeddelanden](#4-9)    
+  4.7 [Användning av elementet ReturnIndicator1](#4-7)     
+  4.8 [X-Correlation-ID header information](#x-correlation-id)    
+  4.9 [Hantering av felsituationer](#4-8)    
+  4.10 [Exempelmeddelanden](#4-9)    
   
 
 ## 1. Inledning <a name="chapter1"></a>
@@ -200,7 +202,7 @@ I likhet med de övriga undermeddelandena returneras undermeddelandet i [svarsme
 
 Följande data returneras som attribut för ResultKeyList-elementet:
 - datasourceOrganisationId: FO-numret för datakällan
-- errorCode: i händelse av fel, antingen felkoden som returneras från datakällan eller en som genereras av sammanställningsprogrammet, se [4.8 Felhantering](#4-8)
+- errorCode: i händelse av fel, antingen felkoden som returneras från datakällan eller en som genereras av sammanställningsprogrammet, se [4.9 Felhantering](#4-8)
 
 |Namn|[min..max]|Typ|Beskrivning|Kopplas till meddelandet|XPath|
 |:---|:---|:---|:---|:---|:---|
@@ -224,7 +226,20 @@ ReturnIndicator1 innehåller en enskild typ av sökresultat, precis som i [svars
 | RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | Innehåller det utvidgade meddelandets meddelande-id (fin.021.001.03))                                                                                                                                                                      |
 | RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Returneras elementet `Rslt` av typen SupplementaryDataEnvelope1, som innehåller ett av undermeddelandena ([fin.021](#4-6), supl.027, fin.013 eller fin.002) eller elementet `InvstgtnSts`. `InvstgtnSts` returneras med koden `NFOU`, om inga uppgifter hittas med den kod som använts i förfrågan. `InvstgtnSts` returneras med koden `NOAP` om flera träffar hittas från en aktörs data i kontoregistret med namnsökning på fysisk eller juridisk person. |
 
-### <a name="4-8"></a> 4.8 Hantering av felsituationer
+### <a name="x-correlation-id"></a> 4.8 X-Correlation-ID header information
+
+Till varje förfrågan som en myndighet skickar till sammanställningsprogrammet ska HTTP‑headern X-Correlation-ID inkluderas. Identifieraren ska anges i formatet UUIDv4. Applikationen använder denna information för att koppla varje begäran som hör till samma förfrågan. X-Correlation-ID ska vara densamma i varje begäran som hör till samma förfrågan. Förfrågan tilldelas ett X-Correlation-ID när en ny förfrågan görs till Query‑gränssnittet. Därefter används samma X-Correlation-ID i varje begäran till Status‑ och Result‑gränssnitten och varje svar till system för utlämnande av uppgifter som är kopplade till förfrågan.
+
+Exempel: Uppgifter i begäranmeddelandet
+```
+Address: http://host:port/path
+HttpMethod: POST
+Content-Type: text/xml
+Headers: {X-Correlation-ID=37b64fe6-b363-418d-851a-9e831dedc68a}
+Payload: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>...</soap:Body></soap:Envelope>
+```
+
+### <a name="4-8"></a> 4.9 Hantering av felsituationer
 På felhantering och returnering av koder tillämpas relevanta delar av definitionerna i avsnitt [Scenarier för frågegränssnittets WS-meddelandetrafik](https://finnishcustoms-suomentulli.github.io/account-register-information-query/index_sv.html#4-12) i datasöksystemets frågegränssnitt.
 
 Svarsmeddelandena som returneras från statusgränssnitten kan vara tom och innehålla en felkod i fall något har gått fel med förfrågan. I detta fall förfrågan har inte skickats tilla datakällor och det kommer inte att vara resultater att hämta. För närvarande "TIMEOUT" är den enda felkod som returneras i detta fall.
@@ -233,7 +248,7 @@ I svarsmeddelandena som returneras från status- och resultatgränssnitten inneh
 
 Det är inte möjligt att söka information som gäller tid före 1 september 2020 från sammanställningsprogrammet. Sammanställningsprogrammets frågegränssnitt avvisar förfrågor var tidsintervall för sökning (InvstgtnPrd) är före det.
 
-### <a name="4-9"></a> 4.9 Exempelmeddelanden
+### <a name="4-9"></a> 4.10 Exempelmeddelanden
 Exempelmeddelanden för varje frågemeddelande med svar finns i mappen examples:
 - [Frågemeddelande](examples/query1.xml) och [svar](examples/query1_response.xml)
 - [Statusförfrågan](examples/status1.xml) och [svar](examples/status1_response.xml) och [felmeddelande](examples/status1_response_with_query_error.xml).
