@@ -32,8 +32,8 @@
   4.6 [Message extension Fin021 (QueryResultResponse)](#4-6)    
   4.7 [Use of the ReturnIndicator1 element](#4-7)    
   4.8 [X-correlation-ID header information](#x-correlation-id)    
-  4.8 [Error management](#4-8)    
-  4.9 [Example messages](#4-9)    
+  4.9 [Error management](#4-8)    
+  4.10 [Example messages](#4-9)    
   
 
 ## 1. Introduction <a name="chapter1"></a>
