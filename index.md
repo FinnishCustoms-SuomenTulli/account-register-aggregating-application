@@ -30,9 +30,10 @@
   4.4 [Tulosrajapinta](#kyselyrajapinta-tulos)    
   4.5 [Sanomalaajennus Fin020 (QueryResultRequest)](#kyselyrajapinta-fin020)    
   4.6 [Sanomalaajennus Fin021 (QueryResultResponse)](#kyselyrajapinta-fin021)    
-  4.7 [Elementin ReturnIndicator1 käyttö](#kyselyrajapinta-rtrInd)    
-  4.8 [Virhetilanteiden hallinta](#kyselyrajapinta-virhetilanteet)    
-  4.9 [Esimerkkisanomat](#kyselyrajapinta-esimerkit)    
+  4.7 [Elementin ReturnIndicator1 käyttö](#kyselyrajapinta-rtrInd)
+  4.8 [X-Correlation-ID header tiedot](#x-correlation-id)   
+  4.9 [Virhetilanteiden hallinta](#kyselyrajapinta-virhetilanteet)    
+  4.10 [Esimerkkisanomat](#kyselyrajapinta-esimerkit)    
   
 
 ## 1. Johdanto <a name="luku1"></a>
@@ -238,7 +239,7 @@ fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat
 | RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | sisältää sanomalaajennuksen sanoma-id:n (fin.021.001.03)                                                                                                                                                                                    |
 | RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Palautetaan `Rslt` elementti tyyppiä SupplementaryDataEnvelope1, joka sisältää jonkin alisanomista ([fin.021](#kyselyrajapinta-fin021), supl.027, fin.013 tai fin.002) tai elementin `InvstgtnSts`. `InvstgtnSts` palautetaan koodilla `NFOU`, jos kyselyssä käytetyllä tunnuksella ei löydy alisanomassa palautettavaa tietoa. `InvstgtnSts` palautetaan koodilla `NOAP` siinä tapauksessa, että luonnollisen tai oikeushenkilön nimihaulla tilirekisteristä löytyy jonkin toimijan tiedoista useita hakua vastaavia luonnollisia tai oikeushenkilöitä.|
 
-### <a name="x-correlation-id"></a> 4.8  X-Correlation-ID header tiedot
+### <a name="x-correlation-id"></a> 4.8 X-Correlation-ID header tiedot
 
 Jokaiseen viranomaisen koostavaan sovellukseen lähettämään pyyntöön tulee lisätä mukaan HTTP-otsaketieto X-Correlation-ID. Tunniste annetaan UUIDv4 muodossa. Sovellus käyttää tietoa yhdistämään samaan kyselyyn liittyvät pyynnöt. X-Correlation-ID:n tulee olla sama jokaisella samaan kyselyyn liittyvällä pyynnöllä. Kyselylle annetaan X-Correlation-ID, kun Query-rajapintaan tehdään uusi kysely. Tämän jälkeen samaa X-Correlation-ID:tä käytetään kaikissa kyselyyn liittyvissä Status- ja Result-rajapintojen pyynnöissä sekä tiedonluovutusjärjestelmään toimitettavassa vastauksessa.
 
