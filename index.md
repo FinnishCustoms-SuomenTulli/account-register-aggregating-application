@@ -212,7 +212,7 @@ muiden alisanomien tapaan [ReturnIndicator1](#kyselyrajapinta-rtrInd)-elementin 
 
 ResultKeyList-elementin attribuutteina palautetaan seuraavat tiedot:
 - datasourceOrganisationId: tiedonlähteen Y-tunnus tai ALV-tunnus
-- errorCode: virheen sattuessa tiedonlähteen palauttama tai Koostavan sovelluksen luoma virhekoodi, kts. kohta [4.8 Virhetilanteiden hallinta](#kyselyrajapinta-virhetilanteet)
+- errorCode: virheen sattuessa tiedonlähteen palauttama tai Koostavan sovelluksen luoma virhekoodi, kts. kohta [4.9 Virhetilanteiden hallinta](#kyselyrajapinta-virhetilanteet)
 
 |Nimi|[min..max]|Tyyppi|Kuvaus|Liitetään sanomaan|XPath|
 |:---|:---|:---|:---|:---|:---|
