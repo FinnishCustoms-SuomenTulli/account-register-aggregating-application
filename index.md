@@ -30,7 +30,7 @@
   4.4 [Tulosrajapinta](#kyselyrajapinta-tulos)    
   4.5 [Sanomalaajennus Fin020 (QueryResultRequest)](#kyselyrajapinta-fin020)    
   4.6 [Sanomalaajennus Fin021 (QueryResultResponse)](#kyselyrajapinta-fin021)    
-  4.7 [Elementin ReturnIndicator1 käyttö](#kyselyrajapinta-rtrInd)
+  4.7 [Elementin ReturnIndicator1 käyttö](#kyselyrajapinta-rtrInd)     
   4.8 [X-Correlation-ID header tiedot](#x-correlation-id)   
   4.9 [Virhetilanteiden hallinta](#kyselyrajapinta-virhetilanteet)    
   4.10 [Esimerkkisanomat](#kyselyrajapinta-esimerkit)    
