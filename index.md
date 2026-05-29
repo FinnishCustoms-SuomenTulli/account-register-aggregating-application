@@ -6,7 +6,7 @@
 
 # Koostavan sovelluksen rajapintakuvaus
 
-*Dokumentin versio 1.03*
+*Dokumentin versio 1.04*
 
 ## Versiohistoria
 
@@ -16,6 +16,7 @@
 | 1.01   | 29.6.2023  | Lisätty skeema sanomalle fin.012 ja uusi esimerkkisanoma. Päivitetty lukuun 4.2 kaksi kyselyssä käytettävää uutta tietokenttää. Toista käytetään kohdistamaan kysely tiety(i)lle tiedonlähteille, toista merkitsemään kyselyn liittyvän kansainväliseen/rajat ylittävään tietopyyntöön. Lisäksi päivitetty lukuun 4.7 InvstgtnSts NOAP käyttö vastaussanomassa.|  
 | 1.02   | 25.4.2024  | Tarkennettu lukuun 2, että status-rajapinta palauttaa vastauksen COMP myös silloin, kun osumia ei löytynyt. | 
 | 1.03   | 4.4.2025   | Lisätty kuvaus PART vastauskoodin käytöstä lukuun 2. |
+| 1.04   | 29.5.2026  | Lisätty luku 4.8 X-Correlation-ID:n käytöstä. |
 
 ## Sisällysluettelo
 
@@ -237,7 +238,20 @@ fin.021 palautetaan tässä elementissä, kuten muutkin kyselyssä palautettavat
 | RtrInd/AuthrtyReqTp/MsgNmId | Max35Text                  | sisältää sanomalaajennuksen sanoma-id:n (fin.021.001.03)                                                                                                                                                                                    |
 | RtrInd/InvstgtnRslt         | InvestigationResult1Choice | Palautetaan `Rslt` elementti tyyppiä SupplementaryDataEnvelope1, joka sisältää jonkin alisanomista ([fin.021](#kyselyrajapinta-fin021), supl.027, fin.013 tai fin.002) tai elementin `InvstgtnSts`. `InvstgtnSts` palautetaan koodilla `NFOU`, jos kyselyssä käytetyllä tunnuksella ei löydy alisanomassa palautettavaa tietoa. `InvstgtnSts` palautetaan koodilla `NOAP` siinä tapauksessa, että luonnollisen tai oikeushenkilön nimihaulla tilirekisteristä löytyy jonkin toimijan tiedoista useita hakua vastaavia luonnollisia tai oikeushenkilöitä.|
 
-### <a name="kyselyrajapinta-virhetilanteet"></a> 4.8 Virhetilanteiden hallinta
+### <a name="x-correlation-id"></a> 4.8  X-Correlation-ID header tiedot
+
+Jokaiseen viranomaisen koostavaan sovellukseen lähettämään pyyntöön tulee lisätä mukaan HTTP-otsaketieto X-Correlation-ID. Tunniste annetaan UUIDv4 muodossa. Sovellus käyttää tietoa yhdistämään samaan kyselyyn liittyvät pyynnöt. X-Correlation-ID:n tulee olla sama jokaisella samaan kyselyyn liittyvällä pyynnöllä. Kyselylle annetaan X-Correlation-ID, kun Query-rajapintaan tehdään uusi kysely. Tämän jälkeen samaa X-Correlation-ID:tä käytetään kaikissa kyselyyn liittyvissä Status- ja Result-rajapintojen pyynnöissä sekä tiedonluovutusjärjestelmään toimitettavassa vastauksessa.
+
+Esimerkki: Pyyntösanoman tietoja
+```
+Address: http://host:port/path
+HttpMethod: POST
+Content-Type: text/xml
+Headers: {X-Correlation-ID=37b64fe6-b363-418d-851a-9e831dedc68a}
+Payload: <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/"><soap:Body>...</soap:Body></soap:Envelope>
+```
+
+### <a name="kyselyrajapinta-virhetilanteet"></a> 4.9 Virhetilanteiden hallinta
 Virheiden hallinta ja palautettavat koodit noudattavat soveltuvin osin Tiedonhakujärjestelmän kyselyrajapinnan [Kyselyrajapinnan WS-sanomaliikenteen skenaariot](https://finnishcustoms-suomentulli.github.io/account-register-information-query/#4-12) -kappaleen määrityksiä.
 
 Status-rajapinnan vastaus voi olla tyhjä ResultKey ja virhekoodi, mikä tarkoittaa että kyselyn käsittelyssä on tapahtunut virhe. Tällöin kyselyä ei ole välitetty tietolähteisiin eikä kyselyyn tule noudettavia vastauksia. Tällä hetkellä "TIMEOUT" on ainoa virhekoodi, joka palautetaan tässä tilanteessa. 
@@ -246,7 +260,7 @@ Status- ja tulosrajapinnoista palautuvissa vastaussanomissa fin021-alisanomassa 
 
 Koostavan sovelluksen kautta ei ole mahdollista kysellä 1.9.2020 aikaisempia tietoja. Koostavan sovelluksen kyselyrajapinta hylkää kyselyt, joissa haettu aikaväli (InvstgtnPrd) on ennen tätä.
 
-### <a name="kyselyrajapinta-esimerkit"></a> 4.9 Esimerkkisanomat
+### <a name="kyselyrajapinta-esimerkit"></a> 4.10 Esimerkkisanomat
 Esimerkkisanomat kustakin kyselysanomasta ja sen vastauksesta löytyvät examples-kansiosta:
 - [Kyselysanoma](examples/query1.xml) ja [vastaus](examples/query1_response.xml)
 - [Status-kysely](examples/status1.xml), [vastaus](examples/status1_response.xml) ja [virheilmoitus](examples/status1_response_with_query_error.xml).
