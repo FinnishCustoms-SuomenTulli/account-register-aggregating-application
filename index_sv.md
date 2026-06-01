@@ -6,7 +6,7 @@
 
 # Beskrivning av sammanställningsprogrammets frågegränssnitt
 
-*Dokumentversion 1.04*
+*Dokumentversion 1.05*
 
 ## Versionhistorik
 
@@ -17,6 +17,7 @@
 | 1.02    | 25.4.2024 | Precisering i avsnitt 2: statusgränsnitt returnerar koden COMP också när inga träff hittades. |
 | 1.03    | 4.4.2025 | Beskrivning på användning av PART svarskoden har lagts till i avsnitt 2. |  
 | 1.04    | 6.5.2026 | Fin.012 meddelandet har uppdaterats till versionen 04. Länkar till WSDL har uppdaterats att länka till den nya WSDL. |  
+| 1.05    | 1.6.2026 | Uppdaterade nya instruktioner om ibruktagande och underhåll. |  
 
 ## Innehåll
 

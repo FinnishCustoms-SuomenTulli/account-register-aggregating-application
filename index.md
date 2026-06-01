@@ -6,7 +6,7 @@
 
 # Koostavan sovelluksen rajapintakuvaus
 
-*Dokumentin versio 1.04*
+*Dokumentin versio 1.05*
 
 ## Versiohistoria
 
@@ -17,6 +17,7 @@
 | 1.02   | 25.4.2024  | Tarkennettu lukuun 2, että status-rajapinta palauttaa vastauksen COMP myös silloin, kun osumia ei löytynyt. |  
 | 1.03   | 4.4.2025   | Lisätty kuvaus PART vastauskoodin käytöstä lukuun 2. |  
 | 1.04   | 6.5.2026   | Päivitetty sanoma fin.012 versioon 04. Päivitetty WSDL viittaukset ohjaamaan uuteen WSDL:n. |  
+| 1.05   | 1.6.2026   | Päivitetty uudet käyttöönoton- ja ylläpidon ohjeet. |  
 
 ## Sisällysluettelo
 
