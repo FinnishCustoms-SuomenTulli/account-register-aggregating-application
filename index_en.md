@@ -6,7 +6,7 @@
 
 # Description of the aggregating application’s query API
 
-*Document version 1.04*
+*Document version 1.05*
 
 ## Version history
 
@@ -17,6 +17,7 @@
 | 1.02    | 25.4.2024  | Clarification to chapter 2 that status API returns COMP also when no hits were found. | 
 | 1.03    | 4.4.2025   | Added description for using PART response code in chapter 2. |  
 | 1.04    | 6.5.2026   | Updated message fin.012 to version 04. Updated WSDL references to direct to the new WSDL. |  
+| 1.05    | 1.6.2026   | Updated new instructions for deployment and maintenance. |  
 
 ## Table of contents
 
